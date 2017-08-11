@@ -1,10 +1,10 @@
 ---
-bg: "tag.jpg"
+bg: "posting.jpeg"
 layout: page
 permalink: /posts/
-title: "Archive"
-crawlertitle: "All articles"
-summary: "Posts about jekyll"
+title: "정리노트"
+crawlertitle: "정리노트"
+summary: "개발자의 깃헙 블로그"
 active: archive
 ---
 

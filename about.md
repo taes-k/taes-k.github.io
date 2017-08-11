@@ -1,10 +1,10 @@
 ---
 bg: "about.png"
 layout: page
-title: "About"
-crawlertitle: "Why and how this blog was created"
+title: "김태성 (Luke Kim)"
+crawlertitle: "1992. 11. 20"
 permalink: /about/
-summary: "About this blog"
+summary: "1992. 11. 20"
 active: about
 ---
 
@@ -21,7 +21,7 @@ mysql, mssql, h2, redis, hadoop
 nginx, tomcat, apache,
 
 aws, ncloud
-
+<br>
 
 
 email : cobura12@gmail.com
