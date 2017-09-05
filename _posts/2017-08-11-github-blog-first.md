@@ -118,7 +118,8 @@ git push -u origin master
 ￼![3]({{ site.images | relative_url }}/2017-08-11-github-blog-first_3.png)
 로컬에서 확인했던것과 같은 블로그가 생성되었다 !
 
-<br><h3>3. 변경</h3>
+<br>
+<h3>3. 변경</h3>
 ----
 
 <h5>3-1 기본 git 커밋/푸쉬</h5>
