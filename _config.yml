@@ -1,44 +1,40 @@
 # Welcome to Jekyll!
 #
-# This config file is meant for settings that affect your whole blog, values
-# which you are expected to set up once and rarely need to edit after that.
+# This config file is meant for settings that affect your whole site, values
+# which you are expected to set up once and rarely edit after that. If you find
+# yourself editing these this file very often, consider using Jekyll's data files
+# feature for the data you need to update frequently.
+#
 # For technical reasons, this file is *NOT* reloaded automatically when you use
 # 'jekyll serve'. If you change this file, please restart the server process.
 
 # Site settings
-title: taes 기술블로그
-email: cobura12@gmail.com
-description: > # this means to ignore newlines until "baseurl:"
-  Write an awesome description for your new site here. You can edit this
-  line in _config.yml. It will appear in your document head meta (for
-  Google search results) and in your feed.xml site description.
-baseurl: "" # the subpath of your site, e.g. /blog
-lang: "en"
-url: "http://localhost:4000" # the base hostname & protocol for your site
-twitter_username: 
-github_username:  taes-k
-disqus_username:
+# These are used to personalize your new site. If you look in the HTML files,
+# you will see them accessed via {{ site.title }}, {{ site.github_repo }}, and so on.
+# You can create any custom variable you would like, and they will be accessible
+# in the templates via {{ site.myvariable }}.
+title: Luke's tech blog
+description: Full stack developer Taeseong-K (Luke)
+baseurl: #the subpath of your site, e.g. /blog
+url: "127.0.0.1:4000" # the base hostname & protocol for your site, e.g. http://example.com
+images: /assets/images/
 
-# Build settings
-markdown: kramdown
-permalink: /:categories/:title/
+permalink: pretty
+exclude: ["node_modules/", "*.gemspec", "*.gem", "Gemfile", "Gemfile.lock", "package.json", "package-lock.json",  "script/", "LICENSE.txt", "lib/", "bin/", "README.md", "Rakefile"]
 
-# Posts settings
-future: true
-safe: false
-lsi: false
-excerpt_separator: "\n\n"
+# Enable or disable the site search
+search_enabled:
 
-# Theme settings
-compress_html:
-  comments: ["<!-- ", " -->"]
-  clippings: all
-  endings: all
+# Aux links for the upper right navigation
+aux_links:
+  "Luke's GitHub":
+    - "//github.com/taes-k"
 
+# Color scheme currently only supports "dark" or nil (default)
+color_scheme: nil
 
-sass:
-  sass_dir: assets/_sass
-  style: compressed
+# Google Analytics Tracking (optional)
+# e.g, UA-1234567-89
+ga_tracking: UA-2709176-10
+theme: "just-the-docs"
 
-
-images: '/assets/images'
