@@ -16,7 +16,7 @@
 title: Luke's tech blog
 description: Full stack developer Taeseong-K (Luke)
 baseurl: #the subpath of your site, e.g. /blog
-url: "127.0.0.1:4000" # the base hostname & protocol for your site, e.g. http://example.com
+url: "https://taes-k.github.io" # the base hostname & protocol for your site, e.g. http://example.com
 images: /assets/images/
 
 permalink: pretty
@@ -36,5 +36,5 @@ color_scheme: nil
 # Google Analytics Tracking (optional)
 # e.g, UA-1234567-89
 ga_tracking: UA-2709176-10
-theme: "just-the-docs"
+theme: just-the-docs
 
