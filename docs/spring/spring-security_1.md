@@ -6,8 +6,7 @@ date: 2017.02.06
 ---
 
 <h1>{{ page.title }}</h1>  
----
-<div style="text-align:right; font-size:7px; color:#eee">{{ page.date }} </div>
+<div style="text-align:right; font-size:10px; color:#ddd">{{ page.date }} </div>
 
 session 으로만 관리하던 프로젝트를 좀더 스프링화 시키기위해 spring security 를 적용 하고자 하다가 공부하며 정리 해 본다.
 
