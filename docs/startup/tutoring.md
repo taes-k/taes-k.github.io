@@ -1,7 +1,7 @@
 ---
 layout: default
 title: tutoring
-parent: spring
+parent: startup
 date: 2017.02.25
 ---
 
@@ -14,7 +14,7 @@ date: 2017.02.25
 ## [교육 분야] tutoring
 전화영어를 플랫폼화하여 현지인 튜터와 학습자들을 어플을 통한 전화영어교육  
 
-![tutoring](/tutoring/tutoring.jpg)
+![tutoring]({{ site.images | relative_url }}/tutoring/tutoring.jpg)
 
 - 설립일 (2016.02.25)  
 - 1만 다운로드 (2017.01.10)  
