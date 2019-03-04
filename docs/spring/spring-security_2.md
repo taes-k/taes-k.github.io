@@ -16,8 +16,8 @@ login page 는 리다이렉트가 일어나지 않도록 access 권한을 전체
 <form login> 탭에서 로그인 기능들 이 설정됨
 
 `login-page` : 로그인 페이지 설정  
-`username-paramete` : 로그인페이지에서의 id name 값 설정   
-`password-paramete` : 로그인페이지에서의 pw name 값 설정 
+`username-parameter` : 로그인페이지에서의 id name 값 설정   
+`password-parameter` : 로그인페이지에서의 pw name 값 설정  
 `login-processing-url` : 로그인페이지에서의 form action 값 설정  
 `default-target-url` : 로그인 성공후 URL  
 `authentication-failure-url` : 로그인 실패후 URL  
