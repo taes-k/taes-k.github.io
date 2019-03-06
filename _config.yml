@@ -38,3 +38,5 @@ color_scheme: nil
 ga_tracking: UA-2709176-10
 theme: just-the-docs
 
+plugins:
+ - jekyll-sitemap
