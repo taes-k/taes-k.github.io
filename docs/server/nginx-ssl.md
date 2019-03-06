@@ -2,7 +2,7 @@
 layout: default
 title: Nginx SSL 설정
 parent: server
-date: 2019.02.17
+date: 2019.03.02
 ---
 
 <h1>{{ page.title }}</h1>  

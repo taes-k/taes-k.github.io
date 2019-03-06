@@ -22,7 +22,8 @@ login page 는 리다이렉트가 일어나지 않도록 access 권한을 전체
 `default-target-url` : 로그인 성공후 URL  
 `authentication-failure-url` : 로그인 실패후 URL  
   
-~~~c
+```c
+
 	<http auto-config="true"> 
 		<intercept-url pattern="/login" access="IS_AUTHENTICATED_ANONYMOUSLY" />
 		<intercept-url pattern="/*" access="ROLE_USER" /> 
@@ -37,12 +38,13 @@ login page 는 리다이렉트가 일어나지 않도록 access 권한을 전체
 					/>
 					
 	</http> 
-~~~
-
+```
 
 2)`login.jsp`
 위에서 설정해준 설정으로 name 세팅하여 동작시켜준다.
-~~~c
+
+```c
+
 <form name="form1" method="post" action="loginProcess">
 	<div class="login-inputBox"> 
 		<div>
@@ -56,5 +58,5 @@ login page 는 리다이렉트가 일어나지 않도록 access 권한을 전체
 		<input type="submit" id="loginSubmit" value="로그인"/>
 	</div>
 </form>
-~~~
 
+```
