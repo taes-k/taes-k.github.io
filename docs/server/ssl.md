@@ -16,7 +16,7 @@ HTTPS 에서 이용되는 프로토콜인 SSL(Secure Socket Layer)는 간단히 
 ### HTTPS 통신
 일반적인 통신인 HTTP에보안이 추가된 +  over SSL 의 의미의 약자로써 HTTPS는 일반 HTTP의 보안적 단점인 평문(Plain Text)통신을 보완하기 위해 생겨났다. HTTP over SSL 의 약자처럼, 일반 HTTP 통신의 요청과 응답이 SSL 보안계층에의해 네트워크로 보내지기 전 암호화되어 전송되어진다.   
 
-![https-security]({{ site.images }}/https-security.png)
+![https-security]({{ site.images }}/ssl/https-security.png)
 
 
 ### SSL 인증서
@@ -43,7 +43,7 @@ HTTPS 에서 이용되는 프로토콜인 SSL(Secure Socket Layer)는 간단히 
 기본적으로 SSL 인증절차를 받는이유를 다시한번 상기해보자.
 > 클라이언트가 접속한 서버가 신뢰 할 수 있는 서버임을 보장하기위함  
 
-![ssl-work]({{ site.images }}/ssl-work.png)
+![ssl-work]({{ site.images }}/ssl/ssl-work.png)
 
 CA 확인을 통해 인증받은 서버임을 확인하고, 서버와의 일회용 세션키 생성으로 서버-클라이언트간의 통신을 암호화한다.
 
