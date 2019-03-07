@@ -1,5 +1,6 @@
 ---
 layout: default
+comments: true
 title: Nginx SSL 설정
 parent: server
 date: 2019.03.02

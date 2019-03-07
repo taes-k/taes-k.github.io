@@ -1,5 +1,6 @@
 ---
 layout: default
+comments: true
 title: spring security 적용하기-3
 parent: spring
 date: 2017.02.06

@@ -1,5 +1,6 @@
 ---
 layout: default
+comments: true
 title: SSL과 HTTPS
 parent: server
 date: 2019.03.04

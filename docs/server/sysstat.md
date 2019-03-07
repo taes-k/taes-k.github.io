@@ -1,5 +1,6 @@
 ---
 layout: default
+comments: true
 title: Sysstat 으로 시스템리소스 모니터링하기 
 parent: server
 date: 2019.03.05

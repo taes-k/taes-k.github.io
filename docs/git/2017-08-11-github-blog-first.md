@@ -1,5 +1,6 @@
 ---
 layout: default
+comments: true
 title: github로 개인 홈페이지 만들기-Jekyll
 parent: git
 ---

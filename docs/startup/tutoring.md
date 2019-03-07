@@ -1,5 +1,6 @@
 ---
 layout: default
+comments: true
 title: tutoring
 parent: startup
 date: 2017.02.25

@@ -1,5 +1,6 @@
 ---
 layout: default
+comments: true
 title: OAuth2 Access Token
 parent: server
 date: 2019.03.04
