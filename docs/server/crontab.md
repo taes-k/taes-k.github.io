@@ -1,5 +1,6 @@
 ---
 layout: default
+comments: true
 title: Crontab 설정으로 스크립트 스케쥴 설정하기 
 parent: server
 date: 2019.03.04
