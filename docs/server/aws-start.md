@@ -13,41 +13,55 @@ date: 2019.03.05
 ### AWS 시작하기
 
 먼저, <a href="https://aws.amazon.com/">https://aws.amazon.com/</a> 아마존 웹사이트에서 가입을 진행해준다.  
-결제 카드 등록의 경우 처음시작하면 프리티어 한도를 넘지 않는 이상 결제가 일어나지 않으니 무서워 하지 않아도 된다.  
+결제 카드 등록의 경우 처음시작하면 프리티어 한도를 넘지 않는 이상 결제가 일어나지 않는다.  
 이 포스트에서는 프리티어로 사용 할 수 있는 마이크로T2 서버를 생성 하고 운영하는것에 대해 포스팅 하겠다.
 
 ### EC2 시작하기
 
 AWS에 가입을 진행했다는 가정하에 다음단계부터 진행하도록 하겠다.
 
-1. 인스턴스 만들기 
-> ![aws-start_1.png]({{ site.images }}/aws-start/aws-start_1.png)
-> ![aws-start_2.png]({{ site.images }}/aws-start/aws-start_2.png)
-
-> 인스턴스 시작 버튼 클릭
-> ![aws-start_3.png]({{ site.images }}/aws-start/aws-start_3.png)
+**1. 인스턴스 만들기** 
+> 
+>> ![aws-start_1.png]({{ site.images }}/aws-start/aws-start_1.png)
+>  
 >   
+> 인스턴스 시작 버튼 클릭
+>> ![aws-start_3.png]({{ site.images }}/aws-start/aws-start_3.png)
+>  
+>    
 > 우분투 서버 16.04 LTS 버전 선택
-> ![aws-start_4.png]({{ site.images }}/aws-start/aws-start_4.png)  
+>> ![aws-start_4.png]({{ site.images }}/aws-start/aws-start_4.png)  
+>   
 >  
 > 프리티어로 사용 가능한 t2.micro 스펙을 선택하고 검토후 바로 시작
-> ![aws-start_5.png]({{ site.images }}/aws-start/aws-start_5.png)
->
+>> ![aws-start_5.png]({{ site.images }}/aws-start/aws-start_5.png)
+>  
+>  
 > 이단계 까지 왔다면 거의다 완료된것이다. 인스턴스 보안을 개선하라는 경고창은 이후에 보안그룹을 변경해 줄 수 있으니 걱정하지 말자.
-> ![aws-start_6.png]({{ site.images }}/aws-start/aws-start_6.png)
->
-> 기존 AWS를 사용하던경우 기존키를 등록하여 사용할 수 있다. 새롭게 키를 생성하려는경우 키페어 이름을 설정후 키페어 다운로드하게되면 pem파일을 다운로드된다. 이 키 파일은 앞으로 서버에 SSH 접속할때 사용되므로 잃어버리면 안되니 잘 관리 하여야 한다.
-> ![aws-start_7.png]({{ site.images }}/aws-start/aws-start_7.png)
+>> ![aws-start_6.png]({{ site.images }}/aws-start/aws-start_6.png)
+>  
+>  
+> 기존 AWS를 사용하던경우 기존키를 등록하여 사용할 수 있다. 새롭게 키를 생성하려는경우 키페어 이름을 설정후 키페어 다운로드하게되면 pem파일을 다운로드된다.   
+> 이 키 파일은 앞으로 서버에 SSH 접속할때 사용되므로 잃어버리면 안되니 잘 관리 하여야 한다.
+>> ![aws-start_7.png]({{ site.images }}/aws-start/aws-start_7.png)
+>  
 >   
 > 인스턴스 생성 완료!
 > ![aws-start_8.png]({{ site.images }}/aws-start/aws-start_8.png)
-
-2. 인스턴스 확인하기
+  
+  
+  
+**2. 인스턴스 확인하기**
+> 
 > 이제 인스턴스 창에서 방금만든 인스턴스를 확인 할 수 있다.
-> ![aws-start_9.png]({{ site.images }}/aws-start/aws-start_9.png)
+>> ![aws-start_9.png]({{ site.images }}/aws-start/aws-start_9.png)
 > 위 인스턴스창에서 내 인스턴스의 DNS, 퍼블릭IP, 프라이빗 IP 등을 확인 할 수 있다.
+  
+  
+  
 
-3. 인스턴스 접속하기
+**3. 인스턴스 접속하기**
+> 
 > AWS Ubuntu 인스턴스의 기본계정은 ubuntu 이다.   
 >
 > - mac, linux에서 접속하기
