@@ -1,0 +1,63 @@
+---
+layout: default
+comments: true
+title: AWS 
+parent: server
+date: 2019.03.05
+---
+
+<h1>{{ page.title }}</h1>  
+<div style="text-align:right; font-size:11px; color:#aaa">{{ page.date }} </div>
+---
+
+### AWS 시작하기
+
+먼저, <a href="https://aws.amazon.com/">https://aws.amazon.com/</a> 아마존 웹사이트에서 가입을 진행해준다.  
+결제 카드 등록의 경우 처음시작하면 프리티어 한도를 넘지 않는 이상 결제가 일어나지 않으니 무서워 하지 않아도 된다.  
+이 포스트에서는 프리티어로 사용 할 수 있는 마이크로T2 서버를 생성 하고 운영하는것에 대해 포스팅 하겠다.
+
+### EC2 시작하기
+
+AWS에 가입을 진행했다는 가정하에 다음단계부터 진행하도록 하겠다.
+
+1. 인스턴스 만들기 
+> ![aws-start_1.png]({{ site.images }}/aws-start/aws-start_1.png)
+> ![aws-start_2.png]({{ site.images }}/aws-start/aws-start_2.png)
+
+> 인스턴스 시작 버튼 클릭
+> ![aws-start_3.png]({{ site.images }}/aws-start/aws-start_3.png)
+>   
+> 우분투 서버 16.04 LTS 버전 선택
+> ![aws-start_4.png]({{ site.images }}/aws-start/aws-start_4.png)  
+>  
+> 프리티어로 사용 가능한 t2.micro 스펙을 선택하고 검토후 바로 시작
+> ![aws-start_5.png]({{ site.images }}/aws-start/aws-start_5.png)
+>
+> 이단계 까지 왔다면 거의다 완료된것이다. 인스턴스 보안을 개선하라는 경고창은 이후에 보안그룹을 변경해 줄 수 있으니 걱정하지 말자.
+> ![aws-start_6.png]({{ site.images }}/aws-start/aws-start_6.png)
+>
+> 기존 AWS를 사용하던경우 기존키를 등록하여 사용할 수 있다. 새롭게 키를 생성하려는경우 키페어 이름을 설정후 키페어 다운로드하게되면 pem파일을 다운로드된다. 이 키 파일은 앞으로 서버에 SSH 접속할때 사용되므로 잃어버리면 안되니 잘 관리 하여야 한다.
+> ![aws-start_7.png]({{ site.images }}/aws-start/aws-start_7.png)
+>   
+> 인스턴스 생성 완료!
+> ![aws-start_8.png]({{ site.images }}/aws-start/aws-start_8.png)
+
+2. 인스턴스 확인하기
+> 이제 인스턴스 창에서 방금만든 인스턴스를 확인 할 수 있다.
+> ![aws-start_9.png]({{ site.images }}/aws-start/aws-start_9.png)
+> 위 인스턴스창에서 내 인스턴스의 DNS, 퍼블릭IP, 프라이빗 IP 등을 확인 할 수 있다.
+
+3. 인스턴스 접속하기
+> AWS Ubuntu 인스턴스의 기본계정은 ubuntu 이다.   
+>
+> - mac, linux에서 접속하기
+>> terminal 창에서 ssh 접속하기
+>> `ssh -i /key파일 경로/키파일.pem ubuntu@퍼블릭 DNS` 
+>> 처음접속하게되면 키파일의 보안상 권한문제때문에 접속이 거부될수 있다. 이때 키파일의 권한을 400 으로 조정하여 사용한다.  
+>> `chmod 400 /key파일 경로/키파일.pem`
+>  
+> - window에서 접속하기
+>> putty 프로그램을 이용해 접속한다.
+>> ![aws-start_10.png]({{ site.images }}/aws-start/aws-start_10.png)
+>> Host Name , port 입력후 왼쪽하단 SSH 에서 key 파일을 등록해주면 접속이 가능하다.
+>> 이때 putty 에서는 아마존에서 발급한 pem 키파일이아닌 puttygen을 사용하여 ppk 의 별도 형식으로 변환해주어야 한다. 이에대해서는 아마존 공식문서를 따라서 변환해 준다. [aws](https://docs.aws.amazon.com/ko_kr/AWSEC2/latest/UserGuide/putty.html)
