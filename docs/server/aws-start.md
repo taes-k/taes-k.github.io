@@ -1,7 +1,7 @@
 ---
 layout: default
 comments: true
-title: AWS 
+title: AWS 클라우드 서버 사용하기
 parent: server
 date: 2019.03.05
 ---
