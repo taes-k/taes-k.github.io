@@ -65,13 +65,14 @@ AWS에 가입을 진행했다는 가정하에 다음단계부터 진행하도록
 > AWS Ubuntu 인스턴스의 기본계정은 ubuntu 이다.   
 >
 > - mac, linux에서 접속하기
->> terminal 창에서 ssh 접속하기
->> `ssh -i /key파일 경로/키파일.pem ubuntu@퍼블릭 DNS` 
->> 처음접속하게되면 키파일의 보안상 권한문제때문에 접속이 거부될수 있다. 이때 키파일의 권한을 400 으로 조정하여 사용한다.  
->> `chmod 400 /key파일 경로/키파일.pem`
+> terminal 창에서 ssh 접속하기
+> `ssh -i /key파일 경로/키파일.pem ubuntu@퍼블릭 DNS` 
+> 처음접속하게되면 키파일의 보안상 권한문제때문에 접속이 거부될수 있다.  
+> 이때 키파일의 권한을 400 으로 조정하여 사용한다.  
+> `chmod 400 /key파일 경로/키파일.pem`
 >  
 > - window에서 접속하기
->> putty 프로그램을 이용해 접속한다.
+> putty 프로그램을 이용해 접속한다.
 >> ![aws-start_10.png]({{ site.images }}/aws-start/aws-start_10.png)
->> Host Name , port 입력후 왼쪽하단 SSH 에서 key 파일을 등록해주면 접속이 가능하다.
+> Host Name , port 입력후 왼쪽하단 SSH 에서 key 파일을 등록해주면 접속이 가능하다.
 >> 이때 putty 에서는 아마존에서 발급한 pem 키파일이아닌 puttygen을 사용하여 ppk 의 별도 형식으로 변환해주어야 한다. 이에대해서는 아마존 공식문서를 따라서 변환해 준다. [aws](https://docs.aws.amazon.com/ko_kr/AWSEC2/latest/UserGuide/putty.html)
