@@ -25,7 +25,7 @@ tomcat 계정 설정이 안되어있다면 다음 설정 파일에서 계정을 
 
 ### Tomcat admin page
 
-> ![tomcat-admin page]({{ site.images }}/docs/tomcat-admin-start/tomcat-admin-start_1.png)
+> ![tomcat-admin page]({{ site.images }}/tomcat-admin-start/tomcat-admin-start_1.png)
 
 #### 확인 가능한 내용
 - Applications (page 별 동작상태 확인)
@@ -36,7 +36,7 @@ tomcat 계정 설정이 안되어있다면 다음 설정 파일에서 계정을 
 
 ### Tomcat status page
 
-> ![tomcat-admin page]({{ site.images }}/docs/tomcat-admin-start/tomcat-admin-start_2.png)
+> ![tomcat-admin page]({{ site.images }}/tomcat-admin-start/tomcat-admin-start_2.png)
 
 #### 확인 가능한 내용
 - JVM (메모리 상태 확인)
