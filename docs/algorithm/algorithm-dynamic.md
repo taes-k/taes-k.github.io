@@ -1,7 +1,7 @@
 ---
 layout: default
 comments: true
-title: Dynamic Programming
+title: dynamic programming
 parent: algorithm
 date: 2019.03.19
 ---
@@ -67,8 +67,9 @@ public void fibo(){
 
 
 ```c
+
 int[][] result;
-int[][] merchant = {{1,5},{2,7},{3,8},{4,9}};
+int[][] merchant = [[1,5],[2,7],[3,8],[4,9]];
 public void backpack(){
 
 
