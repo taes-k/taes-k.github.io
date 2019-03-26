@@ -1,8 +1,8 @@
 ---
 layout: default
 comments: true
-title: tutoring
-parent: startup
+title: [Start-up] Tutoring
+parent: review
 date: 2017.02.25
 ---
 
