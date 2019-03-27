@@ -1,0 +1,39 @@
+---
+layout: default
+comments: true
+title: Java GC (Garbage Collectgion)
+parent: java
+date: 2019.03.27
+---
+
+<h1>{{ page.title }}</h1>  
+<div style="text-align:right; font-size:11px; color:#aaa">{{ page.date }} </div>
+---
+
+### Garbage Collection
+가비지 컬렉션의 기본 개념은, 더이상 사용되지 않는 오브젝트들을 자동으로 메모리에서 제거하여 사용가능한 메모리 공간을 확보 하는것이다.     
+
+자바에서는 JVM 에서 가비지 콜렉터(Garbage Collector)가 자동으로 처리를 해주기 때문에, 개발자가 메모리를 처리하기위한 로직을 만들필요가 없다. 
+
+### JAVA 메모리 구조 이해
+[1]({{site.images}}/java_gc/java_gc1.png)
+- Method Area
+클래스, 인터페이스 상수, 메소드와 필드에 대한 모든 레퍼런스를 저장하는 영역으로 모든 스레드에서 공유한다.
+
+- Heap Area
+  런타임시 동적으로 할당하여 사용하는 영역으로 객체와 배열을 저장하게된다. 모든 스레드에서 공유하는 영역이다.
+  
+- Stack Area
+지역변수(Local Variable) 와 매개변수(parameter) 가 저장되는 영역으로, 프래그램의 실행 과정에서 임시로 할당되고 바로 소멸되는 데이터들이 저장됨. 각 스레드마다 하나씩 존재하며 스레드가 시작될 때 할당된다.
+
+Java 7 -> Java 8  업데이트가 되면서 기존에 class나 static 오브젝트들을 할당하던 공간인 Method Area의 Permgen space가 없어지고, Meta space 영역으로 변경되었다. Static Object들을 Heap 영역으로 옮겨 permgen space out of memory 현상을 원천 차단해버린것이라 할 수 있다.
+
+### GC의 수행
+JAVA 에서 GC는 Heap 메모리영역이 메모리 할당 허용치를 넘어갈때 혹은 여유로운 시간 (Idle time)에 수행된다.  
+더이상 사용되지 않는 오브젝트들을 제거하게되는데, 이는 Heap 공간내의 모든 오브젝트들을 찾아 닿을 수 없는 (unreachable) 데이터들을 사용하지 않는 오브젝트로 간주하여 제거한다.
+
+[1]({{site.images}}/java_gc/java_gc2.png)
+
+힙영역의 데이터들은 대부분 빠르게 unreachable한 상태가 되어진다고 판단 되어지는데, 그래서 GC 실행시 전체 오브젝트를 탐색하게 되면 비효율적이게되어 힙영역이 나누어져있다. 비교적 생성된지 얼마안된 오브젝트들은 Young Generation 영역에서 몇번의 GC를 통해 Aged 하게되어 Old Generation 영역가지 이동하게된다.  
+
+이때 Young Generation 에서 일어나는 GC 를 Minor GC 라 하고, Old Generation 에서 일어나는 GC 를 Major GC라 일컫는다.
