@@ -16,7 +16,7 @@ date: 2019.03.27
 자바에서는 JVM 에서 가비지 콜렉터(Garbage Collector)가 자동으로 처리를 해주기 때문에, 개발자가 메모리를 처리하기위한 로직을 만들필요가 없다. 
 
 ### JAVA 메모리 구조 이해
-[1]({{site.images}}/java_gc/java_gc1.png)
+![1]({{site.images}}/java_gc/java_gc1.png)
 - Method Area
 클래스, 인터페이스 상수, 메소드와 필드에 대한 모든 레퍼런스를 저장하는 영역으로 모든 스레드에서 공유한다.
 
@@ -32,7 +32,7 @@ Java 7 -> Java 8  업데이트가 되면서 기존에 class나 static 오브젝�
 JAVA 에서 GC는 Heap 메모리영역이 메모리 할당 허용치를 넘어갈때 혹은 여유로운 시간 (Idle time)에 수행된다.  
 더이상 사용되지 않는 오브젝트들을 제거하게되는데, 이는 Heap 공간내의 모든 오브젝트들을 찾아 닿을 수 없는 (unreachable) 데이터들을 사용하지 않는 오브젝트로 간주하여 제거한다.
 
-[1]({{site.images}}/java_gc/java_gc2.png)
+![1]({{site.images}}/java_gc/java_gc2.png)
 
 힙영역의 데이터들은 대부분 빠르게 unreachable한 상태가 되어진다고 판단 되어지는데, 그래서 GC 실행시 전체 오브젝트를 탐색하게 되면 비효율적이게되어 힙영역이 나누어져있다. 비교적 생성된지 얼마안된 오브젝트들은 Young Generation 영역에서 몇번의 GC를 통해 Aged 하게되어 Old Generation 영역가지 이동하게된다.  
 

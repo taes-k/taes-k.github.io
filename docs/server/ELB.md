@@ -23,7 +23,7 @@ Elastic Load Blancing , 이름에서 알수있듯이 로드밸런싱의 주된 �
 등
 
 ### ELB 구조 
-[1]({{site.images}}/ELB/elb1.png)
+![1]({{site.images}}/ELB/elb1.png)
 
 ### 특징
 - ELB의 스케일은 알아서 관리되며 장애가 일어난 서버를 감지하여 다른서버로 트래픽을 분산시켜준다.
