@@ -39,28 +39,30 @@ permalink: /
 - 캠핑
 
 ### Ongoing Projects
-> ### 뉴스 분석을 통한 관련 상장기업 주가 분석 웹 서비스
-> - Github : <https://github.com/taes-k/stock_analysis>
-> - 실행 환경
->> Python 3.7.3
->> Django 2.1.7
->> Elasticsearch 6.7.0
-> - 서비스안내
->> 1. 뉴스 키워드 추출
->> 2. 뉴스 Positive 점수 분석
->> 3. 키워드 관련 주 분석
->> 4. 관련주 Score 계산
+**- 뉴스 분석을 통한 관련 상장기업 주가 분석 웹 서비스**
+- Name : BSN (Breaking Stock News)
+- Github : <https://github.com/taes-k/stock_analysis>
+- 실행 환경
+> Python 3.7.3
+> Django 2.1.7
+> Elasticsearch 6.7.0
+- 서비스안내
+> 1. 뉴스 키워드 추출
+> 2. 뉴스 Positive 점수 분석
+> 3. 키워드 관련 주 분석
+> 4. 관련주 Score 계산
 
-> ### 색으로 사진을 기억하는 카메라 iOS 어플리케이션
-> - Github : <https://github.com/taes-k/color-ground>
-> - 실행 환경
->> Swift4
-> - 서비스안내
->> 1. 카메라 Action
->> 2. 사진 분석을통한 대표색 3개 추출
->> 3. 사진에 추출한 Color chip 합성
->> 4. Color chip 색상 변경 가능
-> - 서비스상세
+**- 색으로 사진을 기억하는 카메라 iOS 어플리케이션**
+- Name : Color ground
+- Github : <https://github.com/taes-k/color-ground>
+- 실행 환경
+> Swift4
+ - 서비스안내
+> 1. 카메라 Action
+> 2. 사진 분석을통한 대표색 3개 추출
+> 3. 사진에 추출한 Color chip 합성
+> 4. Color chip 색상 변경 가능
+- 서비스상세
 <div>
 <img width="200" src="https://github.com/taes-k/color-ground/raw/master/color-ground1.jpg">
 <img width="200" src="https://github.com/taes-k/color-ground/raw/master/color-ground5.jpg">
