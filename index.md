@@ -44,14 +44,14 @@ permalink: /
 ---
 ## Ongoing Projects
 
-### 뉴스 분석을 통한 관련 상장기업 주가 분석 웹 서비스
+### - 뉴스 분석을 통한 관련 상장기업 주가 분석 웹 서비스
 - Name : BSN (Breaking Stock News)
 - Github : <https://github.com/taes-k/stock_analysis>
 - 실행 환경
 ```
-Python 3.7.3  
-Django 2.1.7  
-Elasticsearch 6.7.0
+- Python 3.7.3  
+- Django 2.1.7  
+- Elasticsearch 6.7.0
 ```
 - 서비스안내
 ```
@@ -60,12 +60,13 @@ Elasticsearch 6.7.0
 3. 키워드 관련 주 분석
 4. 관련주 Score 계산
 ```
-### 색으로 사진을 기억하는 카메라 iOS 어플리케이션**
+
+### - 색으로 사진을 기억하는 카메라 iOS 어플리케이션
 - Name : Color ground
 - Github : <https://github.com/taes-k/color-ground>
 - 실행 환경
-```c
-Swift4
+```
+- Swift4
 ```
 - 서비스안내
 ```
