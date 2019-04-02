@@ -47,13 +47,16 @@ permalink: /
 ### - 뉴스 분석을 통한 관련 상장기업 주가 분석 웹 서비스
 - Name : BSN (Breaking Stock News)
 - Github : <https://github.com/taes-k/stock_analysis>
-- 실행 환경  
+- 실행 환경   
+
 ```
-- Python 3.7.3  
-- Django 2.1.7  
-- Elasticsearch 6.7.0
-```  
+ - Python 3.7.3  
+ - Django 2.1.7  
+ - Elasticsearch 6.7.0
+```   
+
 - 서비스안내  
+
 ```
 1. 뉴스 키워드 추출
 2. 뉴스 Positive 점수 분석
@@ -64,10 +67,12 @@ permalink: /
 ### - 색으로 사진을 기억하는 카메라 iOS 어플리케이션
 - Name : Color ground
 - Github : <https://github.com/taes-k/color-ground>
-- 실행 환경  
+- 실행 환경   
+
 ```
-- Swift4
-```
+ - Swift4
+``` 
+
 - 서비스안내  
 ```
 1. 카메라 Action
