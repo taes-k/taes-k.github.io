@@ -18,9 +18,12 @@ permalink: /
 
 김춘수 - 꽃
 ~~~
-개발에 있어서의 혁신은 사용자가 가치를 발견해주었을때 나온다.  
-개발을 한 이후에 사용자가 변화된 그것에서 일말의 만족감을 얻었다면 비로소 그 일은 혁신적인 결과를 얻은것이다.  
-따라서 개발을 할때 사용자를 생각하며 만드는것이 가장 중요하다.  
+개발에 있어서의 혁신은 사용자가 가치를 발견해주었을때 나온다.    
+  
+개발을 한 이후에 사용자가 변화된 그것에서 일말의 만족감을 얻었다면 비로소 그 일은 혁신적인 결과를 얻은것이다.    
+  
+따라서 개발을 할때 사용자를 생각하며 만드는것이 가장 중요하다.    
+  
 사용자들에게 전달되기 직전까지의 개발의 전 과정에서 실제 사용자 중심으로 작업이 진행되어야한다. 
 
 ---
@@ -36,9 +39,11 @@ permalink: /
 - 핀테크 
 - 운동 ( 수영, 배드민턴, 탁구, 테니스, 사이클, 달리기, 헬스 )
 - 요리
-- 캠핑
+- 캠핑  
+
 ---
 ## Ongoing Projects
+
 ### 뉴스 분석을 통한 관련 상장기업 주가 분석 웹 서비스
 - Name : BSN (Breaking Stock News)
 - Github : <https://github.com/taes-k/stock_analysis>
@@ -69,7 +74,8 @@ Swift4
 3. 사진에 추출한 Color chip 합성
 4. Color chip 색상 변경 가능
 ```
-- 서비스상세
+- 서비스상세  
+  
 > <div>
 > <img width="200" src="https://github.com/taes-k/color-ground/raw/master/color-ground1.jpg">
 > <img width="200" src="https://github.com/taes-k/color-ground/raw/master/color-ground5.jpg">
@@ -77,6 +83,5 @@ Swift4
 > </div>
 
 ---
-
 ### Contact me
 - Email : cobura12@gmail.com
