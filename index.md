@@ -84,7 +84,8 @@ permalink: /
 4. Color chip 색상 변경 가능
 ```
 
-- 서비스상세  
+- 서비스상세    
+
 > <div>
 > <img width="200" src="https://github.com/taes-k/color-ground/raw/master/color-ground1.jpg">
 > <img width="200" src="https://github.com/taes-k/color-ground/raw/master/color-ground5.jpg">
