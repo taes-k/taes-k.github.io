@@ -19,7 +19,8 @@ date: 2019.04.19
 페이스북에서 만들어진 오픈소스 자바스크립트 라이브러리로써, interactive UI 구현에 최적화되어있다.  
 
 특징
-- UI Component
+- UI Component  
+
 ```c
 class SearchBar extends React.Component{
     render(){
@@ -36,7 +37,8 @@ class App extends React.Component{
 }
 
 ReactDOM.render(<App />, document.querySelector('#root'));
-```
+```  
+
 위 코드에서 알수있듯이 마치 backend 개발에서 사용되는것처럼 컴포넌트화 시켜 UI를 구성시킬수 있다.
 
 - Virtual DOM
