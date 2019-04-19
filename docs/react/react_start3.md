@@ -98,7 +98,7 @@ export default News;
 
 ```
 
-![1]({{ site.images | relative_url }}/react_start2/1.jpg)  
-![2]({{ site.images | relative_url }}/react_start2/2.jpg)  
+![1]({{ site.images | relative_url }}/react_start2/1.png)  
+![2]({{ site.images | relative_url }}/react_start2/2.png)  
 
 다음과같이 `componentDidMount` api를 통해 데이터 바인딩이 가능하고,  `componentDidUpdate` api를 통해 State변화 이벤트를 캐치하여 작업을 할 수 있다.
