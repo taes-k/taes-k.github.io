@@ -1,7 +1,7 @@
 ---
 layout: default
 comments: true
-title: React.js 시작하기
+title: React 시작하기
 parent: react
 date: 2019.04.19
 ---
