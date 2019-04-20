@@ -51,7 +51,7 @@ ReactDOM.render(<App />, document.querySelector('#root'));
 
 ### 리액트 설치
 먼저, 리액트는 node.js기반으로 만들어진 라이브러리로, 
-- Node.js 설치  
+** Node.js 설치  **
 
 리액트는 node.js 기반으로 만들어진 라이브러리로  Node.js의 설치가 필요하다.    
 
@@ -68,7 +68,7 @@ nvm install stable
 node -v
 ```
 
-- Yarn 설치  
+**Yarn 설치  **
 
 Yarn은 조금더 개선된 성능의 패키지 매니저 도구이다.  
 
@@ -86,7 +86,7 @@ echo 'export PATH="$(yarn global bin):$PATH"' >> ~/.bash_profile
 source /.bash_profile
 ```
 
-- create-react-app 설치  
+** create-react-app 설치  **
 ```c
 yarn global add create-react-app
 ```
