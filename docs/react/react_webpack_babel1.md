@@ -1,7 +1,7 @@
 ---
 layout: default
 comments: true
-title: Webpack(웹팩)
+title: React+Webpack+Babel(1)
 parent: react
 date: 2019.04.20
 ---
