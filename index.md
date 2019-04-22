@@ -40,15 +40,17 @@ permalink: /
 - 부동산 ( 취미: 네이버부동산, 호갱노노 보기 )
 - 핀테크 
 - 운동 ( 수영, 배드민턴, 탁구, 테니스, 사이클, 달리기, 헬스 )
-- 요리
-- 캠핑  
+- 요리 
+- 캠핑 
+- 악기연주 ( 피아노, 기타, 플룻 / (희망) 드럼, 바이올린 )
 
 ---
 ## Ongoing Projects
 
-### - 뉴스 분석을 통한 관련 상장기업 주가 분석 웹 서비스
+### 1. 뉴스 분석을 통한 관련 상장기업 주가 분석 웹 서비스
 - Name : BSN (Breaking Stock News)
 - Github : <https://github.com/taes-k/stock_analysis>
+- 기간 : 2019.03 ~ 진행중
 - 실행 환경   
 
 ```
@@ -66,9 +68,11 @@ permalink: /
 4. 관련주 Score 계산
 ```
 
-### - 색으로 사진을 기억하는 카메라 iOS 어플리케이션
+
+### 2. 색으로 사진을 기억하는 카메라 iOS 어플리케이션
 - Name : Color ground
 - Github : <https://github.com/taes-k/color-ground>
+- 기간 : 2018.07 ~ 2019.03
 - 실행 환경   
 
 ```

@@ -19,7 +19,7 @@ date: 2019.04.20
 ### Webpack
 js 에서 로딩하는 모듈이 많아질수록 모듈간의 의존성이 증가하고 비효율적이게된다. 웹팩은 엔트리를 통해 필요한 모듈을 로딩하고 하나의 파일로 묶어주는 역할을 한다.   
 
-![1]({{ site.images | relative_url }}/webpack/1.png)    
+![1]({{ site.images | relative_url }}/react_webpakc_babel1/1.png)    
 
 
 ### Webpack 사용하기
