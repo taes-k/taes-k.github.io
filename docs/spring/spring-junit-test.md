@@ -18,7 +18,7 @@ date: 2019.05.01
 
 Spring boot를 생성하게되면 기본적으로 `/src/test/java` 폴더와 함께 `SpringJunitTestApplicationTests.java`라는 파일이 함께 생성되어 있을것이다.  
 
-![1]({{ site.images | relative_url }}/spring-junit-testj/1.png)      
+![1]({{ site.images | relative_url }}/spring-junit-test/1.png)      
 
 ```c
 // SpringJunitTestApplicationTests.java
@@ -176,10 +176,10 @@ public void calcTest(){
 
 `Run > JUnit test`  
 
-![2]({{ site.images | relative_url }}/spring-junit-testj/2.png)      
+![2]({{ site.images | relative_url }}/spring-junit-test/2.png)      
 assertEquals를 통해 미리 설정해둔 테스트케이스의 값이 같지 않을때 예상값과 다르다는 Failure를 내게 된다.
 
-![3]({{ site.images | relative_url }}/spring-junit-testj/3.png)      
+![3]({{ site.images | relative_url }}/spring-junit-test/3.png)      
 테스트값이 모두 성공일때는 다음과 같이 실패내역이 출력되지 않는다.    
 
 ```c
@@ -191,7 +191,7 @@ public void calcTest(){
 }
 ```
 만약, 에러나 예외상황의 결과가 있을시 테스트결과에서 바로 확인이 가능하다.   
-![4]({{ site.images | relative_url }}/spring-junit-testj/4.png)      
+![4]({{ site.images | relative_url }}/spring-junit-test/4.png)      
 
 테스트시에는 예상하는 예외상황의 결과도 테스트해봐야하는데  이를위해 `@Test(expected=RuntimeException.class)` 를 통해 예상 Exception 테스트케이스를 작성할 수 있다.
 
@@ -204,7 +204,7 @@ public void calcTest(){
     int div2 = calc.div(3, 0);
 }
 ```
-![5]({{ site.images | relative_url }}/spring-junit-testj/5.png)     
+![5]({{ site.images | relative_url }}/spring-junit-test/5.png)     
 예상했던대로 예외가 정상적으로 발생했기때문에 성공한것으로 확인되었다.  
 
 ### 마무리
