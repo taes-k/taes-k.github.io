@@ -12,6 +12,7 @@ date: 2019.05.01
 
 ### 구동환경
 - Spring boot 2.1.3
+
 ---
 
 ### JUnit
@@ -43,6 +44,7 @@ public void contextLoads() {
 ```  
 
 Springboot에는 기본적으로 JUnit test가 내장되어있음을 확인 할 수 있다.  
+
 ---
 
 ### JUnit 어노테이션과 단정문

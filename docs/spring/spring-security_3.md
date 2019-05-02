@@ -55,9 +55,7 @@ public class CustomAuthenticationProvider implements AuthenticationProvider{
 	
 	@Override
 	public Authentication authenticate(Authentication authentication){
-		
-		System.out.println("ASdfasdfasdfasdf");
-		
+				
 		User user = new User();
 		Collection<? extends GrantedAuthority> authorities;
 
