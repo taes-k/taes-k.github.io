@@ -12,6 +12,7 @@ date: 2019.05.01
 
 ### 구동환경
 - Spring boot 2.1.3
+---
 
 ### JUnit
 자바 단위테스트를 위한 프레임워크로써 따로 테스트 케이스를 작성하여 번거롭게 디버깅 하지 않아도 되며 실제 개발소스를 통해 테스트가 가능하다.  이번 포스팅에서는 Spring boot 환경에서 JUnit에 대하여 알아보도록 하겠다.   
@@ -42,9 +43,11 @@ public void contextLoads() {
 ```  
 
 Springboot에는 기본적으로 JUnit test가 내장되어있음을 확인 할 수 있다.  
+---
 
 ### JUnit 어노테이션과 단정문
-**[ 어노테이션 ]**
+**[ 어노테이션 ]**  
+
 *@Test* 
 ```c
 @Test
@@ -81,7 +84,8 @@ public void testAefore() throws Exception {
 테스트 메소드들이 실행하기보다 먼저 혹은 이후에 실행되도록 선언해주는 어노테이션이다.
 
 
-**[ 단정문 ]**
+**[ 단정문 ]**  
+
 *assertTrue(A)*
 A가 True 인지 확인.
 
@@ -95,8 +99,10 @@ A,B이 같은 객체인지 확인.
 A,B값이 같은지 확인.
 
 *assertArrayEquals(A,B)*  
-배열 A,B가 값이 같은지 확인.  
-  
+배열 A,B가 값이 같은지 확인.    
+
+---
+
 ### JUnit 테스트 예제
 사칙연산 결과를 반환하는 프로그램 예제를 통해 JUnit 테스트 예제를 진행해보도록 한다.  
 이 예제는 [예제 Github](https://github.com/taes-k/spring-example/tree/master/spring-junit-test)에서 확인 할 수 있다.   
@@ -206,6 +212,8 @@ public void calcTest(){
 ```
 ![5]({{ site.images | relative_url }}/spring-junit-test/5.png)     
 예상했던대로 예외가 정상적으로 발생했기때문에 성공한것으로 확인되었다.  
+
+---
 
 ### 마무리
 JUnit을 통해 실제 서비스와 분리된 환경에서, 매우 간편하게 실제 서비스 코드를 가지고 테스트를 해볼수 있다.   
