@@ -2,7 +2,7 @@
 layout: default
 comments: true
 title: [요령과 기본] 0. 서문
-parent: trick&standard
+parent: trick_standard
 date: 2019.05.10
 ---
 
