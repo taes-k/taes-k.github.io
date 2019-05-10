@@ -1,6 +1,6 @@
 ---
 layout: default
-title: (요령과 기본) 0_서문
+title: 요령과 기본
 nav_order: 2
 has_children: true
 permalink: /docs/trick_standard

@@ -1,8 +1,8 @@
 ---
 layout: default
 comments: true
-title: [요령과 기본] 0. 서문
-parent: [요령과 기본]
+title: (요령과 기본) 0_서문
+parent: 요령과 기본
 date: 2019.05.10
 ---
 
