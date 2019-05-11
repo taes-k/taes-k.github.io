@@ -21,7 +21,8 @@ date: 2019.05.11
 우리가 스프링을 사용하는 이유는 많은 기업들이 스프링을 사용하기때문일것입니다. 그렇다면, 많은 기업들은 왜 스프링을 사용하는지 알아보기위해 스프링에서 말하는 스프링을 사용해야하는 이유를 알아보도록 합시다. 스프링을 사용해야 하는 이유는 아마도 스프링이 생겨난 이유와도 같을것입니다. 스프링이 생겨난 목적을 알아보기위해 초기 스프링 공식문서를 살펴보았습니다. (1.1.1 Realease)
 > Developing software applications is hard enough even with good tools and technologies. Implementing applications using platforms which promise everything but turn out to be heavy-weight, hard to control and not very efficient during the development cycle makes it even harder. Spring provides a light-weight solution for building enterprise-ready applications, while still supporting the possibility of using declarative transaction management, remote access to your logic using RMI or webservices, mailing facilities and various options in persisting your data to a database. Spring provides an MVC framework, transparent ways of integrating AOP into your software and a well-structured exception hierarchy including automatic mapping from proprietary exception hierarchies.  
 >  
-> Spring could potentially be a one-stop-shop for all your enterprise applications, however, Spring is modular, allowing you to use parts of it, without having to bring in the rest. You can use the bean container, with Struts on top, but you could also choose to just use the Hibernate integration or the JDBC abstraction layer. Spring is non-intrusive, meaning dependencies on the framework are generally none or absolutely minimal, depending on the area of use..  
+> Spring could potentially be a one-stop-shop for all your enterprise applications, however, Spring is modular, allowing you to use parts of it, without having to bring in the rest. You can use the bean container, with Struts on top, but you could also choose to just use the Hibernate integration or the JDBC abstraction layer. Spring is non-intrusive, meaning dependencies on the framework are generally none or absolutely minimal, depending on the area of use..    
+  
 본문 : <https://docs.spring.io/spring/docs/1.1.1/spring-reference.pdf>  
 
 위 초기 스프링 문서를 통해 알수있는 스프링이 생겨난 이유들을 정리해본다면 다음과 같습니다.  
@@ -35,7 +36,8 @@ date: 2019.05.11
 >  
 > Spring supports a wide range of application scenarios. In a large enterprise, applications often exist for a long time and have to run on a JDK and application server whose upgrade cycle is beyond developer control. Others may run as a single jar with the server embedded, possibly in a cloud environment. Yet others may be standalone applications (such as batch or integration workloads) that do not need a server.  
 >  
-> Spring is open source. It has a large and active community that provides continuous feedback based on a diverse range of real-world use cases. This has helped Spring to successfully evolve over a very long time.
+> Spring is open source. It has a large and active community that provides continuous feedback based on a diverse range of real-world use cases. This has helped Spring to successfully evolve over a very long time.  
+  
 본문 : <https://docs.spring.io/spring/docs/current/spring-framework-reference/overview.html#overview-spring>
 
 - 스프링은 자바 엔터프라이즈 애플리케이션 생성을 쉽게 해준다.  
@@ -44,8 +46,7 @@ date: 2019.05.11
 - 스프링은 오픈소스로써, 오랜시간동안 성공적인 프레임워크로써 진화해 왔다.
   
   
-스프링 공식문서에서는 프레임워크를 공부할때 해당 프레임워크를 따르는 원칙을 함께 알아야된다고 명시하고 있습니다.  
-다음은 스프링에서 소개하는 스프링 프레임워크의 개발 철학입니다.  
+스프링 공식문서에서는 프레임워크를 공부할때 해당 프레임워크를 따르는 원칙을 함께 알아야된다고 명시하고 있습니다. 다음은 스프링에서 소개하는 스프링 프레임워크의 개발 철학입니다.  
 > - Provide choice at every level. Spring lets you defer design decisions as late as possible. For example, you can switch persistence providers through configuration without changing your code. The same is true for many other infrastructure concerns and integration with third-party APIs.  
 >  
 >  - Accommodate diverse perspectives. Spring embraces flexibility and is not opinionated about how things should be done. It supports a wide range of application needs with different perspectives.  
@@ -54,7 +55,8 @@ date: 2019.05.11
 >  
 > - Care about API design. The Spring team puts a lot of thought and time into making APIs that are intuitive and that hold up across many versions and many years.  
 >  
-> - Set high standards for code quality. The Spring Framework puts a strong emphasis on meaningful, current, and accurate javadoc. It is one of very few projects that can claim clean code structure with no circular dependencies between packages.
+> - Set high standards for code quality. The Spring Framework puts a strong emphasis on meaningful, current, and accurate javadoc. It is one of very few projects that can claim clean code structure with no circular dependencies between packages.  
+  
 본문 : <https://docs.spring.io/spring/docs/current/spring-framework-reference/overview.html#overview-history>
   
 - 코드의 변경없이 환경설정만으로 provider를 변경 할 수 있다.
