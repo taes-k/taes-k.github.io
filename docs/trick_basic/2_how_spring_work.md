@@ -54,8 +54,8 @@ public class SimpleMovieLister {
 그렇다면, 프레임워크에서 의존성주입을 제공해줌으로써 어떤 장점이 있을까요?  
 
 > Code is cleaner with the DI principle, and decoupling is more effective when objects are provided with their dependencies. The object does not look up its dependencies and does not know the location or class of the dependencies. As a result, your classes become easier to test, particularly when the dependencies are on interfaces or abstract base classes, which allow for stub or mock implementations to be used in unit tests.  
+> [원문보기](https://docs.spring.io/spring/docs/current/spring-framework-reference/core.html#beans-factory-collaborators)  
 
-[원문보기](https://docs.spring.io/spring/docs/current/spring-framework-reference/core.html#beans-factory-collaborators)
   
 - 코드가 깔끔해진다.  
 - 객체들간의 종속성이 감소한다.  
@@ -80,8 +80,8 @@ public class SimpleMovieLister {
 > The introduction of annotation-based configuration raised the question of whether this approach is “better” than XML. The short answer is “it depends.” The long answer is that each approach has its pros and cons, and, usually, it is up to the developer to decide which strategy suits them better. Due to the way they are defined, annotations provide a lot of context in their declaration, leading to shorter and more concise configuration. However, XML excels at wiring up components without touching their source code or recompiling them. Some developers prefer having the wiring close to the source while others argue that annotated classes are no longer POJOs and, furthermore, that the configuration becomes decentralized and harder to control.  
 >  
 >  No matter the choice, Spring can accommodate both styles and even mix them together. It is worth pointing out that through its JavaConfig option, Spring lets annotations be used in a non-invasive way, without touching the target components source code and that, in terms of tooling, all configuration styles are supported by the Spring Tool Suite.  
+> [원문보기](https://docs.spring.io/spring/docs/current/spring-framework-reference/core.html#beans-annotation-config)  
 
-[원문보기](https://docs.spring.io/spring/docs/current/spring-framework-reference/core.html#beans-annotation-config)
 
 예시를 통해 알아보기 위해 객체를 빈으로 등록시켜보도록 하겠습니다.   
 ```c

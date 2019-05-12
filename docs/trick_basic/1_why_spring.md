@@ -24,8 +24,7 @@ date: 2019.05.11
 > Developing software applications is hard enough even with good tools and technologies. Implementing applications using platforms which promise everything but turn out to be heavy-weight, hard to control and not very efficient during the development cycle makes it even harder. Spring provides a light-weight solution for building enterprise-ready applications, while still supporting the possibility of using declarative transaction management, remote access to your logic using RMI or webservices, mailing facilities and various options in persisting your data to a database. Spring provides an MVC framework, transparent ways of integrating AOP into your software and a well-structured exception hierarchy including automatic mapping from proprietary exception hierarchies.  
 >  
 > Spring could potentially be a one-stop-shop for all your enterprise applications, however, Spring is modular, allowing you to use parts of it, without having to bring in the rest. You can use the bean container, with Struts on top, but you could also choose to just use the Hibernate integration or the JDBC abstraction layer. Spring is non-intrusive, meaning dependencies on the framework are generally none or absolutely minimal, depending on the area of use..    
-  
-[원문보기](https://docs.spring.io/spring/docs/1.1.1/spring-reference.pdf)
+> [원문보기](https://docs.spring.io/spring/docs/1.1.1/spring-reference.pdf)  
   
 
 위 초기 스프링 문서를 통해 알수있는 스프링이 생겨난 이유들을 정리해본다면 다음과 같습니다.  
@@ -40,8 +39,7 @@ date: 2019.05.11
 > Spring supports a wide range of application scenarios. In a large enterprise, applications often exist for a long time and have to run on a JDK and application server whose upgrade cycle is beyond developer control. Others may run as a single jar with the server embedded, possibly in a cloud environment. Yet others may be standalone applications (such as batch or integration workloads) that do not need a server.  
 >  
 > Spring is open source. It has a large and active community that provides continuous feedback based on a diverse range of real-world use cases. This has helped Spring to successfully evolve over a very long time.  
-  
-[원문보기](https://docs.spring.io/spring/docs/current/spring-framework-reference/overview.html#overview-spring) 
+> [원문보기](https://docs.spring.io/spring/docs/current/spring-framework-reference/overview.html#overview-spring)  
   
   
 - 스프링은 자바 엔터프라이즈 애플리케이션 생성을 쉽게 해준다.  
@@ -59,9 +57,8 @@ date: 2019.05.11
 >  
 > - Care about API design. The Spring team puts a lot of thought and time into making APIs that are intuitive and that hold up across many versions and many years.  
 >  
-> - Set high standards for code quality. The Spring Framework puts a strong emphasis on meaningful, current, and accurate javadoc. It is one of very few projects that can claim clean code structure with no circular dependencies between packages.  
-  
-[원문보기](https://docs.spring.io/spring/docs/current/spring-framework-reference/overview.html#overview-history)  
+> - Set high standards for code quality. The Spring Framework puts a strong emphasis on meaningful, current, and accurate javadoc. It is one of very few projects that can claim clean code structure with no circular dependencies between packages.   
+> [원문보기](https://docs.spring.io/spring/docs/current/spring-framework-reference/overview.html#overview-history)  
   
   
 - 코드의 변경없이 환경설정만으로 provider를 변경 할 수 있다.
