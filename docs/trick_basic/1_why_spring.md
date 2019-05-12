@@ -24,6 +24,7 @@ date: 2019.05.11
 > Spring could potentially be a one-stop-shop for all your enterprise applications, however, Spring is modular, allowing you to use parts of it, without having to bring in the rest. You can use the bean container, with Struts on top, but you could also choose to just use the Hibernate integration or the JDBC abstraction layer. Spring is non-intrusive, meaning dependencies on the framework are generally none or absolutely minimal, depending on the area of use..    
   
 본문 : <https://docs.spring.io/spring/docs/1.1.1/spring-reference.pdf>  
+  
 
 위 초기 스프링 문서를 통해 알수있는 스프링이 생겨난 이유들을 정리해본다면 다음과 같습니다.  
 
@@ -38,8 +39,9 @@ date: 2019.05.11
 >  
 > Spring is open source. It has a large and active community that provides continuous feedback based on a diverse range of real-world use cases. This has helped Spring to successfully evolve over a very long time.  
   
-본문 : <https://docs.spring.io/spring/docs/current/spring-framework-reference/overview.html#overview-spring>
-
+본문 : <https://docs.spring.io/spring/docs/current/spring-framework-reference/overview.html#overview-spring>  
+  
+  
 - 스프링은 자바 엔터프라이즈 애플리케이션 생성을 쉽게 해준다.  
 - 그루비, 코틀링 등 JVM내의 대체언어들 까지 지원이 가능하다.
 - 만들고자 하는 애플리케이션의 목적에따라 유연하게 아키텍쳐를 구성 할 수 있다.
@@ -57,7 +59,8 @@ date: 2019.05.11
 >  
 > - Set high standards for code quality. The Spring Framework puts a strong emphasis on meaningful, current, and accurate javadoc. It is one of very few projects that can claim clean code structure with no circular dependencies between packages.  
   
-본문 : <https://docs.spring.io/spring/docs/current/spring-framework-reference/overview.html#overview-history>
+본문 : <https://docs.spring.io/spring/docs/current/spring-framework-reference/overview.html#overview-history>  
+  
   
 - 코드의 변경없이 환경설정만으로 provider를 변경 할 수 있다.
 - 다양한 애플리케이션의 요구사항들을 수용한다.
