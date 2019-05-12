@@ -17,13 +17,15 @@ date: 2019.05.11
     
 사실 제가 스프링에 입문할때는 Django나 Node.js 등의 선택권이 있었지만, 단순히 자바를 사용하고자 스프링을 선택하게 되었습니다. 저와 같이 그저 자바기반으로 개발을 하고자 스프링을 사용하게 되셨거나 반강제적으로 스프링에 입문하신 분들의 경우 스프링에대해 잘 알지 못하고 프로젝트 생성하는법 부터 공부하셨던 분들이 많을것 같습니다. 그래서 먼저 스프링에대해 알아보고자 합니다.
 
+---
+
 ### 1.1 Spring을 사용하는 이유
 우리가 스프링을 사용하는 이유는 많은 기업들이 스프링을 사용하기때문일것입니다. 그렇다면, 많은 기업들은 왜 스프링을 사용하는지 알아보기위해 스프링에서 말하는 스프링을 사용해야하는 이유를 알아보도록 합시다. 스프링을 사용해야 하는 이유는 아마도 스프링이 생겨난 이유와도 같을것입니다. 스프링이 생겨난 목적을 알아보기위해 초기 스프링 공식문서를 살펴보았습니다. (1.1.1 Realease)
 > Developing software applications is hard enough even with good tools and technologies. Implementing applications using platforms which promise everything but turn out to be heavy-weight, hard to control and not very efficient during the development cycle makes it even harder. Spring provides a light-weight solution for building enterprise-ready applications, while still supporting the possibility of using declarative transaction management, remote access to your logic using RMI or webservices, mailing facilities and various options in persisting your data to a database. Spring provides an MVC framework, transparent ways of integrating AOP into your software and a well-structured exception hierarchy including automatic mapping from proprietary exception hierarchies.  
 >  
 > Spring could potentially be a one-stop-shop for all your enterprise applications, however, Spring is modular, allowing you to use parts of it, without having to bring in the rest. You can use the bean container, with Struts on top, but you could also choose to just use the Hibernate integration or the JDBC abstraction layer. Spring is non-intrusive, meaning dependencies on the framework are generally none or absolutely minimal, depending on the area of use..    
   
-본문 : <https://docs.spring.io/spring/docs/1.1.1/spring-reference.pdf>  
+[원문보기](https://docs.spring.io/spring/docs/1.1.1/spring-reference.pdf)
   
 
 위 초기 스프링 문서를 통해 알수있는 스프링이 생겨난 이유들을 정리해본다면 다음과 같습니다.  
@@ -39,7 +41,7 @@ date: 2019.05.11
 >  
 > Spring is open source. It has a large and active community that provides continuous feedback based on a diverse range of real-world use cases. This has helped Spring to successfully evolve over a very long time.  
   
-본문 : <https://docs.spring.io/spring/docs/current/spring-framework-reference/overview.html#overview-spring>  
+[원문보기](https://docs.spring.io/spring/docs/current/spring-framework-reference/overview.html#overview-spring) 
   
   
 - 스프링은 자바 엔터프라이즈 애플리케이션 생성을 쉽게 해준다.  
@@ -59,7 +61,7 @@ date: 2019.05.11
 >  
 > - Set high standards for code quality. The Spring Framework puts a strong emphasis on meaningful, current, and accurate javadoc. It is one of very few projects that can claim clean code structure with no circular dependencies between packages.  
   
-본문 : <https://docs.spring.io/spring/docs/current/spring-framework-reference/overview.html#overview-history>  
+[원문보기](https://docs.spring.io/spring/docs/current/spring-framework-reference/overview.html#overview-history)  
   
   
 - 코드의 변경없이 환경설정만으로 provider를 변경 할 수 있다.

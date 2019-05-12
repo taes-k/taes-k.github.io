@@ -10,19 +10,12 @@ date: 2019.05.11
 <div style="text-align:right; font-size:11px; color:#aaa">{{ page.date }} </div>
 ---
 
-# 1. 당신은 왜  Spring을 사용 하는가?
-
----
-
-## 1.2 Spring은 어떻게 동작하는가?
+### 1.2 Spring은 어떻게 동작하는가?
 앞서서 스프링을 사용하는 이유에대해서 알아보았는데, 과연 스프링은 어떻게 동작하길래 그러한 특징들을 가지는것인지 알아보도록 하겠습니다.  
 
 ---
 
-## 1.2.1 IoC Container
-
----
-
+### 1.2.1 IoC Container
 ### IoC와 DI
 스프링프레임워크를 말할때 IoC와 DI를 주요 핵심 개념으로 이야기합니다.  
 먼저 IoC(Inversion of Control)는 서비스 제어의 흐름을 역전시켰다는 뜻으로, 개발자가 아닌 프레임워크가 흐름을 제어하는 주체가되어 필요할때 코드를 호출하며 사용하게됩니다.   
@@ -49,7 +42,7 @@ public class SimpleMovieLister {
 스프링은 이러한 객체들간의 의존성을 줄이기위한 방법으로 IoC/DI를 하나로 묶어서 제공을 하고 있습니다. 객체 선언과정을 스프링 프레임워크가 미리 대신 해줌으로써(IoC) 그저 객체를 가져다가 (DI) 사용 할수 있게 해줍니다. 이 과정을 설명하기 위한 도식도를 스프링 공식문서에서는 제공하고 있습니다.  
   
 <div style="text-align:center;">
-<img src="https://taes-k.github.io/assets/images/trick_basic/intro/1.png" style="height:250px;">
+<img src="https://taes-k.github.io/assets/images/trick_basic/how_spring_work/ioc_container.png" style="height:250px;">
 </div>
   
 위의 도식도를 보시면 'Your Business Objects'를 'Configuratioin Metadata'를 통해 Spring Container에 등록시켜 본 시스템에 제공해주는 도식도 내용을 확인하실수 있습니다.  여기서 사용되는 Container가 바로 IoC Container 입니다.
@@ -62,7 +55,7 @@ public class SimpleMovieLister {
 
 > Code is cleaner with the DI principle, and decoupling is more effective when objects are provided with their dependencies. The object does not look up its dependencies and does not know the location or class of the dependencies. As a result, your classes become easier to test, particularly when the dependencies are on interfaces or abstract base classes, which allow for stub or mock implementations to be used in unit tests.  
 
-본문 : <https://docs.spring.io/spring/docs/current/spring-framework-reference/core.html#beans-factory-collaborators>  
+[원문보기](https://docs.spring.io/spring/docs/current/spring-framework-reference/core.html#beans-factory-collaborators)
   
 - 코드가 깔끔해진다.  
 - 객체들간의 종속성이 감소한다.  
@@ -88,7 +81,7 @@ public class SimpleMovieLister {
 >  
 >  No matter the choice, Spring can accommodate both styles and even mix them together. It is worth pointing out that through its JavaConfig option, Spring lets annotations be used in a non-invasive way, without touching the target components source code and that, in terms of tooling, all configuration styles are supported by the Spring Tool Suite.  
 
-본문 : <https://docs.spring.io/spring/docs/current/spring-framework-reference/core.html#beans-annotation-config>  
+[원문보기](https://docs.spring.io/spring/docs/current/spring-framework-reference/core.html#beans-annotation-config)
 
 예시를 통해 알아보기 위해 객체를 빈으로 등록시켜보도록 하겠습니다.   
 ```c
