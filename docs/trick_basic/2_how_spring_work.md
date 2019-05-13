@@ -54,6 +54,7 @@ public class SimpleMovieLister {
 그렇다면, 프레임워크에서 의존성주입을 제공해줌으로써 어떤 장점이 있을까요?  
 
 > Code is cleaner with the DI principle, and decoupling is more effective when objects are provided with their dependencies. The object does not look up its dependencies and does not know the location or class of the dependencies. As a result, your classes become easier to test, particularly when the dependencies are on interfaces or abstract base classes, which allow for stub or mock implementations to be used in unit tests.  
+>  
 > [원문보기](https://docs.spring.io/spring/docs/current/spring-framework-reference/core.html#beans-factory-collaborators)  
 
   
@@ -80,10 +81,11 @@ public class SimpleMovieLister {
 > The introduction of annotation-based configuration raised the question of whether this approach is “better” than XML. The short answer is “it depends.” The long answer is that each approach has its pros and cons, and, usually, it is up to the developer to decide which strategy suits them better. Due to the way they are defined, annotations provide a lot of context in their declaration, leading to shorter and more concise configuration. However, XML excels at wiring up components without touching their source code or recompiling them. Some developers prefer having the wiring close to the source while others argue that annotated classes are no longer POJOs and, furthermore, that the configuration becomes decentralized and harder to control.  
 >  
 >  No matter the choice, Spring can accommodate both styles and even mix them together. It is worth pointing out that through its JavaConfig option, Spring lets annotations be used in a non-invasive way, without touching the target components source code and that, in terms of tooling, all configuration styles are supported by the Spring Tool Suite.  
+>  
 > [원문보기](https://docs.spring.io/spring/docs/current/spring-framework-reference/core.html#beans-annotation-config)  
 
 
-예시를 통해 알아보기 위해 객체를 빈으로 등록시켜보도록 하겠습니다.   
+예시를 통해 알아보기 위해 객체를 Bean으로 등록시켜보도록 하겠습니다.   
 ```c
 // Java-based Configuration
 
@@ -103,18 +105,19 @@ public class SimpleMovieLister {
     <bean id="myService" class="com.acme.services.MyServiceImpl"/>
 </beans>
 ```
-어떤 방식으로 설정을 하든 똑같이 bean으로 등록이 가능합니다. 위의 설정 과정을 통해 등록된 빈은 IoC Container를 생성할때 함께 생성되어집니다. 하지만 모든 bean들이 모두 Spring의 초기화 과정에서 등록되지는 않습니다. 해당내용은 다음 섹션에서 알아보도록 하겠습니다.   
+어떤 방식으로 설정을 하든 똑같이 bean으로 등록이 가능합니다. 위의 설정 과정을 통해 등록된 빈은 IoC Container를 생성할때 함께 생성되어집니다.  
+하지만 모든 bean들이 모두 Spring의 초기화 과정에서 등록되지는 않습니다.  bean에 대해서는 다음 섹션에서 좀더 자세히 알아보도록 하겠습니다.   
 
 ---
 
-### Bean
-
----
-
+### 1.2.2 Bean
+### Bean 사용법
 사실 저는 IoC와 DI에대해 잘 몰랐을때도 스프링에서 제공해주는 이 기능들을 잘 활용해서 사용해 왔습니다. 잘 모르고 썼지만 잘 썼던 요령들을 통해 실제 프로젝트에서 IoC/DI 가 어떻게 사용되는지 살펴보도록 하겠습니다.  
-`Spring Web service - Controller, Service, Dao`
+다음은 Database 연결을 설정하는 Datasource config와 DAO 코드 예제입니다.  
 
 ```c
+//Datasource Config
+
 @Configuration
 public class DatasourceConfig { 
 
@@ -133,7 +136,7 @@ public class DatasourceConfig {
     public SqlSessionFactory sqlSessionFactory() throws Exception { 
         SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean(); 
         sqlSessionFactoryBean.setDataSource(dataSource()); 
-        sqlSessionFactoryBean.setMapperLocations(applicationContext.getResources("classpath:mybatis/mapper/*/*-sql.xml")); 
+        sqlSessionFactoryBean.setMapperLocations(applicationContext.getResources("classpath:mybatis/mapper/sql.xml")); 
    
         return sqlSessionFactoryBean.getObject(); 
     } 
@@ -143,20 +146,94 @@ public class DatasourceConfig {
     public SqlSessionTemplate sqlSessionTemplate() throws Exception { 
         return new SqlSessionTemplate(sqlSessionFactory()); 
     } 
-
-
-
 }
 ```
 
+```c
+// DAO
 
-아직은 이코드들이 어떤 동작을 하는지 모르셔도 좋습니다. 다만, 
+public class Dao{
+
+    @Autowired
+    @Qualifier("sqlSessionTemplate")
+    private SqlSessionTemplate sqlSession;
+}
+```  
+
+아직은 이코드들이 어떤 동작을 하는지 모르셔도 좋습니다. 다만, Bean이 어떻게 등록하고 사용되는지 알아보도록 합시다.  
+일반적으로, DB connection을 관리하는 Datasource는 하나의 객체로써 연결풀을 관리를 하도록 합니다. 이를위해 스프링에서는 싱글톤 방식으로 IoC Container에 등록해 여러 DAO에 주입시켜 사용할수 있도록 합니다.   
+
+위의 예제를 보면, `@Bean` 어노테이션과 `@Autowired` 어노테이션을 이용해 IoC 컨테이너에 등록하고, IoC  컨테이너로부터 주입받아 사용하는것을 확인 할 수 있습니다.  
+
+### Bean scope  
+
+그렇다면, 모든 등록된 빈들이 IoC 컨테이너와 함께 생성되고 하나의 객체로 관리되어 질까요?  
+Bean들은 기본적으로는 누차말해왔던 싱글톤 객체로 관리됩니다. 하지만 Bean마다의 Scope 설정을 통해 life-cycle과 객체의 생성형태를 관리할수 있습니다. 이는 객체가 어디까지 영향을 미치는지 나타내는것으로 Bean의 사용 목적에따라 달라질 것입니다.  
+
+|Scope|설명|
+|:--:|:--:|
+|singleton|Spring IoC Container내에서 단 하나의 객체만 존재한다.|
+|prototype|Spring IoC Container내에서 다수의 객체가 존재 가능하다.|
+|request|HTTP Request life-cycle 내에 단 하나의 객체만 존재한다.|
+|session|HTTP Session life-cycle 내에 단 하나의 객체만 존재한다.|
+|application|ServletContextlife-cycle 내에 단 하나의 객체만 존재한다.|
+|web-socket sesison|WebSocket life-cycle 내에 단 하나의 객체만 존재한다.|
+
+싱글톤으로 사용하게되면 하나의 객체가 여러 참조 위치에서 사용되기때문에 변화가 생길경우 타 참조위치들에 변화를 동기화시키는데 비용이 들 수 있기때문에 사용 목적에 따라 싱글톤으로 사용할지 비싱글톤으로 사용할지 고려를 해야합니다.  
+일반적으로 싱글톤으로 사용하는 객체들의 예시로는 다음과 같다.
+
+- 상태가 없는 객체
+- 데이터를 불러오는 용도로 사용하는 객체
+- 공유가 필요한 상태를 지닌 객체
+- 사용빈도가 매우 높은 객체  
+  
+  
+### Spring Component
+위에서는 직접적인 경로지정을 통한 Bean 등록 방법들을 확인했습니다. 하지만 스프링에서는 스테레오 타입(stereo type)을 이용하여 해당 클래스를 식별하여 자동으로  Bean으로 등록 해 주는 기능 또한 제공하고 있습니다.  
+  
+|스테레오 타입|설명|
+|:--:|:--:|
+|@Component|기본 스테레오 타입으로, 일반적인 용도를 가진 컴포넌트들을 지칭해준다.|
+|@Controller|@Component 에서 특화된 타입으로, Web MVC 에서 Controller 컴포넌트를 지칭해준다.|
+|@Service|@Component 에서 특화된 타입으로, 비즈니스 로직을 다루는 서비스 레이어를 지칭해준다.|
+|@Repository|@Component 에서 특화된 타입으로, 데이터 접근 객체를 지칭해준다.|
+
+위의 @Controller, @Service, @Repository 스테레오 타입 어노테이션들을 통해 컴포넌트 클래스를 목적에 맞게끔 선언해주면 미리 세팅된 기능들을 부여 받을 수 있으며 aspects에 더 연관성을 부여해 줄 수 있습니다.
+
+```c
+@Service
+public class SimpleMovieLister {
+
+    private MovieFinder movieFinder;
+
+    @Autowired
+    public SimpleMovieLister(MovieFinder movieFinder) {
+        this.movieFinder = movieFinder;
+    }
+}
+```
+
+```c
+@Repository
+public class JpaMovieFinder implements MovieFinder {
+    // implementation elided for clarity
+}
+```
+다음과 같은 Component 어노테이션 사용으로 손쉽게 빈에 등록하고, 사용 할 수 있습니다.   
 
 
 
-IoC Container의 역할
-- Bean 객체 관리
-- 
+### Context
+WebApplicationContext
+Root context
+servletContext
+
+
+---
+
+### 참조 문서
+Spring 5.1.6 release docs  
+<https://docs.spring.io/spring/docs/current/spring-framework-reference/core.html#beans-introduction>
 
 
 ---

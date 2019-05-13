@@ -97,7 +97,7 @@ public class ThingOne {
 |Scope|설명|
 |:--:|:--:|
 |singleton|IoC Container내에서 단 하나의 객체만 존재한다.|
-|prototype|다수의 객체가 존재 가능하다.|
+|prototype|다수의 객체가 존재 가능하며 요청이 올때마다 새객체를 생성한다.|
 |request|HTTP Request life-cycle 내에 단 하나의 객체만 존재한다.|
 |session|HTTP Session life-cycle 내에 단 하나의 객체만 존재한다.|
 |global sesison|global HTTP Session life-cyclel 내에 단 하나의 객체만 존재한다.|
