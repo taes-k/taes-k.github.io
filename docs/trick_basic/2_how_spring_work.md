@@ -228,6 +228,11 @@ WebApplicationContext
 Root context
 servletContext
 
+### Beanfactory와 application Context
+
+
+>  
+> [원문보기](https://docs.spring.io/spring/docs/current/spring-framework-reference/core.html#context-introduction-ctx-vs-beanfactory)  
 
 ---
 

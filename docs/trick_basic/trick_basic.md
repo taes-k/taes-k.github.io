@@ -20,7 +20,13 @@ permalink: /docs/trick_basic
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[1.1 Spring을 사용하는 이유 ](https://taes-k.github.io/docs/trick_basic/1_why_spring/)  
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[1.2 Spring은 어떻게 동작하는가?  ](https://taes-k.github.io/docs/trick_basic/2_how_spring_work/)
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.3 Spring MVC의 진짜 의미  
-> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.4   
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.4 Spring의 Aspect
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.5 Spring의 아키텍쳐
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.6 Spring5 리액터 
+>  
+> 2\. Tomcat
+>  
+> 3\. Nginx
 
 ---
 
