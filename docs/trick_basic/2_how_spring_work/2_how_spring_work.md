@@ -167,6 +167,8 @@ public class Dao{
 
 위의 예제를 보면, `@Bean` 어노테이션과 `@Autowired` 어노테이션을 이용해 IoC 컨테이너에 등록하고, IoC  컨테이너로부터 주입받아 사용하는것을 확인 할 수 있습니다.  
 
+---
+
 ### Bean scope  
 
 그렇다면, 모든 등록된 빈들이 IoC 컨테이너와 함께 생성되고 하나의 객체로 관리되어 질까요?  
@@ -189,6 +191,8 @@ Bean들은 기본적으로는 누차말해왔던 싱글톤 객체로 관리됩�
 - 공유가 필요한 상태를 지닌 객체
 - 사용빈도가 매우 높은 객체  
   
+  
+  ---
   
 ### Spring Component
 위에서는 직접적인 경로지정을 통한 Bean 등록 방법들을 확인했습니다. 하지만 스프링에서는 스테레오 타입(stereo type)을 이용하여 해당 클래스를 식별하여 자동으로  Bean으로 등록 해 주는 기능 또한 제공하고 있습니다.  
@@ -223,6 +227,8 @@ public class JpaMovieFinder implements MovieFinder {
 ```
 다음과 같은 Component 어노테이션 사용으로 손쉽게 빈에 등록하고, 사용 할 수 있습니다.   
 
+---
+
 ### Beanfactory와 ApplicationContext
 우리가 여태까지 IoC Container라 지칭했던 컨테이너는 Spring Container라고도 이야기 하며 빈팩토리 혹은 애플리케이션 컨텍스트 라고도 불립니다. 정확하게 말하자면, 이 IoC Container에는 2가지 종류가 있습니다. 위에서 이야기한 빈팩토리와 애플리케이션 컨텍스트 입니다. 사실 애플리케이션 컨텍스트는 빈팩토리 인터페이스를 상속시켜 확장한 클래스로, 빈팩토리의 모든 기능을 지원합니다. 그렇다면 두 컨테이너의 차이점을  공식문서를 통해 알아보도록 하겠습니다.
 
@@ -243,7 +249,10 @@ ApplicationContext는 Beanfactory의 모든 기능들을 포함하고, AOP 서�
 >  
 > Because an ApplicationContext includes all the functionality of a BeanFactory, it is generally recommended over a plain BeanFactory, except for scenarios where full control over bean processing is needed. Within an ApplicationContext (such as the GenericApplicationContext implementation), several kinds of beans are detected by convention (that is, by bean name or by bean type — in particular, post-processors), while a plain DefaultListableBeanFactory is agnostic about any special beans.  
 >  
-> [원문보기](https://docs.spring.io/spring/docs/current/spring-framework-reference/core.html#context-introduction-ctx-vs-beanfactory)  
+> [원문보기](https://docs.spring.io/spring/docs/current/spring-framework-reference/core.html#context-introduction-ctx-vs-beanfactory)    
+
+---
+
 ### IoC 컨테이너
 이제 IoC 컨테이너에대해서 정리 해보도록 하자.  
   
@@ -251,7 +260,6 @@ ApplicationContext는 Beanfactory의 모든 기능들을 포함하고, AOP 서�
 - Bean의 생성과 소멸 관리(Dependency & life-cycle) 
 - Context 시작 시 모든 Singleton life-cycle Bean 들을 미리 로딩 시켜둠
 - Spring의 AOP기능, 메시지 자원 핸들링, 이벤트 위임, 웹 어플리케이션에서 사용하기 위한 WebApplicationContext와 같은 특정 어플리케이션 컨텍스트를 이용한 통합과 같은 다른 기능을 추가 제공한다
-
 
 ---
 
