@@ -2,6 +2,8 @@
 layout: default
 comments: true
 title: (요령과 기본) 1.2 Spring은 어떻게 동작하는가?
+has_children: true
+permalink: /docs/trick_basic/2_how_spring_work
 parent: 요령과 기본
 date: 2019.05.11
 ---
@@ -221,18 +223,35 @@ public class JpaMovieFinder implements MovieFinder {
 ```
 다음과 같은 Component 어노테이션 사용으로 손쉽게 빈에 등록하고, 사용 할 수 있습니다.   
 
+### Beanfactory와 ApplicationContext
+우리가 여태까지 IoC Container라 지칭했던 컨테이너는 Spring Container라고도 이야기 하며 빈팩토리 혹은 애플리케이션 컨텍스트 라고도 불립니다. 정확하게 말하자면, 이 IoC Container에는 2가지 종류가 있습니다. 위에서 이야기한 빈팩토리와 애플리케이션 컨텍스트 입니다. 사실 애플리케이션 컨텍스트는 빈팩토리 인터페이스를 상속시켜 확장한 클래스로, 빈팩토리의 모든 기능을 지원합니다. 그렇다면 두 컨테이너의 차이점을  공식문서를 통해 알아보도록 하겠습니다.
 
+|Feature|BeanFactory|ApplicationContext|
+|:--:|:--:|:--:|
+|Bean instantiation/wiring|Yes|Yes|
+|Integrated lifecycle management|No|Yes|
+|Automatic BeanPostProcessor registration|No|Yes|
+|Automatic BeanFactoryPostProcessor registration|No|Yes|
+|Convenient MessageSource access (for internalization)|No|Yes|
+|Built-in ApplicationEvent publication mechanism|No|Yes|
 
-### Context
-WebApplicationContext
-Root context
-servletContext
+BeanPostProcessor와 BeanFactoryPostProcessor 은 빈 등록후 변경 및 후처리를 진행할때 사용되는 클래스로, ApplicationContext의 경우 자동으로 해당 클래스를 감지하여 처리 해 줄수 있습니다.   
+  
+ApplicationContext는 Beanfactory의 모든 기능들을 포함하고, AOP 서비스, 편리한 메시지 소스 접근, 내장 애플리케이션 이벤트 처리 메커니즘 등의 이유들을 바탕으로 공식문서에서는 Beanfactory 보다는 ApplicationContext사용을 권장하고 있습니다.  
 
-### Beanfactory와 application Context
-
-
+>  You should use an ApplicationContext unless you have a good reason for not doing so, with GenericApplicationContext and its subclass AnnotationConfigApplicationContext as the common implementations for custom bootstrapping. These are the primary entry points to Spring’s core container for all common purposes: loading of configuration files, triggering a classpath scan, programmatically registering bean definitions and annotated classes, and (as of 5.0) registering functional bean definitions.  
+>  
+> Because an ApplicationContext includes all the functionality of a BeanFactory, it is generally recommended over a plain BeanFactory, except for scenarios where full control over bean processing is needed. Within an ApplicationContext (such as the GenericApplicationContext implementation), several kinds of beans are detected by convention (that is, by bean name or by bean type — in particular, post-processors), while a plain DefaultListableBeanFactory is agnostic about any special beans.  
 >  
 > [원문보기](https://docs.spring.io/spring/docs/current/spring-framework-reference/core.html#context-introduction-ctx-vs-beanfactory)  
+### IoC 컨테이너
+이제 IoC 컨테이너에대해서 정리 해보도록 하자.  
+  
+- 스프링의 의존성 주입(DI)의 핵심 요소
+- Bean의 생성과 소멸 관리(Dependency & life-cycle) 
+- Context 시작 시 모든 Singleton life-cycle Bean 들을 미리 로딩 시켜둠
+- Spring의 AOP기능, 메시지 자원 핸들링, 이벤트 위임, 웹 어플리케이션에서 사용하기 위한 WebApplicationContext와 같은 특정 어플리케이션 컨텍스트를 이용한 통합과 같은 다른 기능을 추가 제공한다
+
 
 ---
 
