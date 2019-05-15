@@ -11,10 +11,11 @@ date: 2019.05.11
 ---
 
 ### 1.2 Spring은 어떻게 동작하는가?
+{: .no_toc }
 앞서서 스프링을 사용하는 이유에대해서 알아보았는데, 과연 스프링은 어떻게 동작하길래 그러한 특징들을 가지는것인지 알아보도록 하겠습니다.  
 
 
-## Table of contents
+## List
 {: .no_toc .text-delta }
 
 1. TOC
@@ -259,8 +260,8 @@ ApplicationContext는 Beanfactory의 모든 기능들을 포함하고, AOP 서�
 
 ---
 
-### IoC 컨테이너
-이제 IoC 컨테이너에대해서 정리 해보도록 하자.  
+### * 마무리
+Spring은 어떻게 동작하는가를 알아보기위해 IoC 컨테이너와 Bean에 대해서 알아보았습니다. 스프링의 코어인 IoC 컨테이너에 대해서 정리 하고 마무리 짓도록 하겠습니다.
   
 - 스프링의 의존성 주입(DI)의 핵심 요소
 - Bean의 생성과 소멸 관리(Dependency & life-cycle) 
@@ -270,6 +271,7 @@ ApplicationContext는 Beanfactory의 모든 기능들을 포함하고, AOP 서�
 ---
 
 ### 참조 문서
+{: .no_toc }
 Spring 5.1.6 release docs  
 <https://docs.spring.io/spring/docs/current/spring-framework-reference/core.html#beans-introduction>
 
