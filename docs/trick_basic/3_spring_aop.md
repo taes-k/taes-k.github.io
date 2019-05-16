@@ -22,7 +22,7 @@ date: 2019.05.15
 
 ---
 
-### 1.3.1 Aspect Oriented Programming with Spring
+### 1.3.1 Aspect Oriented Programming
 ### AOP란?
 먼저 스프링에서 말하는 AOP에 대해 정확히 알아보기 위해 스프링 공식 문서를 확인해보도록 하겠습니다.  
 
@@ -38,6 +38,8 @@ date: 2019.05.15
 - 스프링에서 AOP는 스프링 IoC를 보완하며 뛰어난 미들웨어 솔루션을 제공한다.
   
 즉, AOP는 클래스와 관계없이 여러 객체를 관통하는 '공통 관심 사항'들에 따라서 묶어서 관리 해 줄수있는 구조라고 할수 있을것 같습니다.  
+
+결국 반복적인 코드들을 사용 목적(공통 관심 사항)에 따라서 공통된 통합 위임 코드를 작성하여 운영 및 관리할수 있게끔 하려는 목적에 있습니다. 
 
 ---
 
@@ -55,9 +57,45 @@ AOP가 어떻게 사용되는지 알아보기 전에 사용되는 용어들을 �
 |Introduction|proxy 객체에 메소드나 필드를 추가한것을 의미합니다. |
 |weaving|Aspect를 Target object에 적용하는것. 컴파일시, 로드타입시, 런타임시 적용시킬수 있으나 Spring에서는 런타임때 적용시킵니다.|
 
-### Spring AOP의 목적 
+--- 
+
+### 1.3.2 Spring AOP Mechanisms
+### Spring AOP의 실행과정
+
+위에서 AOP와, AOP에서 사용되는 용어를 알아보았으니 이제 실제로 Spring에서는 어떠한 방식으로 AOP를 구현하고 있는지 알아보도록 하겠습니다.  
+  
+스프링 AOP는 Proxy 기반으로 작동됩니다. 'Proxy 기반으로 작동된다'는 의미를 다음 예제를 통해 알아보도록 하겠습니다.  
+
+```java
+public class SimplePojo implements Pojo {
+
+    public void foo() {
+        // this next method invocation is a direct call on the 'this' reference
+        this.bar();
+    }
+
+    public void bar() {
+        // some logic...
+    }
+}
+```
+
+여기서 중요한점은, 객체내 메서드 call이 프록시내에서 일어나면서 프록시는 모든 메서드 call 에 대한 interceptor들을 위임받을수 있습니다. 
+
+이것이 스프링 AOP에서 사용되는 ProxyFactory 패턴 입니다. 
 
 
+
+### Spring AOP 적용
+
+
+
+### 실제 프로젝트에서의 AOP 사용
+- 로깅
+
+- 에러처리
+
+- 프로파일
 
 
 --- 
