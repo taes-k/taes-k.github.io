@@ -61,9 +61,58 @@ Controller는 Client의 요청을 받아들여 각 요청에따라 데이터를 
 ### 1.4.2 Spring MVC Process
 위 섹션을 통해 MVC의 정의와 개념에대해서 알아보았습니다. 그렇다면 Spring MVC에서 Client의 Request를 처리하는 과정을 알아보면서 실제로 MVC가 어떤 Process로 동작하는지 알아보도록 하겠습니다.
 
-### Distpatcher 서블릿
+### DispatcherServlet
+가장먼저, Spring MVC는 하나의 컨트롤러로 Client들의 Request를 처리해주는 패턴인 Front controller pattern으로 구성되어있습니다. Spring에서 사용되는 Front controller가 바로 `DispatcherServlet` 으로, 요청을 처리하기위한 공유 알고리즘을 제공하지만 실제작업은 적절한 컴포넌트들에게 위임하여 수행하게 됩니다.   
+  
+DispatcherServlet의 구성은 다음과 같습니다.
+
+<div style="text-align:center;">
+<img src="https://taes-k.github.io/assets/images/trick_basic/about_spring_mvc/dispatcherServlet.png" style="height:250px;">
+</div>
+  
+위 모식도를 확인해보면 이전, '스프링은 어떻게 동작하는가?' 챕터에서 알아본 어플리케이션 컨텍스트가  DispatcherServlet에 위치하게 됩니다. 어플리케이션 컨텍스트의 경우 Dispatcher 서버에서 생성되는 Servlet-Context와  ContextLoaderListner에서 생성되는 Root-Context 2가지 종류가 있습니다. 두 컨텍스간의 관계를 나타내어 주는것이 바로 위의 모식도로써, 계층형으로 구성되어 Bean들이 종류에 따라 각각 다른 위치에 존재하는것을 확인 할 수 있습니다.  
+
+**Root Context**   
+
+- ContextLoaderListner에서 생성 
+- Spring 최상단에 위치한 Context  
+- 공통적인 기능들을 가진 Bean을 생성하여 다른 Servlet Context에서 참조가 가능합니다. (@Service, Repository, @Configuration, @Component)    
+  
+**Servlet Context**  
+
+- DispatcherServlet에서 생성
+- Servlet 단위로 생성되는 Context  
+- 서블릿 내에서만 사용하는 Bean 생성 (@Controller, Interceptor) 
+
+Bean을 찾을때 Servlet Context를 먼저 스캔 후 Root Context를 스캔하여 Bean을 찾게되며 Servlet Context에서는 Root Context의 Bean을 참조 할수 있지만 반대는 불가능 합니다.   
+위와 같은 이유로 @Autowired로 Bean을 불러 사용 하려해도 `Not found bean` 에러가 날수도 있으니 본인이 사용하고자 하는 Bean의 목적과 저장위치를 잘 알고 사용 하실수 있기를 바랍니다.  
+
+--- 
+
+### Special Bean Type
+DispatcherServlet은 특수한 요청을 처리하기위한 Bean들이 있습니다. 그중, 위의 모식도에서 Servlet Context가 가지고 있는 ViewResolver와 HandlerMapping Bean 의 역할에대해서 알아보도록 하겠습니다.  
+  
+**HadlerMapping**  
+
+요청에따른 pre- ,post- 처리를위한 interceptor 핸들링을 위한 Bean 으로써 RequestMappingHandlerMapping (@RequestMapping), SimpleUrlHandlerMapping (URI path patterns handler)가 포함되어 있습니다. 위 기능들을 통해 Controller에서 URI 매핑이 가능합니다.
+
+**ViewResolver**  
+
+String 기반 view 이름 검색을 통해 파일을 찾아 DispatcherServlet에 전달해주는 기능을 합니다.
+
+---
+### DispatcherServlet Request 처리과정
 
 
+<div style="text-align:center;">
+<img src="https://taes-k.github.io/assets/images/trick_basic/about_spring_mvc/dispatcherServletProcess.png" style="height:250px;">
+</div>
+
+---
+
+### MVC 구성해보기
+
+---
 
 
 --- 
