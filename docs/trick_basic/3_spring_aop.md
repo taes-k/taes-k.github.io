@@ -77,7 +77,7 @@ public class Main {
 }
 ```
 
-일반적인 방식으로 객체를 선언하여 메소드를 호출할때의 도식도는 다음과 같습니다.
+일반적인 방식으로 객체를 선언하여 메소드를 호출할때의 모식도는 다음과 같습니다.
 
 <div style="text-align:center;">
 <img src="https://taes-k.github.io/assets/images/trick_basic/spring_aop/original.png" style="height:250px;">

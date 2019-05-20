@@ -48,13 +48,13 @@ public class SimpleMovieLister {
   
 위의 SimpleMovieLister 오브젝트는 생성자에서 MovieFinder 오브젝트를 받으면서 MovieFinder 오브젝트에 의존성을 갖게되었습니다. 의존성을 갖게되었다는 말은 하나의 객체의 변화에 다른객체에 영향을 끼칠수 있게 되었다는 뜻입니다. 위의 예시 오브젝트로 설명을 한다면, News 오브젝트가 변경되면 SportsNews 오브젝트와 기타 모든 News 오브젝트에 의존하는 모듈까지 함께 변경되어야 할 수 있습니다.  
 
-스프링은 이러한 객체들간의 의존성을 줄이기위한 방법으로 IoC/DI를 하나로 묶어서 제공을 하고 있습니다. 객체 선언과정을 스프링 프레임워크가 미리 대신 해줌으로써(IoC) 그저 객체를 가져다가 (DI) 사용 할수 있게 해줍니다. 이 과정을 설명하기 위한 도식도를 스프링 공식문서에서는 제공하고 있습니다.  
+스프링은 이러한 객체들간의 의존성을 줄이기위한 방법으로 IoC/DI를 하나로 묶어서 제공을 하고 있습니다. 객체 선언과정을 스프링 프레임워크가 미리 대신 해줌으로써(IoC) 그저 객체를 가져다가 (DI) 사용 할수 있게 해줍니다. 이 과정을 설명하기 위한 모식도를 스프링 공식문서에서는 제공하고 있습니다.  
   
 <div style="text-align:center;">
 <img src="https://taes-k.github.io/assets/images/trick_basic/how_spring_work/ioc_container.png" style="height:250px;">
 </div>
   
-위의 도식도를 보시면 'Your Business Objects'를 'Configuratioin Metadata'를 통해 Spring Container에 등록시켜 본 시스템에 제공해주는 도식도 내용을 확인하실수 있습니다.  여기서 사용되는 Container가 바로 IoC Container 입니다.
+위의 모식도를 보시면 'Your Business Objects'를 'Configuratioin Metadata'를 통해 Spring Container에 등록시켜 본 시스템에 제공해주는 모식도 내용을 확인하실수 있습니다.  여기서 사용되는 Container가 바로 IoC Container 입니다.
   
 ---
   
@@ -76,7 +76,7 @@ public class SimpleMovieLister {
 
 ### DI를 하기위한 준비
 
-스프링의 DI를 활용하기위해서는 DI를 사용할 객체를 프레임워크에 알려줘야 합니다. 위의 IoC/DI의 도식도에서 보여지는 'Configuration Metadata'의 설정과정인데요 이렇게 IoC Container에 등록되어지는 객체들을 'Bean'이라고 합니다.  
+스프링의 DI를 활용하기위해서는 DI를 사용할 객체를 프레임워크에 알려줘야 합니다. 위의 IoC/DI의 모식도에서 보여지는 'Configuration Metadata'의 설정과정인데요 이렇게 IoC Container에 등록되어지는 객체들을 'Bean'이라고 합니다.  
 먼저 Bean 을 등록하기 위한 방법으로는 3가지 방법이 있습니다.  
 
 - XML-Based configuration
