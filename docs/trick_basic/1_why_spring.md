@@ -100,6 +100,7 @@ date: 2019.05.11
   ---
   
 ### 참조 문서
+{: .no_toc}
 Spring 5.1.6 release docs  
 <https://docs.spring.io/spring/docs/current/spring-framework-reference/core.html#beans-introduction>
   
