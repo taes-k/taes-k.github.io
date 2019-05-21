@@ -24,7 +24,7 @@ date: 2019.05.11
 
 ---
 
-### 1.2.1 IoC Container
+### <1.2.1 IoC Container>
 ### IoC와 DI
 스프링프레임워크를 말할때 IoC와 DI를 주요 핵심 개념으로 이야기합니다.  
 먼저 IoC(Inversion of Control)는 서비스 제어의 흐름을 역전시켰다는 뜻으로, 개발자가 아닌 프레임워크가 흐름을 제어하는 주체가되어 필요할때 코드를 호출하며 사용하게됩니다.   
@@ -119,7 +119,7 @@ public class SimpleMovieLister {
 
 ---
 
-### 1.2.2 Bean
+### <1.2.2 Bean>
 ### Bean 사용법
 사실 저는 IoC와 DI에대해 잘 몰랐을때도 스프링에서 제공해주는 이 기능들을 잘 활용해서 사용해 왔습니다. 잘 모르고 썼지만 잘 썼던 요령들을 통해 실제 프로젝트에서 IoC/DI 가 어떻게 사용되는지 살펴보도록 하겠습니다.  
 다음은 Database 연결을 설정하는 Datasource config와 DAO 코드 예제입니다.  
@@ -260,7 +260,7 @@ ApplicationContext는 Beanfactory의 모든 기능들을 포함하고, AOP 서�
 
 ---
 
-### * 마무리
+### <마무리>
 Spring은 어떻게 동작하는가를 알아보기위해 IoC 컨테이너와 Bean에 대해서 알아보았습니다. 스프링의 코어인 IoC 컨테이너에 대해서 정리 하고 마무리 짓도록 하겠습니다.
   
 - 스프링의 의존성 주입(DI)의 핵심 요소

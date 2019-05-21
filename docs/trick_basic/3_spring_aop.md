@@ -22,7 +22,7 @@ date: 2019.05.15
 
 ---
 
-### 1.3.1 Aspect Oriented Programming
+### <1.3.1 Aspect Oriented Programming>
 ### AOP란?
 먼저 스프링에서 말하는 AOP에 대해 정확히 알아보기 위해 스프링 공식 문서를 확인해보도록 하겠습니다.  
 
@@ -59,7 +59,7 @@ AOP가 어떻게 사용되는지 알아보기 전에 사용되는 용어들을 �
 
 --- 
 
-### 1.3.2 Spring AOP Mechanisms
+### <1.3.2 Spring AOP Mechanisms>
 ### AOP Proxy Factory
 
 위에서 AOP와, AOP에서 사용되는 용어를 알아보았으니 이제 실제로 Spring에서는 어떠한 방식으로 AOP를 구현하고 있는지 알아보도록 하겠습니다.  
@@ -178,7 +178,7 @@ public class ErrorHandlingAspect {
 }
 ```
 
-### * 마무리
+### <마무리>
 Spring AOP가 어떻게 실행되는 알아보았는데, 결국 코드는 꽤나 단순하게 사용이 가능했습니다. 몇가지 설정만 해주면 스프링에서 AOP를 위한 프록시팩토리를 자동으로 생성하여 본래의 코드에 변화없이 Aspect를 실행 시켜 줄 수 있습니다. 이것이 스프링이 가지고 있는 AOP 프레임워크이며 IoC컨테이너와 보완적으로 AOP를 사용할수 있습니다. 
 
 --- 
