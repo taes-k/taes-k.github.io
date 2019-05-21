@@ -83,9 +83,12 @@ DispatcherServlet의 구성은 다음과 같습니다.
 - DispatcherServlet에서 생성
 - Servlet 단위로 생성되는 Context  
 - 서블릿 내에서만 사용하는 Bean 생성 (@Controller, Interceptor) 
+  
+DispatcherServlet은 설정에 따라 여러개 생성이 가능하며 url pattern 을 통해 목적에 맞게 나누어 관리합니다. 예를들자면 웹 페이지를 위한 서블릿과 Rest 기반 웹서비스를 따로 관리하기위한 DispatcherServlet을 생성할수 있고 생성한 DispatcherServlet 마다 Servlet Context가 생성됩니다.  
+  
+Bean을 찾을때 Servlet Context를 먼저 스캔 후 Root Context를 스캔하여 Bean을 찾게되며 Servlet Context에서는 Root Context의 Bean을 참조 할수 있지만 반대로는 불가능 합니다.    
 
-Bean을 찾을때 Servlet Context를 먼저 스캔 후 Root Context를 스캔하여 Bean을 찾게되며 Servlet Context에서는 Root Context의 Bean을 참조 할수 있지만 반대는 불가능 합니다.   
-위와 같은 이유로 @Autowired로 Bean을 불러 사용 하려해도 `Not found bean` 에러가 날수도 있으니 본인이 사용하고자 하는 Bean의 목적과 저장위치를 잘 알고 사용 하실수 있기를 바랍니다.  
+위와 같은 이유로 참조가 불가능한 컨텍스트(Root Context-> Servlet Context , Servlet Context -> 다른 Servlet Context)에 설정된 Bean을 참조하려고 하면 `Not found bean` 에러가 날수도 있으니 본인이 사용하고자 하는 Bean의 목적과 저장위치를 잘 알고 사용 하실수 있기를 바랍니다.  
 
 --- 
 
@@ -103,16 +106,17 @@ String 기반 view 이름 검색을 통해 파일을 찾아 DispatcherServlet에
 ---
 ### DispatcherServlet Request 처리과정
 
+위에서 정리해본 DispatcherServlet의 역할을 토대로 request처리 플로우를 그려보면 다음과 같습니다.  
 
 <div style="text-align:center;">
 <img src="https://taes-k.github.io/assets/images/trick_basic/about_spring_mvc/dispatcherServletProcess.png" style="height:250px;">
 </div>
+  
+Spring MVC에서는 Dispatcher Servlet의 Special Bean들을 통해 Request들을 핸들링 해주어 개발자가 MVC에 필요한 코드만 작성 할수 있도록 지원 하고 있음을 볼 수 있습니다. 
 
 ---
 
-### MVC 구성해보기
-
----
+### 실제 MVC 프로젝트 구성
 
 
 --- 
