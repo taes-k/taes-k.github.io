@@ -290,7 +290,7 @@ Spring MVC 구조에서 실제로 request를 어떻게 처리하는지 알아보
 ### 참조 문서
 {: .no_toc }
 Spring 5.1.6 release docs  
-<https://docs.spring.io/spring/docs/current/spring-framework-reference/core.html#beans-introduction>
+<https://docs.spring.io/spring/docs/current/spring-framework-reference/web.html#mvc>
 
 
 ---
