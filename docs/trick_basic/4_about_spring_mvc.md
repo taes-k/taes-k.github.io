@@ -155,11 +155,14 @@ Spring boot 2.1.5
 - 디렉토리 구조 
 
 <div style="text-align:center;">
-<img src="https://taes-k.github.io/assets/images/trick_basic/about_spring_mvc/mvc_directory.png" style="height:250px;">
-</div>
+<img src="https://taes-k.github.io/assets/images/trick_basic/about_spring_mvc/mvc_directory.png" style="height:400px; border:1px solid #d0d0d0;">
+</div>  
 
-- 소스  
-\1. Controller 구현
+
+- 소스   
+
+1\. Controller 구현  
+
 ```java
 //example.mvc.spring.controller.ExampleController
 
@@ -178,7 +181,8 @@ public class ExampleController {
 }
 ```  
   
-\2. Service 구현
+2\. Service 구현  
+
 ```java
 //example.mvc.spring.service.ExampleService
 
@@ -199,7 +203,8 @@ public class ExampleService {
 
 ```  
 
-\3. View 설정
+3\. View 설정  
+
 ```c
 //application.properties
 
@@ -221,7 +226,8 @@ spring.mvc.view.suffix=.jsp
 </dependency>
 ```   
   
-\4. View 구현
+4\. View 구현  
+
 ```c
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8"%>
@@ -239,17 +245,18 @@ pageEncoding="UTF-8"%>
 
 - 결과  
 <div style="text-align:center;">
-<img src="https://taes-k.github.io/assets/images/trick_basic/about_spring_mvc/example_mvc_run.png" style="height:350px;">
-</div>
+<img src="https://taes-k.github.io/assets/images/trick_basic/about_spring_mvc/example_mvc_run.png" style="height:350px; border:1px solid #d0d0d0;">
+</div>  
   
     
-Springboot 프로젝트를 통해 직접 작성한 소스 50줄 정도로 MVC 웹 프로젝트를 구현했습니다.
+Springboot 프로젝트에서는  통해 직접 작성한 소스 50줄 정도로 MVC 웹 프로젝트를 구현했습니다.
 <div style="text-align:center;">
-<img src="https://taes-k.github.io/assets/images/trick_basic/about_spring_mvc/spring_boot_init.png" style="height:250px;">
+<img src="https://taes-k.github.io/assets/images/trick_basic/about_spring_mvc/spring_boot_init.png" style="height:250px; border:1px solid #d0d0d0;">
 </div>  
-
- 위의 프로젝트 스타트 로그를 확인해보면 스프링부트에서는 기본적으로  default 서블릿을 구성하여 Annotation 설정을 자동으로 해주어 간단한 프로젝트에서는 따로 설정을 하지 않아도 웹 MVC 프로젝트 구현이 가능합니다.  물론, 따로 `WebApplicationInitializer` 를 구현하여 서블릿 설정을 할 수 있다.
- 
+  
+  
+ 위의 프로젝트 스타트 로그를 확인해보면 스프링부트에서는 기본적으로  default 서블릿을 구성하여 Annotation 설정을 자동으로 해주어 간단한 프로젝트에서는 따로 설정을 하지 않아도 웹 MVC 프로젝트 구현이 가능합니다.  물론, 따로 `WebApplicationInitializer` 를 구현하여 서블릿 설정을 할 수 있습니다.
+   
  ```java
  
 public class MyWebApplicationInitializer implements WebApplicationInitializer {
@@ -268,9 +275,10 @@ public void onStartup(ServletContext servletCxt) {
      registration.addMapping("/app/*");
      }
 }
-```
- 
- 
+```  
+  
+  
+  
 --- 
 
 ### <마무리>
