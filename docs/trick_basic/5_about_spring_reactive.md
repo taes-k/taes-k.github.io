@@ -116,7 +116,7 @@ Spring boot 2.1.5
 - 디렉토리 구조 
   
 <div style="text-align:center;">
-<img src="https://taes-k.github.io/assets/images/trick_basic/about_spring_mvc/webflux_directory.png" style="height:400px; border:1px solid #d0d0d0;">
+<img src="https://taes-k.github.io/assets/images/trick_basic/about_spring_reactive/webflux_directory.png" style="height:400px; border:1px solid #d0d0d0;">
 </div>  
   
 - 소스   
@@ -191,13 +191,13 @@ public class ExampleService {
 3\. 결과 (api)
 
 <div style="text-align:center;">
-<img src="https://taes-k.github.io/assets/images/trick_basic/about_spring_mvc/webflux_result.png" style="height:250px; border:1px solid #d0d0d0;">
+<img src="https://taes-k.github.io/assets/images/trick_basic/about_spring_reactive/webflux_result.png" style="height:250px; border:1px solid #d0d0d0;">
 </div>  
 
 4\. 결과 (콘솔)
 
 <div style="text-align:center;">
-<img src="https://taes-k.github.io/assets/images/trick_basic/about_spring_mvc/webflux_console.png" style="height:250px; border:1px solid #d0d0d0;">
+<img src="https://taes-k.github.io/assets/images/trick_basic/about_spring_reactive/webflux_console.png" style="height:250px; border:1px solid #d0d0d0;">
 </div>  
   
 위의 프로젝트 예제가 Spring WebFlux를 잘 나타낸 예제라고는 말씀을 못드리지만, 일반적인  Spring MVC 구조와 크게 다르지않게 프로젝트를 구성하여 이용하실수 있습니다.   

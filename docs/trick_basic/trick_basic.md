@@ -25,7 +25,9 @@ permalink: /docs/trick_basic
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.6 Spring의 아키텍쳐  
 >   
 > 2\. Tomcat
->   
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.1 WAS를 사용하는 이유 ]()  
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.2 Tomcat의 동작 과정]()  
+> 
 > 3\. Nginx
 
 ---
