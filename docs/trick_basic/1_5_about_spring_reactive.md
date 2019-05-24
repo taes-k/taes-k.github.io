@@ -1,9 +1,9 @@
 ---
 layout: default
 comments: true
-title: (요령과 기본) 1.5 Spring5 Reactive
+title: (요령과 기본) 1.5 Spring5 리액티브
 parent: 요령과 기본
-date: 2019.05.15
+date: 2019.05.21
 ---
 
 <h1>{{ page.title }}</h1>  
@@ -162,27 +162,19 @@ public class ExampleController {
 public class ExampleService {
 
     public String getSampleExmaple1() {
-
         return "Example1";
-
     }
 
     public String getSampleExmaple2() {
-
         return "Example2";
-
     }
 
     public String getSampleExmaple3() {
-
         return "Example3";
-
     }
 
     public String getSampleExmaple4() {
-
         return "Example4";
-
     }
 }
 
