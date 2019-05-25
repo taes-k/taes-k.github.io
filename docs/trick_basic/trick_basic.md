@@ -24,9 +24,9 @@ permalink: /docs/trick_basic
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[1.5 Spring5 리액티브(Spring WebFlux)](https://taes-k.github.io/docs/trick_basic/5_about_spring_reactive/)  
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.6 Spring의 아키텍쳐  
 >   
-> 2\. Tomcat
-> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.1 WAS를 사용하는 이유 ]()  
-> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.2 Tomcat의 동작 과정]()  
+> 3\. 서버는 요청을 어떻게 처리하는가?
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.1 Web Server 와 Web Application Server]()  
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.2 Spring Tomcat]()  
 > 
 > 3\. Nginx
 
