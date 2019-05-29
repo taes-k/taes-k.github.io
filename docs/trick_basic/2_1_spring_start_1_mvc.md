@@ -39,7 +39,7 @@ date: 2019.05.28
 해당 프로젝트의 플로우차트는 다음과 같습니다.  
 
 <div style="text-align:center;">
-<img src="https://taes-k.github.io/assets/images/trick_basic/spring_start_1_mvc/mvc_start_flowchart.png" style="height:250px; border:1px solid #d0d0d0;">
+<img src="https://taes-k.github.io/assets/images/trick_basic/spring_start_1_mvc/mvc_start_flowchart.png" style="height:400px; border:1px solid #d0d0d0;">
 </div>   
 
 ---
@@ -62,6 +62,7 @@ Gradle 3.x
 
 - MVC 기본 골조 세팅  
 가장먼저, 사용자의 요청과 응답을 직접적으로 처리해주는 Controller부터 세팅을 하도록 하겠습니다.  
+
 ```java
 // ViewController.java
 
@@ -245,6 +246,8 @@ jsp 사용을 위한 gradle 혹은 maven dependency 설정이 필요합니다.  
 
 ### 샘플 프로젝트 
 {: .no_toc }
+
+위 프로젝트는 다음 링크에서 확인하실수 있습니다.  
 <https://github.com/taes-k/spring-example/tree/master/spring-mvc-start>
 
 

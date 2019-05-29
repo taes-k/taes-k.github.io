@@ -25,7 +25,7 @@ permalink: /docs/trick_basic
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.6 Spring build tools   
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.7 Spring의 아키텍쳐  
 >   
-> 2\. 당신은 Spring을 어떻게 사용하고 있는가??  
+> 2\. 당신은 Spring을 어떻게 사용하고 있는가?
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.1 Spring 프로젝트 시작하기 (1) - MVC](https://taes-k.github.io/docs/trick_basic/2_1_spring_start_1_mvc/)    
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2.2 Spring 프로젝트 시작하기 (2) - JDBC와 JPA  
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2.3 Spring 프로젝트 시작하기 (3) - RestAPI  
