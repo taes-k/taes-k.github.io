@@ -178,11 +178,21 @@ public class MainNewsServiceImpl implements NewsService {
 dao에서는 이미 bean으로 등록되어있는 jdbcTemplate을 autowired로 주입 해와서 query문을 직접 입력하여 원하는 데이터 조작을 할 수 있습니다. 이때 result값은 이전에 미리 설정해둔 NewsVO 객체에 바로 주입시켜 결과로 받아 오도록 설정 할 수 있습니다.  
 
 <div style="text-align:center;">
-<img src="https://taes-k.github.io/assets/images/trick_basic/spring_start_2_jdbc/jdbc_result.png" style="height:350px; border:1px solid #d0d0d0;">
+<img src="https://taes-k.github.io/assets/images/trick_basic/spring_start_2_jdbc/jdbc_result.png" style="height:300px; border:1px solid #d0d0d0;">
 </div>   
 
 데이터베이스를 사용하기 전의 결과와 동일한 결과를 얻어내어, JDBC가 잘 동작 된 것을 확인 할 수 있습니다.  
 
+---
+
+### JDBC 동작 구조
+
+<div style="text-align:center;">
+<img src="https://taes-k.github.io/assets/images/trick_basic/spring_start_2_jdbc/jdbc_structure.png" style="height:250px; border:1px solid #d0d0d0;">
+</div>   
+  
+JDBC는 Interface와 드라이버로 구성되어 있습니다. 위의 구조도를 보면 JDBC드라이버는 DBMS의 종류에따라 구분되어지며 JDBC Interface는 어떤 DBMS 와의 연결에서도 공통된 API 기능을 제공해줌을 알 수 있습니다.  
+  
 ---
 
 ### MyBatis
@@ -257,10 +267,24 @@ MyBatis는 SqlSession 객체를 만들어 질의를 하게되는데,  원하는 
 mybatis 까지 적용을 해서, 동일한 결과를 얻어내어, MyBatis까지 잘 적용된 것을 확인 할 수 있습니다.  
 
 ---
+### Mybatis 동작 구조  
+  
+  
+  <div style="text-align:center;">
+  <img src="https://taes-k.github.io/assets/images/trick_basic/spring_start_2_jdbc/mybatis_structure.png" style="height:250px; border:1px solid #d0d0d0;">
+  </div>   
+
+<div style="text-align:center;">
+<img src="https://taes-k.github.io/assets/images/trick_basic/spring_start_2_jdbc/mybatis_process.png" style="height:250px; border:1px solid #d0d0d0;">
+</div>   
+
+Mybatis는 JDBC 이전 단계에서 실행됩니다. 클라이언트의 요청이 있을때 SqlSessionFactory에서 SqlSession을 만들어 매퍼를 찾아 SQL을 실행하는 구조로 동작을 하게 됩니다. SQL 쿼리를 별도로 구성하여 필요할때마다 참조하여 사용하여 JDBC 에 비해 코드 및 매개변수의 중복 작업들을 제거 할 수 있습니다.  
+
+---
 
 ### <마무리>
 
-스프링 프로젝트에 JDBC를 통해 데이터베이스를 연결하여 데이터를 직접 불러오는 예제와 함께 JDBC의 구조를 알아보았습니다. 다음챕터에서는 JPA를 이용한 데이터베이스 연결을 알아보도록 하겠습니다.   
+스프링 프로젝트에 JDBC를 통해 데이터베이스를 연결하여 데이터를 직접 불러오는 예제와 함께 JDBC 및 Mybatis의 구조를 알아보았습니다. 사용하는 것은 간단한 datasource 설정만으로 연결 후 쉽게 사용이 가능하지만, 그 동작 구조까지 잘 알고계신다면 좋을것 같습니다. 
 
 --- 
 
