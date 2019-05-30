@@ -1,7 +1,7 @@
 ---
 layout: default
 comments: true
-title: (요령과 기본) 2.1 Spring 프로젝트 시작하기 (2) - JDBC
+title: (요령과 기본) 2.2 Spring 프로젝트 시작하기 (2) - JDBC
 parent: 요령과 기본
 date: 2019.05.28
 ---
