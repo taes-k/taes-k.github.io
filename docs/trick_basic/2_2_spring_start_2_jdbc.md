@@ -10,7 +10,7 @@ date: 2019.05.28
 <div style="text-align:right; font-size:11px; color:#aaa">{{ page.date }} </div>
 ---
 
-### 2.1 Spring 프로젝트 시작하기 (2) - JDBC
+### 2.2 Spring 프로젝트 시작하기 (2) - JDBC
 {: .no_toc }
 이번챕터에서는 지난 프로젝트에서 서비스단에서 넣어주었던 데이터들을 데이터베이스로 옮기고 JDBC를 통해 데이터베이스와 연동하는 예제를 진행해보도록 하겠습니다.   
   
