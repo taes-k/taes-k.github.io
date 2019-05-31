@@ -162,6 +162,8 @@ JDBC를 사용할때는 JDBC, SqlSession Template을 사용하여 SQL문은 직�
 
 public interface NewsDao extends JpaRepository<News, Integer> {
 
+    List<News> findByType(String type);
+
     @Query("select n from News n where n.type = :type")
     List<News> findCategoryNews(String type);
 
@@ -189,7 +191,7 @@ public class MainNewsServiceImpl implements NewsService {
 <img src="https://taes-k.github.io/assets/images/trick_basic/spring_start_2_jdbc/jdbc_result.png" style="height:350px; border:1px solid #d0d0d0;">
 </div>   
 
-위와같이 JPA를 사용하여 JDBC 설정보다 좀더 간편하고 객체화시켜서  데이터베이스에서 원하는 데이터들을 잘 조회한것을 확인 할 수 있습니다.
+위와같이 JPA를 사용하여 JDBC 설정보다 좀더 간편하고 객체화시켜서  데이터베이스에서 원하는 데이터들을 잘 조회한것을 확인 할 수 있습니다. 새로운 메서드를 작성하고 싶을때는 Sql을 작성하는것처럼 메소드 이름에 키워드를 조합하여 원하는 데이터 관리가 가능하며, SQL처럼 사용 가능한 JPQL 쿼리문을 사용하여 데이터관리도 가능합니다. 
 
 ---
 
