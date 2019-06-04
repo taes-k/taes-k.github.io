@@ -14,13 +14,13 @@ date: 2019.05.10
 
 2016년 대학졸업도 하기전에 스타트업 창업을 하게된 저는, 자바를 할 줄 알았고 웹서비스를 만들어야 했기에 스프링 프레임워크를 처음 접하게 되었습니다. 처음 접해보는 기술이었지만, 내가 무엇을 알아야하는지도 모른채 서비스를 만들어내는데에만 급급했습니다. 서비스가 잘 작동 하기만 하면 잘 만들어낸줄 알았기에 내가 작성한 코드들이 어떤 과정을 통해 동작하는지도 모르고 개발을 해 왔습니다. 그렇게 요령만으로 개발을 해 온지 3년, 서비스의 발전과 개인 역량기술의 발전이 심각하게 더뎌지고 있다는 느낌이 본능적으로 느껴지기 시작했습니다. 사실 이때까지만 해도 무엇이 문제인지 모르고 방황을 하며 '신선함'에 눈길을 돌렸지만 결국 문제는 '기본'이었다는것을 깨달았습니다.  
 
-  <div style="text-align:center;">
+<div style="text-align:center;margin:30px 0;">
   <img src="https://taes-k.github.io/assets/images/trick_basic/intro/1.png" style="height:250px;">
-  </div>
+</div>
   
 이 시점에서 깨달은 저는 이것이 실수나 잘못이라고 생각하지는 않습니다. 조금 다르게 개발자로써 성장해가는 과정이라고 생각하고 더 발전해 나가려고 합니다. 다만 이것을 깨닫지못하고 계속해서 개발을 하고있었다면 그때는, 큰 잘못을했다며 후회를 했을것 같습니다.  
   
-<div style="text-align:center;">
+<div style="text-align:center;margin:30px 0;">
 <img height="250px" src="https://taes-k.github.io/assets/images/trick_basic/intro/2.png" style="height:250px;">
 </div>  
 
