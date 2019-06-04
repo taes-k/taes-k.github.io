@@ -31,8 +31,7 @@ date: 2019.05.10
 감사합니다.  
 
 <div style="text-align:right; margin: 30px 0;">
-2019년 5월 10일
-
+2019년 5월 10일<br><br>
 김태성
 </div>
 
