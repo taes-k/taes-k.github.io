@@ -27,7 +27,7 @@ date: 2019.05.31
  스프링 부트로 프로젝트를 생성 해보셨다면 아시겠지만, 프로젝트 이름과 함께 가장 먼저 설정 하는것중 하나가 Type을 설정하는 옵션이 있습니다.  여기서 설정하는 type이 바로 build tool을 설정하는 옵션입니다.  
 
 <div style="text-align:center;">
-<img src="https://taes-k.github.io/assets/images/trick_basic/about_spring_reactive/spring_boot_start_builid_tool_option.png" style="height:400px; border:1px solid #d0d0d0;">
+<img src="https://taes-k.github.io/assets/images/trick_basic/spring_build_tool/spring_boot_start_build_tool_option.png" style="height:400px; border:1px solid #d0d0d0;">
 </div>   
     
 스프링에서는 maven과 gradle 두가지를 지원하고있으며, 프로젝트를 생성했을때 시각적으로 보이는 차이는 maven은 pom.xml , gradle은 build.gradle과 setting.gradle 이 생성된다는 차이가 있습니다.   
@@ -56,7 +56,7 @@ Maven은 2004년에 출시된 Apache사의 build tool 로써,  기존의 built t
 Maven은 플러그인을 구동해주는 프레임워크로써, 모든 작업은 플러그인에서 수행하게 됩니다. 이에대한 이해를 돕기위해 Maven의 구조도를 확인해보도록 하겠습니다.  
 
 <div style="text-align:center;">
-<img src="https://taes-k.github.io/assets/images/trick_basic/about_spring_reactive/maven_structure.png" style="height:300px; border:1px solid #d0d0d0;">
+<img src="https://taes-k.github.io/assets/images/trick_basic/spring_build_tool/maven_structure.png" style="height:300px; border:1px solid #d0d0d0;">
 </div>   
   
 Maven 위와같은 구조도로써 build를 진행하게 되는데  Plugin 내에서도 Goal의 세부 작업단위로써 life-cycle을 만들어 실행하게됩니다. 간략한 빌드과정은 다음과 같습니다.  
@@ -121,7 +121,7 @@ Gradle은 2012년에 출시된 Gradle사의 build tool 로써, 후발주자인 �
 Gradle은 Task기반으로 작업을 수행하며, Task는 종속성에 따라 다음 작업할 Task를 연결하여 작업을 진행합니다. 이에대한 Gradle 공식 문서에는 다음과같은 다이어그램으로 설명하고 있습니다.   
   
 <div style="text-align:center;">
-<img src="https://taes-k.github.io/assets/images/trick_basic/about_spring_reactive/gradle_structure.png" style="height:300px; border:1px solid #d0d0d0;">
+<img src="https://taes-k.github.io/assets/images/trick_basic/spring_build_tool/gradle_structure.png" style="height:300px; border:1px solid #d0d0d0;">
 </div>   
 
 Gradle도 Maven과 비슷한 과정으로 빌드가 진행됩니다.  
