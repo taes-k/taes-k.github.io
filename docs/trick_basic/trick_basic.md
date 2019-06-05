@@ -28,13 +28,13 @@ permalink: /docs/trick_basic
 > 2\. 당신은 Spring을 어떻게 사용하고 있는가?  
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.1 Spring 프로젝트 시작하기 (1) - MVC](https://taes-k.github.io/docs/trick_basic/2_1_spring_start_1_mvc/)    
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.2 Spring 프로젝트 시작하기 (2) - JDBC](https://taes-k.github.io/docs/trick_basic/2_2_spring_start_2_jdbc/)  
-> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.2 Spring 프로젝트 시작하기 (3) - JPA](https://taes-k.github.io/docs/trick_basic/2_2_spring_start_3_jpa/)  
-> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2.3 Spring 프로젝트 시작하기 (4) - TEST   
-> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2.3 Spring 프로젝트 시작하기 (5) - RestAPI  
-> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2.4 Spring 프로젝트 시작하기 (6) - Spring Security  
-> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2.5 Spring 프로젝트 시작하기 (7) - OAuth  
-> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2.6 Spring 프로젝트 시작하기 (8) - SSO  
-> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2.7 Spring 프로젝트 시작하기 (9) - MSA
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.3 Spring 프로젝트 시작하기 (3) - JPA](https://taes-k.github.io/docs/trick_basic/2_2_spring_start_3_jpa/)  
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2.4 Spring 프로젝트 시작하기 (4) - [TESTING](https://taes-k.github.io/docs/trick_basic/2_2_spring_start_4_testing/)   
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2.5 Spring 프로젝트 시작하기 (5) - RestAPI  
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2.6 Spring 프로젝트 시작하기 (6) - Spring Security  
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2.7 Spring 프로젝트 시작하기 (7) - OAuth  
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2.8 Spring 프로젝트 시작하기 (8) - SSO  
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2.9 Spring 프로젝트 시작하기 (9) - MSA
 >   
 > 3\. 서버는 요청을 어떻게 처리하고 있을까?  
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.1 Web Server 와 Web Application Server](https://taes-k.github.io/docs/trick_basic/3_1_webserver/)   
