@@ -1,7 +1,7 @@
 ---
 layout: default
 comments: true
-title: (요령과 기본) 2.4 Spring 프로젝트 시작하기 (4) - Testing
+title: (요령과 기본) 2.5 Spring RestAPI 서버
 parent: 요령과 기본
 date: 2019.06.05
 ---

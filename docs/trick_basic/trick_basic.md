@@ -30,11 +30,11 @@ permalink: /docs/trick_basic
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.2 Spring 프로젝트 시작하기 (2) - JDBC](https://taes-k.github.io/docs/trick_basic/2_2_spring_start_2_jdbc/)  
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.3 Spring 프로젝트 시작하기 (3) - JPA](https://taes-k.github.io/docs/trick_basic/2_2_spring_start_3_jpa/)  
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.4 Spring 프로젝트 시작하기 (4) - TESTING](https://taes-k.github.io/docs/trick_basic/2_4_spring_start_4_testing/)   
-> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2.5 Spring 프로젝트 시작하기 (5) - RestAPI  
-> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2.6 Spring 프로젝트 시작하기 (6) - Spring Security  
-> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2.7 Spring 프로젝트 시작하기 (7) - OAuth  
-> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2.8 Spring 프로젝트 시작하기 (8) - SSO  
-> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2.9 Spring 프로젝트 시작하기 (9) - MSA
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.5 Spring RestAPI 서버](https://taes-k.github.io/docs/trick_basic/2_5_spring_rest_api/)   
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2.6 Spring Security   
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2.7 Spring OAuth2   
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2.8 Spring SSO  
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2.9 Spring MSA  
 >   
 > 3\. 서버는 요청을 어떻게 처리하고 있을까?  
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.1 Web Server 와 Web Application Server](https://taes-k.github.io/docs/trick_basic/3_1_webserver/)   
