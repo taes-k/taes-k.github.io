@@ -1,7 +1,7 @@
 ---
 layout: default
 comments: true
-title: (요령과 기본) 2.3 Spring 프로젝트 시작하기 (4) - Testing
+title: (요령과 기본) 2.4 Spring 프로젝트 시작하기 (4) - Testing
 parent: 요령과 기본
 date: 2019.05.30
 ---
