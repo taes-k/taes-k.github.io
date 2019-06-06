@@ -10,7 +10,7 @@ date: 2019.05.21
 <div style="text-align:right; font-size:11px; color:#aaa">{{ page.date }} </div>
 ---
 
-### 1.5 Spring5 Reactive
+## 1.5 Spring5 Reactive
 {: .no_toc }
 이번챕터에서 다룰 Spring Reactive는 제가 실무에서는 다루어보지 못한 기술입니다. 하지만 Spring5가 나오면서 가장 열정적으로 소개하고있는 기술이기에 정리를 해보려고 합니다.  
   
@@ -31,8 +31,8 @@ Spring5가 나오면서, 스프링에서는 Spring MVC와 병행하여 reactive-
 
 ---
 
-### <1.5.1 Reactive 프로그래밍>
-### Reactive 프로그래밍이란?
+## <1.5.1 Reactive 프로그래밍>
+## Reactive 프로그래밍이란?
 
 Spring WebFlux에대해 알아보기전에, 먼저 리액티브 프로그래밍에대해 알아보려고 합니다. 위키피디아에서는 리액티브 프로그래밍에대해 다음과같이 설명하고 있습니다.  
 > In computing, reactive programming is a declarative programming paradigm concerned with data streams and the propagation of change. With this paradigm it is possible to express static (e.g., arrays) or dynamic (e.g., event emitters) data streams with ease, and also communicate that an inferred dependency within the associated execution model exists, which facilitates the automatic propagation of the changed data flow.  
@@ -42,7 +42,7 @@ Spring WebFlux에대해 알아보기전에, 먼저 리액티브 프로그래밍�
 리액티브 프로그래밍은 데이터의 흐름과 변화의 전파에 중점을 둔 프로그래밍 패러다임 입니다.  
 작성한 코드의 순서대로 진행되는 기존의 명령형 프로그래밍과는 다르게 데이터의 흐름을 먼저 정의하면 데이터의 변화 혹은 작업의 종료에 따라 반응하여 진행되는 프로그래밍 입니다.
 
-### Reactive 프로그래밍의 목적
+## Reactive 프로그래밍의 목적
 그렇다면 리액티브 프로그래밍은 어떤 목적에서 생겨났을까요?  서버에서의 리액티브 프로그래밍의 탄생은 리소스의 효율적 사용을 위함에 있었습니다. 리액트 이전에는 멀티쓰레드로써 병렬처리를 했지만, 쓰레드의 확장만으로는 CPU와 메모리의 제한이 있기에 비동기와 논블로킹의 새로운 프로그래밍 모델이 제안되었습니다.  
 
 논블로킹은 일반적인 쓰레드를 통한 비동기 작업과는 다르게, 쓰레드를 점유하지 않고 작업을 수행하여 하나의 쓰레드 내에서 동시에 많은 작업을 수행 할 수 있습니다. 이와 같이 작업을 하는데 있어서 너무 많은 트래픽이 몰릴경우 문제가 발생 하거나 성능이 제대로 나오지 않을수 있기에 Back-pressure (배압, 역압)을 통해 요청의 갯수를 제한하여 '고가용성'을 보장해 줍니다.  
@@ -51,8 +51,8 @@ Spring WebFlux에대해 알아보기전에, 먼저 리액티브 프로그래밍�
 
 ---  
   
-### <1.5.2 Spring WebFlux>
-### Spring MVC와 Spring WebFlux
+## <1.5.2 Spring WebFlux>
+## Spring MVC와 Spring WebFlux
 
 이전챕터였던 Spring MVC 공식문서를 보셨다면 아시겠지만, Spring WebFlux 대부분의 구조 및 설정이 Spring MVC와 동일하다고 명시되어 있습니다. 가장 큰 차이점은 MVC에서는 애플리케이션이 스레드를 차단할수 있다는 가정하에 큰 스레드풀을 가지고 있고, WebFlux에서는 스레드가 차단되지 않아 적은 스레드풀을 사용하여 request들을 처리한다는 점 일것입니다.    
   
@@ -81,7 +81,7 @@ Spring MVC와 Spring WebFlux 는 서로 연속성과 일관성을 유지되도�
 
 ---
 
-### Spring Webflux  
+## Spring Webflux  
 
 먼저 Spring WebFlux의 구조부터 알아보도록 하겠습니다. Spring MVC의 경우 서블릿 컨테이너와 서블릿을 기반으로 웹 추상화 계층을 제공 했는데 WebFlux는 서블릿컨테이너 + 네트워크 어플리케이션 프레임워크(Netty, Undertow)를 함께 지원해 Reactive Stream 기반으로 웹 추상화계층을 제공합니다.  
   
@@ -106,7 +106,7 @@ WebFlux에는 reactive를 지원하기 위해 다음과 같은 기본 지원들�
 
 --- 
 
-### Spring WebFlux 프로젝트 구현해보기
+## Spring WebFlux 프로젝트 구현해보기
 
 지금가지 WebFlux에대해서 알아보았는데, 그렇다면 실제 예제 WebFlux 프로젝트를 구현해보도록 하겠습니다.  
   
@@ -200,12 +200,12 @@ public class ExampleService {
 
 ---
 
-### <마무리>
+## <마무리>
 Reactive는 현재 기술 생태계에서 좋은 분위기를 가지고 있습니다. 하지만 단순히 그러한 인식만을 바탕으로 서비스에 Spring WebFlux를 도입하려는 시도보다는 WebFlux의 동작 구조와 이점을 정확히 이해하고 본인의 서비스에 적합한지를 한번더 확인 한 후에 적용을 한다면 분명히 큰 결과를 얻어내실수 있을것 같습니다.   
 
 --- 
 
-### 참조 문서
+## 참조 문서
 {: .no_toc }
 Spring 5.1.6 release docs  
 <https://docs.spring.io/spring/docs/current/spring-framework-reference/web-reactive.html#webflux>

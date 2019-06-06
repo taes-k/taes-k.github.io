@@ -10,7 +10,7 @@ date: 2019.05.15
 <div style="text-align:right; font-size:11px; color:#aaa">{{ page.date }} </div>
 ---
 
-### 1.4 Spring MVC의 진짜 의미
+## 1.4 Spring MVC의 진짜 의미
 {: .no_toc }
 Spring Web MVC는 Spring 프레임워크가 처음 나왔을때부터 함께나온 웹 프레임워크로 spring-webmvc 소스 모듈의 이름을 따온 모델 입니다. 실제  MVC 모델이 어떻게 구성되어 있고 어떤 과정을 통해 클라이언트의 request 를 처리하는지 알아보도록 하겠습니다. 
 
@@ -24,8 +24,8 @@ Spring Web MVC는 Spring 프레임워크가 처음 나왔을때부터 함께나�
 
 ---
 
-### <1.4.1 MVC의 이해>
-### MVC
+## <1.4.1 MVC의 이해>
+## MVC
  먼저 MVC란 Model - View - Controller의 약자로써, 구글에 MVC에 대해 검색하면 일반적으로 다음과같은 다이어그램을통해 설명하고 있습니다.  
 
 <div style="text-align:center;">
@@ -38,19 +38,19 @@ MVC는 위 다이어그램과 같이 비지니스 처리 로직과 사용자 인
 
 ---
 
-### MVC - Model
+## MVC - Model
 어떤 데이터를 보여줄지 정의해 줍니다.  
 Model은 '데이터'를 정의하는 부분으로, 데이터를 조회하는 것 뿐만 아니라 삽입, 변경, 삭제등의 작업을 수행하고 그 실제적인 과정이 일어나는 비즈니스 로직 전반적인 부분을 정의해 줍니다.    
 
 ---
 
-### MVC - View
+## MVC - View
 데이터의 보여주는 방식을 정의해 줍니다.   
 View는 Client들이 실제로 보는 화면을 표시해주는 부분으로, 보여줄 데이터나 텍스트 데이터를 표시해주거나 Client들의 입력을 받기위한 입력 폼들을 정의해 줍니다.
 
 ---
 
-### MVC - Controller
+## MVC - Controller
 Client의 Request에 따른 Response를 정의해 주며 모델 및 뷰를 업데이트 하는 로직을 포함하고 있습니다.  
 Controller는 Client의 요청을 받아들여 각 요청에따라 데이터를 설정해주거나 화면을 출력해주는 등의 전체적인 연결을 관리해주는 응답을 정의해 줍니다.
  
@@ -58,10 +58,10 @@ Controller는 Client의 요청을 받아들여 각 요청에따라 데이터를 
 
 --- 
 
-### <1.4.2 Spring MVC Process>
+## <1.4.2 Spring MVC Process>
 위 섹션을 통해 MVC의 정의와 개념에대해서 알아보았습니다. 그렇다면 Spring MVC에서 Client의 Request를 처리하는 과정을 알아보면서 실제로 MVC가 어떤 Process로 동작하는지 알아보도록 하겠습니다.
 
-### DispatcherServlet
+## DispatcherServlet
 가장먼저, Spring MVC는 하나의 컨트롤러로 Client들의 Request를 처리해주는 패턴인 Front controller pattern으로 구성되어있습니다. Spring에서 사용되는 Front controller가 바로 `DispatcherServlet` 으로, 요청을 처리하기위한 공유 알고리즘을 제공하지만 실제작업은 적절한 컴포넌트들에게 위임하여 수행하게 됩니다.   
   
 DispatcherServlet의 구성은 다음과 같습니다.
@@ -92,7 +92,7 @@ Bean을 찾을때 Servlet Context를 먼저 스캔 후 Root Context를 스캔하
 
 --- 
 
-### Special Bean Type
+## Special Bean Type
 DispatcherServlet은 특수한 요청을 처리하기위한 Bean들이 있습니다. 그중, 위의 모식도에서 Servlet Context가 가지고 있는 ViewResolver와 HandlerMapping Bean 의 역할에대해서 알아보도록 하겠습니다.  
   
 ***HadlerMapping***
@@ -104,7 +104,7 @@ DispatcherServlet은 특수한 요청을 처리하기위한 Bean들이 있습니
 String 기반 view 이름 검색을 통해 파일을 찾아 DispatcherServlet에 전달해주는 기능을 합니다.
 
 ---
-### DispatcherServlet Request 처리과정
+## DispatcherServlet Request 처리과정
 
 위에서 정리해본 DispatcherServlet의 역할을 토대로 request처리 플로우를 그려보면 다음과 같습니다.  
 
@@ -116,7 +116,7 @@ Spring MVC에서는 Dispatcher Servlet의 Special Bean들을 통해 Request들�
 
 ---
 
-### 실제 MVC 프로젝트 구성
+## 실제 MVC 프로젝트 구성
 
 사실 제가 처음 Spring 을 접하여 웹 프로젝트를 진행하였을때는 웹어플리케이션 서블릿에대한 지식이 전혀 없었는데요, 그저 어떻게든 돌아가는 서비스를 만들기위해 구글링을 해서 다른분들의 설정들을 그대로 따라 작성하면서 프로젝트를 구성했었습니다. 이렇게 따라하는 요령으로 잘 구동되는 서비스를 만들긴 했으나 기본을 제대로 모르다 보니 나중에 Bean이 설정이 꼬여 참조가 안되는데도 원인을 알수 없었습니다.  
   
@@ -283,13 +283,13 @@ public void onStartup(ServletContext servletCxt) {
   
 --- 
 
-### <마무리>
+## <마무리>
 
 Spring MVC 구조에서 실제로 request를 어떻게 처리하는지 알아보았습니다. MVC구조가 단순히 Model, View, Controller 로써 구성된다는것 뿐만아니라 DispatcherServlet을 통해 어떠한 프로세스로 동작하고 컨텍스트의 계층구조까지 이해하고 개발을 할 수 있기를 바랍니다.  
 
 --- 
 
-### 참조 문서
+## 참조 문서
 {: .no_toc }
 Spring 5.1.6 release docs  
 <https://docs.spring.io/spring/docs/current/spring-framework-reference/web.html#mvc>

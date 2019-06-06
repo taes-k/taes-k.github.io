@@ -20,7 +20,7 @@ date: 2019.05.11
 
 ---
 
-### 1.1 Spring을 사용하는 이유
+## 1.1 Spring을 사용하는 이유
 
 '스프링을 왜 사용하는가?'에 대한 답변을 위해 Spring을 사용하는 이유를 알아보도록 하겠습니다.  
 
@@ -32,7 +32,7 @@ date: 2019.05.11
 
 ---
 
-### Spring이 생겨난 이유  
+## Spring이 생겨난 이유  
 
 우리가 스프링을 사용하는 이유는 많은 기업들이 스프링을 사용하기때문일것입니다. 그렇다면, 많은 기업들은 왜 스프링을 사용하는지 알아보기위해 스프링에서 말하는 스프링을 사용해야하는 이유를 알아보도록 합시다. 스프링을 사용해야 하는 이유는 아마도 스프링이 생겨난 이유와도 같을것입니다. 스프링이 생겨난 목적을 알아보기위해 초기 스프링 공식문서를 살펴보았습니다. (1.1.1 Realease)
 > Developing software applications is hard enough even with good tools and technologies. Implementing applications using platforms which promise everything but turn out to be heavy-weight, hard to control and not very efficient during the development cycle makes it even harder. Spring provides a light-weight solution for building enterprise-ready applications, while still supporting the possibility of using declarative transaction management, remote access to your logic using RMI or webservices, mailing facilities and various options in persisting your data to a database. Spring provides an MVC framework, transparent ways of integrating AOP into your software and a well-structured exception hierarchy including automatic mapping from proprietary exception hierarchies.  
@@ -50,7 +50,7 @@ date: 2019.05.11
   
 ---
   
-### 스프링이 말하는 스프링 
+## 스프링이 말하는 스프링 
 
 위에서 소개하는 내용들은 사실 지금에와서는 대부분의 프레임워크들이 가지고 있는 특징들 일 수 있습니다. 그렇다면 최신버전에서 소개하는 스프링은 어떨까요? 최신버전 스프링 공식문서에서 소개하는 스프링 프레임워크는 다음과 같습니다. (5.1.7 Realease)
 > Spring makes it easy to create Java enterprise applications. It provides everything you need to embrace the Java language in an enterprise environment, with support for Groovy and Kotlin as alternative languages on the JVM, and with the flexibility to create many kinds of architectures depending on an application’s needs  
@@ -90,7 +90,7 @@ date: 2019.05.11
 
 ---
 
-### <마무리>
+## <마무리>
 위에서 스프링에서 소개하는 스프링에대해 알아보았는데 스프링을 사용하게되는 목적 요소들을 종합해보자면  다음과 같을것입니다.  
 - 스프링은 자바 및 JVM 환경의 대체언어들의 효율적이고 쉬운 엔터프라이즈 애플리케이션 개발 환경을 제공한다.  
 - 스프링은 만들고자하는 애플리케이션의 요구사항과 목적에 따라 유연하게 적용시킬수 있습니다.
@@ -103,7 +103,7 @@ date: 2019.05.11
   
   ---
   
-### 참조 문서
+## 참조 문서
 {: .no_toc}
 Spring 5.1.6 release docs  
 <https://docs.spring.io/spring/docs/current/spring-framework-reference/core.html#beans-introduction>

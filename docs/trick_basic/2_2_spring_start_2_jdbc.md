@@ -10,7 +10,7 @@ date: 2019.05.28
 <div style="text-align:right; font-size:11px; color:#aaa">{{ page.date }} </div>
 ---
 
-### 2.2 Spring 프로젝트 시작하기 (2) - JDBC
+## 2.2 Spring 프로젝트 시작하기 (2) - JDBC
 {: .no_toc }
 이번챕터에서는 지난 프로젝트에서 서비스단에서 넣어주었던 데이터들을 데이터베이스로 옮기고 JDBC를 통해 데이터베이스와 연동하는 예제를 진행해보도록 하겠습니다.   
   
@@ -23,7 +23,7 @@ date: 2019.05.28
 
 ---
 
-### 데이터베이스
+## 데이터베이스
   
 이번 예제에 사용할 데이터베이스는 MySql입니다. 데이터베이스 및 SQL에 대해서는 잘 아실거라 믿고 따로 설명을하지는 않겠습니다. 
 가장 먼저 진행할사항은 이전프로젝트에서 사용했던 '뉴스'데이터를 데이터베이스로 옮기는작업을 진행하도록 하겠습니다.   
@@ -92,7 +92,7 @@ INSERT INTO `TAES_NEWS`.`T_NEWS` (`title`, `contents`, `date`, `author`, `type`)
 
 ---
 
-### Spring JDBC
+## Spring JDBC
 
 스프링에서는 데이터베이스와 연결을 위해서 별도의 API가 필요합니다. 그중 먼저, JDBC를 사용해서 연결을 해보도록 하겠습니다. JDBC(Java Database Connectivity)란 자바에서 데이터베이스에 접속할수 있도록 만든 자바 API로써 데이터베이스의 종류에따라 별도의 JDBC 드라이버로 연결하여 사용 가능합니다.  
   
@@ -185,7 +185,7 @@ dao에서는 이미 bean으로 등록되어있는 jdbcTemplate을 autowired로 �
 
 ---
 
-### JDBC 동작 구조
+## JDBC 동작 구조
 
 <div style="text-align:center;">
 <img src="https://taes-k.github.io/assets/images/trick_basic/spring_start_2_jdbc/jdbc_structure.png" style="height:250px; border:1px solid #d0d0d0;">
@@ -195,7 +195,7 @@ JDBC는 Interface와 드라이버로 구성되어 있습니다. 위의 구조도
   
 ---
 
-### MyBatis
+## MyBatis
 
 위와같이 JDBC만 사용하더라도 원하는 대부분의 결과를 얻으실수 있을실겁니다. 하지만 DAO JAVA파일에 직접적으로 SQL문을 작성하고 파라미터를 하나씩 직접 매핑시켜주는 등  편리성이 떨어지는데, MyBatis는 이를 편하게 해주기 위해 사용하는 라이브러리 입니다. 위 프로젝트에 MyBatis까지 연동해 보도록 하겠습니다.  
   
@@ -267,7 +267,7 @@ MyBatis는 SqlSession 객체를 만들어 질의를 하게되는데,  원하는 
 mybatis 까지 적용을 해서, 동일한 결과를 얻어내어, MyBatis까지 잘 적용된 것을 확인 할 수 있습니다.  
 
 ---
-### Mybatis 동작 구조  
+## Mybatis 동작 구조  
   
   
   <div style="text-align:center;">
@@ -282,13 +282,13 @@ Mybatis는 JDBC 이전 단계에서 실행됩니다. 클라이언트의 요청�
 
 ---
 
-### <마무리>
+## <마무리>
 
 스프링 프로젝트에 JDBC를 통해 데이터베이스를 연결하여 데이터를 직접 불러오는 예제와 함께 JDBC 및 Mybatis의 구조를 알아보았습니다. 사용하는 것은 간단한 datasource 설정만으로 연결 후 쉽게 사용이 가능하지만, 그 동작 구조까지 잘 알고계신다면 좋을것 같습니다. 
 
 --- 
 
-### 샘플 프로젝트 
+## 샘플 프로젝트 
 {: .no_toc }
 
 위 프로젝트는 다음 링크에서 확인하실수 있습니다.  

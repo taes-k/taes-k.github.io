@@ -10,7 +10,7 @@ date: 2019.05.31
 <div style="text-align:right; font-size:11px; color:#aaa">{{ page.date }} </div>
 ---
 
-### 1.6 Spring build tools
+## 1.6 Spring build tools
 {: .no_toc }
  이번챕터에서는 어쩌면 그냥 모르고 사용하고있었던 빌드 툴 (Maven, Gradle)에 대해서 알아보도록 하겠습니다. 저는 개인적으로 'maven은 xml, gradle은 gradle로써 dependency를 관리한다'라고만 알고 있었는데요,  build tool의 역할과 종류별 특징 및 차이점들을 알아보도록 하겠습니다.  
   
@@ -22,7 +22,7 @@ date: 2019.05.31
 
 ---
 
-### Build tool
+## Build tool
 
  스프링 부트로 프로젝트를 생성 해보셨다면 아시겠지만, 프로젝트 이름과 함께 가장 먼저 설정 하는것중 하나가 Type을 설정하는 옵션이 있습니다.  여기서 설정하는 type이 바로 build tool을 설정하는 옵션입니다.  
 
@@ -48,8 +48,8 @@ date: 2019.05.31
 
 ---
 
-### <1.6.1 Maven>
-### Maven
+## <1.6.1 Maven>
+## Maven
 
 Maven은 2004년에 출시된 Apache사의 build tool 로써,  기존의 built tool이었던 Ant의 단점들을 보완한 tool입니다. pom.xml 파일을 통해 정형화된 빌드 시스템으로써 전체적인 프로젝트를 관리해줍니다.   
   
@@ -65,7 +65,7 @@ Celan (이전빌드 파일 삭제 ) -> init -> compile -> test-compile(테스트
     
 Maven의 상세한 내용은 다음 링크에서 확인하실수 있습니다. <https://maven.apache.org/plugins/index.html>
   
-### pom.xml Example
+## pom.xml Example
 
 ```c
 <?xml version="1.0" encoding="UTF-8"?>
@@ -113,8 +113,8 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
     </build>
 </project>
 ```
-### <1.6.2 Gradle>
-### Gradle
+## <1.6.2 Gradle>
+## Gradle
 
 Gradle은 2012년에 출시된 Gradle사의 build tool 로써, 후발주자인 만큼 Maven의 장점과 그전의 Ant의 장점을 살린 build tool 입니다.  Gradle은 JVM기반의 빌드도구로써, xml이 아닌 Groovy 기반으로 설정파일을 사용합니다.  
 
@@ -132,7 +132,7 @@ clean -> check -> test -> assemble(package) -> complile -> upload(deploy)
 Gradle의 상세한 내용은 다음 링크에서 확인하실수 있습니다.  <https://docs.gradle.org/current/userguide/build_lifecycle.html#build_lifecycle>
 
 
-### build.gradle Example  
+## build.gradle Example  
 
 ```c
 plugins {
@@ -158,14 +158,14 @@ dependencies {
 
 ---
 
-### <마무리>
+## <마무리>
 이번챕터에서는 Build tool에 대해 알아보고 Maven과 Gradle의 차이에대해 알아보았습니다. Maven과 Gradle이 제공하는 기능 들은 거의 비슷하나 사용성이나 성능에있어서는 Gradle이 비교적 좋은 성능을 가지고 있다고 합니다.  
   
 개인적인 의견으로써 말씀드리자면, 'Maven을 안쓸 필요도 없고 Gradle을 쓸필요도 없다' 라고 말씀드리고 싶습니다. 기존의 프로젝트에서 Maven을 사용하셨으면 그대로 maven을 사용하셔도 좋고, 빌드시간을 조금이라도 줄여보고자 하신다면 Gradle의 도입을 고려해보시는것도 좋을것 같습니다. 만약 새로운 프로젝트를 진행하시려고 하신다면 Gradle의 도입을 긍정적으로 검토해보셔도 좋을것 같습니다.
 
 --- 
 
-### 참조 문서
+## 참조 문서
 {: .no_toc }
 Spring 5.1.6 release docs  
 <https://docs.spring.io/spring/docs/current/spring-framework-reference/web-reactive.html#webflux>

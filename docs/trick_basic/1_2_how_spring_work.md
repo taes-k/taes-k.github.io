@@ -10,7 +10,7 @@ date: 2019.05.11
 <div style="text-align:right; font-size:11px; color:#aaa">{{ page.date }} </div>
 ---
 
-### 1.2 Spring은 어떻게 동작하는가?
+## 1.2 Spring은 어떻게 동작하는가?
 {: .no_toc }
 앞서서 스프링을 사용하는 이유에대해서 알아보았는데, 과연 스프링은 어떻게 동작하길래 그러한 특징들을 가지는것인지 알아보도록 하겠습니다.  
 
@@ -24,8 +24,8 @@ date: 2019.05.11
 
 ---
 
-### <1.2.1 IoC Container>
-### IoC와 DI
+## <1.2.1 IoC Container>
+## IoC와 DI
 스프링프레임워크를 말할때 IoC와 DI를 주요 핵심 개념으로 이야기합니다.  
 먼저 IoC(Inversion of Control)는 서비스 제어의 흐름을 역전시켰다는 뜻으로, 개발자가 아닌 프레임워크가 흐름을 제어하는 주체가되어 필요할때 코드를 호출하며 사용하게됩니다.   
 
@@ -58,7 +58,7 @@ public class SimpleMovieLister {
   
 ---
   
-### DI의 장점  
+## DI의 장점  
 
 그렇다면, 프레임워크에서 의존성주입을 제공해줌으로써 어떤 장점이 있을까요?  
 
@@ -74,7 +74,7 @@ public class SimpleMovieLister {
 
 --- 
 
-### DI를 하기위한 준비
+## DI를 하기위한 준비
 
 스프링의 DI를 활용하기위해서는 DI를 사용할 객체를 프레임워크에 알려줘야 합니다. 위의 IoC/DI의 모식도에서 보여지는 'Configuration Metadata'의 설정과정인데요 이렇게 IoC Container에 등록되어지는 객체들을 'Bean'이라고 합니다.  
 먼저 Bean 을 등록하기 위한 방법으로는 3가지 방법이 있습니다.  
@@ -119,8 +119,8 @@ public class SimpleMovieLister {
 
 ---
 
-### <1.2.2 Bean>
-### Bean 사용법
+## <1.2.2 Bean>
+## Bean 사용법
 사실 저는 IoC와 DI에대해 잘 몰랐을때도 스프링에서 제공해주는 이 기능들을 잘 활용해서 사용해 왔습니다. 잘 모르고 썼지만 잘 썼던 요령들을 통해 실제 프로젝트에서 IoC/DI 가 어떻게 사용되는지 살펴보도록 하겠습니다.  
 다음은 Database 연결을 설정하는 Datasource config와 DAO 코드 예제입니다.  
 
@@ -176,7 +176,7 @@ public class Dao{
 
 ---
 
-### Bean scope  
+## Bean scope  
 
 그렇다면, 모든 등록된 빈들이 IoC 컨테이너와 함께 생성되고 하나의 객체로 관리되어 질까요?  
 Bean들은 기본적으로는 누차말해왔던 싱글톤 객체로 관리됩니다. 하지만 Bean마다의 Scope 설정을 통해 life-cycle과 객체의 생성형태를 관리할수 있습니다. 이는 객체가 어디까지 영향을 미치는지 나타내는것으로 Bean의 사용 목적에따라 달라질 것입니다.  
@@ -201,7 +201,7 @@ Bean들은 기본적으로는 누차말해왔던 싱글톤 객체로 관리됩�
   
   ---
   
-### Spring Component
+## Spring Component
 위에서는 직접적인 경로지정을 통한 Bean 등록 방법들을 확인했습니다. 하지만 스프링에서는 스테레오 타입(stereo type)을 이용하여 해당 클래스를 식별하여 자동으로  Bean으로 등록 해 주는 기능 또한 제공하고 있습니다.  
   
 |스테레오 타입|설명|
@@ -236,7 +236,7 @@ public class JpaMovieFinder implements MovieFinder {
 
 ---
 
-### Beanfactory와 ApplicationContext
+## Beanfactory와 ApplicationContext
 우리가 여태까지 IoC Container라 지칭했던 컨테이너는 Spring Container라고도 이야기 하며 빈팩토리 혹은 애플리케이션 컨텍스트 라고도 불립니다. 정확하게 말하자면, 이 IoC Container에는 2가지 종류가 있습니다. 위에서 이야기한 빈팩토리와 애플리케이션 컨텍스트 입니다. 사실 애플리케이션 컨텍스트는 빈팩토리 인터페이스를 상속시켜 확장한 클래스로, 빈팩토리의 모든 기능을 지원합니다. 그렇다면 두 컨테이너의 차이점을  공식문서를 통해 알아보도록 하겠습니다.
 
 |Feature|BeanFactory|ApplicationContext|
@@ -260,7 +260,7 @@ ApplicationContext는 Beanfactory의 모든 기능들을 포함하고, AOP 서�
 
 ---
 
-### <마무리>
+## <마무리>
 Spring은 어떻게 동작하는가를 알아보기위해 IoC 컨테이너와 Bean에 대해서 알아보았습니다. 스프링의 코어인 IoC 컨테이너에 대해서 정리 하고 마무리 짓도록 하겠습니다.
   
 - 스프링의 의존성 주입(DI)의 핵심 요소
@@ -270,7 +270,7 @@ Spring은 어떻게 동작하는가를 알아보기위해 IoC 컨테이너와 Be
 
 ---
 
-### 참조 문서
+## 참조 문서
 {: .no_toc }
 Spring 5.1.6 release docs  
 <https://docs.spring.io/spring/docs/current/spring-framework-reference/core.html#beans-introduction>

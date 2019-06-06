@@ -10,7 +10,7 @@ date: 2019.05.15
 <div style="text-align:right; font-size:11px; color:#aaa">{{ page.date }} </div>
 ---
 
-### 1.3 Spring의 Aspect
+## 1.3 Spring의 Aspect
 {: .no_toc }
 이전 챕터에서 알아본 Spring의 IoC/DI와 더불어 Spring의 핵심 3요소중 하나인 AOP에 대해서 알아보려고 합니다. Aspect Oriented Programing 직역하면 '관점 지향 프로그래밍'이라고 하면 사실 어떤 프로그래밍 방식을 뜻하는지 알수가 없습니다. Spring에서 말하는 Aspect란 무엇인지 알아보도록 하겠습니다.
 
@@ -22,8 +22,8 @@ date: 2019.05.15
 
 ---
 
-### <1.3.1 Aspect Oriented Programming>
-### AOP란?
+## <1.3.1 Aspect Oriented Programming>
+## AOP란?
 먼저 스프링에서 말하는 AOP에 대해 정확히 알아보기 위해 스프링 공식 문서를 확인해보도록 하겠습니다.  
 
 > Aspect-oriented Programming (AOP) complements Object-oriented Programming (OOP) by providing another way of thinking about program structure. The key unit of modularity in OOP is the class, whereas in AOP the unit of modularity is the aspect. Aspects enable the modularization of concerns (such as transaction management) that cut across multiple types and objects. (Such concerns are often termed “crosscutting” concerns in AOP literature.)  
@@ -43,7 +43,7 @@ date: 2019.05.15
 
 ---
 
-### AOP 개념과 용어
+## AOP 개념과 용어
 AOP가 어떻게 사용되는지 알아보기 전에 사용되는 용어들을 먼저 정리해보도록 하겠습니다.  
 
 |용어|설명|
@@ -59,8 +59,8 @@ AOP가 어떻게 사용되는지 알아보기 전에 사용되는 용어들을 �
 
 --- 
 
-### <1.3.2 Spring AOP Mechanisms>
-### AOP Proxy Factory
+## <1.3.2 Spring AOP Mechanisms>
+## AOP Proxy Factory
 
 위에서 AOP와, AOP에서 사용되는 용어를 알아보았으니 이제 실제로 Spring에서는 어떠한 방식으로 AOP를 구현하고 있는지 알아보도록 하겠습니다.  
   
@@ -105,7 +105,7 @@ public class Main {
 
 여기서 중요한점은, 클라이언트는 결국 pojo.foo 타깃을 요청하지만 DI를 통해 프록시가 주입되어 메소드 호출이 프록시내에서 일어나면서 프록시는 모든 메서드 call 에 대한 interceptor들을 위임받아 설정한 Advice를 실행 시킬수 있게 됩니다. 이것이 스프링 AOP에서 사용되는 ProxyFactory 패턴 입니다. 
 
-### Spring AOP 적용
+## Spring AOP 적용
 실제로 Spring AOP를 어떻게 적용시키는지 예제를 통해 알아보도록 하겠습니다. 다음 예제는 성능을 진단하는 프로파일링을 위해 시간을 체크하는 Aspect 예제입니다.
 
 ```java
@@ -139,7 +139,7 @@ public class ProfilingAspect {
 ```
 위와 같이 pointcut과 advice 를 선언하여 Aspect 를 구성했습니다. Pointcut에서 사용한 execution 명시자의 경우 표현식이 다음과 같습니다. `execution(수식어패턴? 리턴타입패턴 패키지패턴?이름패턴(파라미터패턴)`  따라서 위 예제의 경우 foo 패키지내 모든 메서드들에대해 profile advice가 동작하여 시간을 체크하게 될것입니다. 
 
-### 실제 프로젝트에서의 AOP 사용
+## 실제 프로젝트에서의 AOP 사용
 - 로깅
 ```java
 @Aspect
@@ -178,12 +178,12 @@ public class ErrorHandlingAspect {
 }
 ```
 
-### <마무리>
+## <마무리>
 Spring AOP가 어떻게 실행되는 알아보았는데, 결국 코드는 꽤나 단순하게 사용이 가능했습니다. 몇가지 설정만 해주면 스프링에서 AOP를 위한 프록시팩토리를 자동으로 생성하여 본래의 코드에 변화없이 Aspect를 실행 시켜 줄 수 있습니다. 이것이 스프링이 가지고 있는 AOP 프레임워크이며 IoC컨테이너와 보완적으로 AOP를 사용할수 있습니다. 
 
 --- 
 
-### 참조 문서
+## 참조 문서
 {: .no_toc }
 Spring 5.1.6 release docs  
 <https://docs.spring.io/spring/docs/current/spring-framework-reference/core.html#aop>

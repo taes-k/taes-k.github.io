@@ -10,7 +10,7 @@ date: 2019.05.30
 <div style="text-align:right; font-size:11px; color:#aaa">{{ page.date }} </div>
 ---
 
-### 2.3 Spring 프로젝트 시작하기 (3) - JPA
+## 2.3 Spring 프로젝트 시작하기 (3) - JPA
 {: .no_toc }
 아직 JPA를 모르시는 분들은 'JDBC, MyBatis 했으면 다 되는데 JPA는 또 무엇인가?', JPA를 알고 계시지만 사용해보시지 않았거나 매력을 못느끼셨던 분들은 'JPA의 큰 장점을 모르겠다.', '굳이 JPA?' 하는 의문을  가지시고 계실것 같습니다. 저 또한 가지고있던 의문이었는데, 이번챕터에서는 JPA에대해 알아보도록 하겠습니다.  
   
@@ -23,7 +23,7 @@ date: 2019.05.30
 
 ---
 
-### ORM
+## ORM
   
 ORM(Object Relational Mapping)이란 RDB(관계형 데이터베이스) 테이블을 객체지향으로 사용하기위한 기술입니다. 즉, 데이터베이스의 테이블을 객체화시켜 OOP다운 프로그래밍을 할수잇도록 도와주는 툴 입니다. 이를통해 객체지향적인 코드로써 더 직관적으로 서비스를 표현할수 있으며 비즈니스 로직에 더 집중 할 수 있도록 도와줍니다.   
   
@@ -31,7 +31,7 @@ JPA는 자바 ORM에 대한 API 표준 명세로써, ORM을 사용하기위한 �
   
 ---
 
-### Spring JPA
+## Spring JPA
 
 이전 챕터에서 JDBC로 연결했던 프로젝트를 JPA 수정하면서 JPA의 구조에대해서 알아보도록 하겠습니다.   
   
@@ -195,7 +195,7 @@ public class MainNewsServiceImpl implements NewsService {
 
 ---
 
-### JPA 동작 구조  
+## JPA 동작 구조  
     
 <div style="text-align:center;">
     <img src="https://taes-k.github.io/assets/images/trick_basic/spring_start_3_jpa/jpa_structure.png" style="height:250px; border:1px solid #d0d0d0;">
@@ -211,14 +211,14 @@ jpa는 Entity Manager를 통해 테이블과 매핑된 Entity들의 저장,수�
 
 ---
 
-### <마무리>
+## <마무리>
 
 이번챕터에서는 스프링 프로젝트에 JPA를 통해 데이터베이스 통신을 하기위한 예제를 실행해보며 JPA의 동작원리에대해 알아보았습니다. JPA를 사용하게되면 데이터를 객체화할수 있으며 메서드 호출만으로 쿼리가 수행되어 생산성이 높아짐과 동시에 유지보수에도 큰 장점이 있습니다. 하지만 직접 SQL을 실행시키는것과 비교하면 성능상 조금 떨어질수도 있으며 복잡한 데이터 처리과정에 있어서 메서드만으로 처리하는데에는 문제가 있을수도 있습니다.  
 JPA를 적용하는데 어느정도 러닝커브가 있지만, 프로젝트에 따라서 큰 생산성을 기여할 수도 있기에, 관심을 가지고 알아두시면 좋을것 같습니다.
 
 --- 
 
-### 샘플 프로젝트 
+## 샘플 프로젝트 
 {: .no_toc }
 
 위 프로젝트는 다음 링크에서 확인하실수 있습니다.  

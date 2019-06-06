@@ -10,7 +10,7 @@ date: 2019.05.26
 <div style="text-align:right; font-size:11px; color:#aaa">{{ page.date }} </div>
 ---
 
-### 3.2 Spring Tomcat
+## 3.2 Spring Tomcat
 {: .no_toc }
 Spring boot에서는 내장 웹 어플리케이션 서버로 Apache Tomcat을 포함하고있습니다. 이번 챕터에서는 Spring 웹 프로젝트를 구동시키는 Tomcat을 통해 WAS의 역할과 구조를 알아보도록 하겠습니다.
 
@@ -22,13 +22,13 @@ Spring boot에서는 내장 웹 어플리케이션 서버로 Apache Tomcat을 �
 
 ---
 
-### Tomcat이란?
+## Tomcat이란?
 
 Tomcat은 Apache사에서 개발한 오픈소스 WAS 소프트웨어로써,  JSP와 자바 서블릿이 실행하기 위한 서블릿 컨테이너를 제공합니다.  서블릿 컨테이너란 서블릿의 life-cycle을 관리해주고 request와 response를 위한 통신을  제공 해주는 컨테이너 이며 Tomcat은 Spring에서 만든 웹 어플리케이션의 Dispatcher Servlet, 기타 Servlet 및 JSP를 관리하고 실행 시킬수 있는 환경을 제공해 주는 소프트웨어 라고 할 수 있습니다.  
 
 ---
 
-### Servlet Container
+## Servlet Container
 
 위에서 나온 서블릿 컨테이너에대해 좀더 자세히 알아보도록 하겠습니다.  
 서블릿은 서블릿 자체로써 실행 및 동작될수 없기때문에 서블릿을 관리해주는 서블릿 컨테이너가 필요합니다. 서블릿 컨테이너의 역할은 다음과 같습니다.  
@@ -44,7 +44,7 @@ Tomcat은 Apache사에서 개발한 오픈소스 WAS 소프트웨어로써,  JSP
   
 ---
   
-### Tomcat의 서비스 실행 process
+## Tomcat의 서비스 실행 process
 
 서비스 컨테이너의 역할까지 알아보았는데요, 이제 탐캣이 어떻게 서비스를 실행 시키는지 알아보도록 하겠습니다.  
 
@@ -106,7 +106,7 @@ web.xml에서 설정해둔 서블릿들을 로드하여 객체화 합니다. web
   
 ---
 
-### <마무리>
+## <마무리>
 이전 챕터들에서 Spring 의 동작 프로세스를 알아보았었는데, 이때 DispatcherServlet 등의 서블릿들이 탐캣 WAS를 통해서 실제적으로 실행되고 관리가 되어짐을 알게 되었고 서블릿들의 life-cycle을 알게되었습니다. 이제는 Spring boot 내장탐캣을 많이 사용하면서 더더욱 편리하게 탐캣을 이용하고 있어 몰라도 잘 사용하실수 있겠지만 지만, 탐캣이 실제로 어떻게 서비스를 구동시키는지 알아두시면 분명히 큰도움이 될것입니다.  
   
 ---
