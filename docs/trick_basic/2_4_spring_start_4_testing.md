@@ -72,11 +72,11 @@ public class JpaUnitTest {
   
 테스팅은 설정해둔 테스트케이스와 비교하여 성공/실패를 결정해주기 때문에 개발자가 생각하지 않던 결과가 나오면 바로 확인이 가능합니다.   
   
-***2. server-side 통합테스트***
-
-통합테스트를 위해 News 데이터를 불러오는 컨트롤러를 하나더 만들고 테스트를 진행 해 보도록 하겠습니다.  
+***2. controller 테스트***
+이번에는 통합테스트를 위해 News 데이터만을 불러오는 컨트롤러를 하나더 만들고 테스트를 진행 해 보도록 하겠습니다.  
 
 ```java
+// NewsController.java
 
 @RestController
 public class NewsController {
@@ -95,11 +95,13 @@ public class NewsController {
     }
 }
 ```  
-
+  
 ```java
+// NewsControllerTest.java
+
 @RunWith(SpringRunner.class)
 @WebMvcTest(NewsController.class)
-public class NewsMvcTest {
+public class NewsControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
@@ -107,24 +109,24 @@ public class NewsMvcTest {
     @Test
     public void getNewsTest() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.get("/news"))
-                .andExpect(status().isOk());
-
+        .andExpect(status().isOk());
     }
 
 }
 ```
-  
 @WebMvcTest를 통해 MVC 통합테스트 코드를 작성했습니다. 하지만 위와같이 테스트를 진행하게 되면 아마 다음과같은 오류로 테스트가 실패할것입니다. 
-  
+
 > Field mainNewsService in start.mvc.spring.controller.NewsController required a bean of type 'start.mvc.spring.service.MainNewsServiceImpl' that could not be found.
-  
-@WebMvcTest 어노테이션는 @Controller, @RestController 등의 컴포넌트들만 Bean으로 등록시켜 테스트를 진행하기때문에 `MainNewsServiceImpl` service가 등록되지 않아 생기는 문제입니다. 따라서 @Service, @Repository 등을 연결하기위해서는 별도로 등록을 해주셔야 하는데 이때 @MockBean을 이용해 등록이 가능합니다.  
-  
+
+@WebMvcTest 어노테이션는 @Controller, @RestController 등의 컴포넌트들만 Bean으로 등록시켜 테스트를 진행하기때문에 `MainNewsServiceImpl` service가 등록되지 않아 생기는 문제입니다.   
+따라서 `NewsController`에서 사용하는 `MainNewsServiceImpl`을 가상 빈( Mock bean)으로 등록시켜 주어야지만 Controller 테스트가 가능합니다. 단, 여기서 `MainNewsServiceImpl` 은 가상빈으로 등록되어 아무 결과를 주지않아 단지 Controller의 상태만 테스트가 가능합니다.  
+
 ```java
+// NewsControllerTest.java
+
 @RunWith(SpringRunner.class)
 @WebMvcTest(NewsController.class)
-@Transactional
-public class NewsMvcTest {
+public class NewsControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
@@ -135,20 +137,45 @@ public class NewsMvcTest {
     @Test
     public void getNewsTest() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.get("/news"))
-            .andExpect(status().isOk());
-
+        .andExpect(status().isOk())
+        .andDo(print());
     }
 }
 ```
-  
-다음과 같은 테스트코드로 테스트가 가능합니다.  
 
-***3. client-side 통합테스트***
+다음과같이 컨트롤러 테스트코드가 완성되었습니다.  `.andDo(print())`를 통해 Controller로 들어가는 Request 및 Response의 header, body 전체의 내용을 콘솔 로그로 확인이 가능합니다.  
+
+***3. server-side 통합테스트***
+
+위에서는 컨트롤러의 테스트를 진행했다면 이제 server-side에서 실제 request와 response가 잘 이루어지고 있는지 통합테스트를 진행해보도록 하겠습니다.  
+
+```java
+@RunWith(SpringRunner.class)
+@SpringBootTest
+@AutoConfigureMockMvc
+public class NewsServerIntegrationTest {
+
+    @Autowired
+    private MockMvc mockMvc;
+
+    @Test
+    public void getNewsTest() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.get("/news"))
+        .andExpect(status().isOk())
+        .andDo(print());
+    }
+
+}
+```
+
+@SpringBootTest 어노테이션은 전체 Bean을 불러와 통합테스트 환경을 할수 있도록 제공해줍니다.    
+
+***4. client-side 통합테스트***
 
 위에서는 서버측에서 mock object를 통해 Controller를 실행시켰다면, 클라이언트측에서 직접적인 RestCall을 하는것처럼 테스트도 가능합니다.  
   
 ```java
-// NewsIntegrationTest.java
+// NewsClientIntegrationTest.java
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment=WebEnvironment.RANDOM_PORT)
