@@ -10,7 +10,7 @@ date: 2019.06.05
 <div style="text-align:right; font-size:11px; color:#aaa">{{ page.date }} </div>
 ---
 
-### 2.5 Spring RestAPI 서버
+## 2.5 Spring RestAPI 서버
 {: .no_toc }
 Spring 프레임워크는 Spring MVC 그대로 Restful을 위한 서비스를  제공하고 있습니다.  이번챕터에서는 TDD로, Restful한 api 서비스를 만들어보고 스프링에서 Restful한 서비스를 위해 지원해주는 사항들을 알아보도록 하겠습니다.
   
@@ -23,11 +23,12 @@ Spring 프레임워크는 Spring MVC 그대로 Restful을 위한 서비스를  �
 
 ---
 
-### REST
+## REST
 
 먼저 REST에대해서 알아보도록 하겠습니다. REST API 혹은 RESTful, 이제는 REST 그자체로 불리는 REST는 'Representational State Transfer'의 약자로써 상태를 표현하면서 전송하는 아키텍쳐를 의미합니다. REST는 자원(Resource), 메서드, 메시지 3가지의 요소로 구성되며 기존의 HTTP 프로토콜 그대로를 활용 할 수 있습니다.  
   
-***REST 특징***
+***REST 특징***  
+
 1. 무상태성 (Stateless) : 서버는 들어오는 request들을 각각 별개의 요청으로 처리합니다. 세션과 같은상태를 따로 서버에 저장 하지 않고 들어오는 요청들을 단일의 메세지로 처리합니다.  
 2. 인터페이스 일관성 (Uniform Interface) :  HTTP 표준에 따른 어떤 플랫폼, 언어에 관계없이 사용가능합니다.  
 3. 캐시처리가능 (Cacheable) : 기존 HTTP에서 사용하던 E-Tag 캐시를 그대로 사용 가능합니다.   
@@ -36,16 +37,19 @@ Spring 프레임워크는 Spring MVC 그대로 Restful을 위한 서비스를  �
 6. 계층화 (Layerd system) : 클라이언트는 REST API Server만을 호출하고 서버는 다중계층으로 이루어질수 있습니다. 클라이언트는 서버측의 계층구조를 따로 확인할수 없으며 암호화,로드밸런싱,프록시등을 사용해 확장이 가능합니다.  
   
   
-  ***REST 주요규칙***
+  ***REST 주요규칙***  
+  
   URI는 정보의 자원을 표현합니다 (ex : POST http://taes-k.com/users)  
   
-  1\. Method로서 자원의 처리방법을 정의합니다.  
-  |Method|내용|
-  |:--:|:--:|
-  |POST|Create|
-  |GET|Select|
-  |PUT|Update|
-  |DELETE|Delete|
+  1\. Method로서 자원의 처리방법을 정의합니다.   
+  
+  |Method|내용|  
+  |:--:|:--:|  
+  |POST|Create|  
+  |GET|Select|  
+  |PUT|Update|  
+  |DELETE|Delete|  
+  
   
   2\. URI에 정보의 자원(Resource)들을 표현해야합니다.  
  users 명사 복수형으로 사용하며 세부 하위 내용들에 대해서는 /이후에 붙여나감으로써 정보에대한 내용을 확장시켜나갈수 있습니다.  
@@ -53,17 +57,19 @@ Spring 프레임워크는 Spring MVC 그대로 Restful을 위한 서비스를  �
  - 예제 1 ) GET https://taes-k.com/users/1 : 1번 user 내용 조회
  - 예제 2 ) POST https://taes-k.com/users/2 : 2번 user 생성
   
-  ***REST 목적***
+  ***REST 목적***  
+  
   사실 REST를 사용함으로써 특별하게 성능적으로 좋아지는 효과가 있지는 않습니다. 다만 URI만으로도 이해하기 쉬운 API를 제공해 주고 일관적이고 호환성을 높이기 위함에 있습니다.   
   현재 개발되고 있는 API의 대부분은 RESTFul 하게 개발되어지고 있기때문에 REST를 사용하면 안되는 특별한 이유가 없는한 REST규칙을 따라 개발해 나가는것을 추천 드립니다.  
   
  ---
 
-### Spring Restful API 서비스 만들기 
+## Spring Restful API 서비스 만들기 
 
 자 이제 직접 Spring에서 REST API 서비스를 만들어 보도록 하겠습니다.   
   
-***테스트케이스_1 작성***
+***테스트케이스_1 작성***  
+
 먼저 제가 구상하고 있는 서비스의 플로우는 다음과 같습니다.  
 1\. 뉴스 입력(저장) -> 생성된 뉴스 데이터 불러오기(조회)  
 2\. 뉴스 데이터 불러오기(조회) -> 뉴스 데이터 수정(수정) -> 변경된 뉴스 데이터 불러오기(조회)  
@@ -124,7 +130,8 @@ public class NewsApiTest {
 
 우선은, 위와같은 뉴스생성, 뉴스 수정 테스트 케이스를 만들어 보았습니다. 이제 위 테스트케이스를 만족시키기위한 컨트롤러를 만들어 보겠습니다.  
   
-  ***컨트롤러 작성***
+  ***컨트롤러 작성***  
+  
 ```c
 // NewsController.java
 
@@ -165,7 +172,8 @@ public class NewsController {
 사실 위와같이 Controller를 작성한것만으로 벌써 RestApi 서비스를 완성한것이나 다름없습니다. 지금 현재상태에서 실제 서버에 배포를 한다면 원하는 데이터를 잘 응답 해 줄것입니다.  
   
   
-***테스트케이스_2 작성***
+***테스트케이스_2 작성***  
+
 자 이제 테스트케이스_1이 잘 작동했으니 다음 테스트케이스로 수정해보겠습니다. 이번 케이스에서는 String이 아닌 NEWS Entity를 직접 받아올수 있게끔 해보겠습니다.  `News` 엔티티는 이전 프로젝트를 기반으로 하겠습니다.
 
 ```java
@@ -243,7 +251,8 @@ public class NewsApiTest {
 }
 ```
 
-***컨트롤러 작성***
+***컨트롤러 작성***   
+
 ```java
 // NewsController.java
 
@@ -283,7 +292,8 @@ public class NewsController {
   
 자 이제 실제 News Entity 연결 까지 성공했습니다. 이제 Service와 Repository까지 작성하여 실제 Database와의 연동을 진행해보도록 하겠습니다.   
     
-***테스트케이스_3 작성***
+***테스트케이스_3 작성***  
+
 ```java
 // NewsApiTest.java
 
@@ -438,7 +448,7 @@ public class MainNewsServiceImpl implements NewsService {
 
 
 
-### <마무리>
+## <마무리>
 
 지난챕터에서 미리 말씀드렸던것 처럼 TDD를 활용하여 Spring Rest API 서비스를 만들어보았습니다. 간단한 api와 간단한 테스트였기 때문에 어려움없이 진행 되었지만, TDD가 익숙하시지 않으신 분이라면 조금 어려우실수도 있겠으나 최대한 간단하게 진행했던 예제 프로젝트이기 때문에 위의 과정을 잘 이해하신다면 TDD를 이해하시고 앞으로의 프로젝트에서 적용하시는데 큰 도움이 되실것입니다.  
   
