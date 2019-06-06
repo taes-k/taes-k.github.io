@@ -10,9 +10,9 @@ date: 2019.06.05
 <div style="text-align:right; font-size:11px; color:#aaa">{{ page.date }} </div>
 ---
 
-### 2.4 Spring 프로젝트 시작하기 (4) - Testing
+### 2.5 Spring RestAPI 서버
 {: .no_toc }
-사실 테스트라는 과정이 없어서는 안되는 과정이지만 필수적이지는 않기 때문에 '계륵' 이라는 단어가 잘 어울린다고 할 수 있을것 같습니다. 특히나 저 같은경우에는 매일같이 잦은 변동사항속에서 빠르게 출시가 가능한 제품을 만들어 내야했던 스타트업 초기에는 테스트코드를 만들고, 테스트를 진행하는 과정이 굉장히 사치스럽게 느껴지기도 했습니다. 하지만 사실 테스트툴을 사용하지 않더라도 웹개발을 할때는 웹페이지를 직접 켜서 테스트를 진행한다던가 API개발을 할때는 curl을 통해 직접 결과값을 받아보며 테스트를 하는 등 훨씬 더 비효율적인 방법으로 테스트를 하기도 했었는데요, 이번 챕터에서는 스프링 테스트를 이용하여 간편하고 빠르게 TDD를 하는 예제 프로젝트를 진행해 보도록 하겠습니다.
+Spring 프레임워크는 Spring MVC 그대로 Restful을 위한 서비스를  제공하고 있습니다.  이번챕터에서는 TDD로, Restful한 api 서비스를 만들어보고 스프링에서 Restful한 서비스를 위해 지원해주는 사항들을 알아보도록 하겠습니다.
   
 
 ## Contents List
@@ -23,60 +23,344 @@ date: 2019.06.05
 
 ---
 
-### Spring test
+### REST
 
-Spring에서는 개발자들의 TDD를 지향하며 많은 편리한 사항들을 지원해주고 있습니다. 이에대한 자세한 설명은 이전 챕터에서 다루었기에 링크를통해 대체하도록 하겠습니다. [1.7 Spring testing](https://taes-k.github.io/docs/trick_basic/1_7_spring_testing/)   
+먼저 REST에대해서 알아보도록 하겠습니다. REST API 혹은 RESTful, 이제는 REST 그자체로 불리는 REST는 'Representational State Transfer'의 약자로써 상태를 표현하면서 전송하는 아키텍쳐를 의미합니다. REST는 자원(Resource), 메서드, 메시지 3가지의 요소로 구성되며 기존의 HTTP 프로토콜 그대로를 활용 할 수 있습니다.  
+  
+***REST 특징***
+1. 무상태성 (Stateless) : 서버는 들어오는 request들을 각각 별개의 요청으로 처리합니다. 세션과 같은상태를 따로 서버에 저장 하지 않고 들어오는 요청들을 단일의 메세지로 처리합니다.  
+2. 인터페이스 일관성 (Uniform Interface) :  HTTP 표준에 따른 어떤 플랫폼, 언어에 관계없이 사용가능합니다.  
+3. 캐시처리가능 (Cacheable) : 기존 HTTP에서 사용하던 E-Tag 캐시를 그대로 사용 가능합니다.   
+4. 자체표현구조 (Self-descriptiveness) : API Resource 즉 URI 만으로 API 기능을 이해 가능합니다.   
+5. 서버-클라이언트구조 (Server-client) : 서버와 클라이언트가 완전히 분리된 구조로써 의존성이 줄어듭니다.  
+6. 계층화 (Layerd system) : 클라이언트는 REST API Server만을 호출하고 서버는 다중계층으로 이루어질수 있습니다. 클라이언트는 서버측의 계층구조를 따로 확인할수 없으며 암호화,로드밸런싱,프록시등을 사용해 확장이 가능합니다.  
+  
+  
+  ***REST 주요규칙***
+  URI는 정보의 자원을 표현합니다 (ex : POST http://taes-k.com/users)  
+  
+  1\. Method로서 자원의 처리방법을 정의합니다.  
+  |Method|내용|
+  |:--:|:--:|
+  |POST|Create|
+  |GET|Select|
+  |PUT|Update|
+  |DELETE|Delete|
+  
+  2\. URI에 정보의 자원(Resource)들을 표현해야합니다.  
+ users 명사 복수형으로 사용하며 세부 하위 내용들에 대해서는 /이후에 붙여나감으로써 정보에대한 내용을 확장시켜나갈수 있습니다.  
+ 
+ - 예제 1 ) GET https://taes-k.com/users/1 : 1번 user 내용 조회
+ - 예제 2 ) POST https://taes-k.com/users/2 : 2번 user 생성
+  
+  ***REST 목적***
+  사실 REST를 사용함으로써 특별하게 성능적으로 좋아지는 효과가 있지는 않습니다. 다만 URI만으로도 이해하기 쉬운 API를 제공해 주고 일관적이고 호환성을 높이기 위함에 있습니다.   
+  현재 개발되고 있는 API의 대부분은 RESTFul 하게 개발되어지고 있기때문에 REST를 사용하면 안되는 특별한 이유가 없는한 REST규칙을 따라 개발해 나가는것을 추천 드립니다.  
   
  ---
 
-### 실전 Testing
+### Spring Restful API 서비스 만들기 
 
-테스트 프로젝트는 바로 이전 챕터에서 진행했던 [2.2 Spring 프로젝트 시작하기 (3) - JPA](https://taes-k.github.io/docs/trick_basic/2_2_spring_start_3_jpa/) 프로젝트로 진행을 하도록 하겠습니다. 이전 프로젝트에서는 JPA를 통해 데이터가 제대로 불러와졌는지 확인해보기 위해 MVC를 모두 구성하여 전달한 데이터가 웹뷰에 잘 나타나는지를 통해 정상작동을 확인했습니다. 아마 이와같은 테스트는 데이터 단 만이라도 MVC가 통합개발이 완료된 상태에서나 가능 할 것입니다.   
+자 이제 직접 Spring에서 REST API 서비스를 만들어 보도록 하겠습니다.   
   
-물론 Repository나 Service에서 로그를 찍어 확인하는 방법도 있겠지만 이러한 방법은 '로그 출력을 위한 코드를 작성 > 빌드 > 직접 결과 확인'이라는 단계를 거쳐 테스트를 진행을 할텐데 테스트 자동화 툴과 비교하면 오히려 개발자들의 생산성을 더 떨어뜨린다고 할수 있을것 같습니다.  
+***테스트케이스_1 작성***
+먼저 제가 구상하고 있는 서비스의 플로우는 다음과 같습니다.  
+1\. 뉴스 입력(저장) -> 생성된 뉴스 데이터 불러오기(조회)  
+2\. 뉴스 데이터 불러오기(조회) -> 뉴스 데이터 수정(수정) -> 변경된 뉴스 데이터 불러오기(조회)  
   
-그렇다면 Spring-test를 이용해 test를 하는 예제를 진행해 보도록 하겠습니다.    
+도메인으로 보자면 뉴스 데이터를 생성, 수정, 조회하는 API를 만들고자하는데 위와같은 테스트 케이스를 통해 TDD를 진행하려고 합니다. 이를 위해 먼저 테스트 케이스를 작성하겠습니다.  
   
-***1. Repository 유닛테스트***  
 ```java
-// NewsDaoUnitTest.java
+// NewsApiTest.java
 
 @RunWith(SpringRunner.class)
-@DataJpaTest
-@AutoConfigureTestDatabase(replace = Replace.NONE)
-public class JpaUnitTest {
+@SpringBootTest
+@AutoConfigureMockMvc
+@Transactional
+public class NewsApiTest {
 
-    @Autowired private NewsDao newsDao;
+    @Autowired
+    private MockMvc mockMvc;
 
     @Test
-    public void findAllTest() {
-        List<News> newsList = newsDao.findAll();
-        assertThat(newsList)
-            .isNotEmpty()
-            .hasSize(3);
+    public void insertNewsTest() throws Exception {
+        //뉴스 생성
+        mockMvc.perform(MockMvcRequestBuilders.post("/news/{id}",4))
+            .andExpect(status().isOk())
+            .andExpect(content().string("새로운 4번 뉴스"))
+            .andDo(print());
+
+        //뉴스 불러오기
+        mockMvc.perform(MockMvcRequestBuilders.get("/news/{id}",4))
+            .andExpect(status().isOk())
+            .andExpect(content().string("조회된 4번 뉴스"))
+            .andDo(print());
+
+    }
+
+    @Test
+    public void updateNewsTest() throws Exception {
+        //뉴스 불러오기
+        mockMvc.perform(MockMvcRequestBuilders.get("/news/{id}",1))
+            .andExpect(status().isOk())
+            .andExpect(content().string("조회된 1번 뉴스"))
+            .andDo(print());
+        //뉴스 수정
+        mockMvc.perform(MockMvcRequestBuilders.put("/news/{id}",1))
+            .andExpect(status().isOk())
+            .andExpect(content().string("수정된 1번 뉴스"))
+            .andDo(print());
+        //뉴스 불러오기
+        mockMvc.perform(MockMvcRequestBuilders.get("/news/{id}",1))
+            .andExpect(status().isOk())
+            .andExpect(content().string("조회된 1번 뉴스"))
+            .andDo(print());
+
+    }
+
+}
+
+```
+
+우선은, 위와같은 뉴스생성, 뉴스 수정 테스트 케이스를 만들어 보았습니다. 이제 위 테스트케이스를 만족시키기위한 컨트롤러를 만들어 보겠습니다.  
+  
+  ***컨트롤러 작성***
+```c
+// NewsController.java
+
+@RestController
+public class NewsController {
+
+    @RequestMapping(value="/news/{id}", method=RequestMethod.POST)
+    public String insertNews(@PathVariable ("id") int newsId) {
+        String result = "새로운 "+newsId+"번 뉴스";
+
+        return result;
+    }
+
+    @RequestMapping(value="/news/{id}", method=RequestMethod.PUT)
+    public String updateNews(@PathVariable ("id") int newsId) {
+        String result = "수정된 "+newsId+"번 뉴스";
+
+        return result;
+    }
+
+    @RequestMapping(value="/news/{id}", method=RequestMethod.GET)
+    public String getNews(@PathVariable ("id") int newsId) {
+        String result = "조회된 "+newsId+"번 뉴스";
+
+        return result;
     }
 }
 ```
-  
-다음과 같은 테스트 코드만으로 이전 프로젝트에서 사용했던 `newsDao.findAll()`JPA 메서드를 통해 데이터를 잘 가지고 왔는지 자동테스트 툴을 통해 확인이 가능합니다. 
 
-테스트 성공시 출력화면  
+테스트 성공 출력화면   
+  
 <div style="text-align:center;">
-<img src="https://taes-k.github.io/assets/images/trick_basic/spring_start_4_testing/testing_success.png" style="height:250px; border:1px solid #d0d0d0;">
+<img src="https://taes-k.github.io/assets/images/trick_basic/spring_rest_api/test1_success.png" style="height:250px; border:1px solid #d0d0d0;">
 </div>   
   
-테스트 실패시 출력화면  
-<div style="text-align:center;">
-<img src="https://taes-k.github.io/assets/images/trick_basic/spring_start_4_testing/testing_fail.png" style="height:250px; border:1px solid #d0d0d0;">
-</div>   
+위의 테스트케이스를 통해 `/news`의 GET,PUT,POST 모든 Request mapping이 잘 이루어지도록 Controller가 잘 작성되었음을 확인 할 수 있습니다.   
   
-테스팅은 설정해둔 테스트케이스와 비교하여 성공/실패를 결정해주기 때문에 개발자가 생각하지 않던 결과가 나오면 바로 확인이 가능합니다.   
+사실 위와같이 Controller를 작성한것만으로 벌써 RestApi 서비스를 완성한것이나 다름없습니다. 지금 현재상태에서 실제 서버에 배포를 한다면 원하는 데이터를 잘 응답 해 줄것입니다.  
   
-***2. server-side 통합테스트***
-
-통합테스트를 위해 News 데이터를 불러오는 컨트롤러를 하나더 만들고 테스트를 진행 해 보도록 하겠습니다.  
+  
+***테스트케이스_2 작성***
+자 이제 테스트케이스_1이 잘 작동했으니 다음 테스트케이스로 수정해보겠습니다. 이번 케이스에서는 String이 아닌 NEWS Entity를 직접 받아올수 있게끔 해보겠습니다.  `News` 엔티티는 이전 프로젝트를 기반으로 하겠습니다.
 
 ```java
+// NewsApiTest.java
+
+@RunWith(SpringRunner.class)
+@SpringBootTest
+@AutoConfigureMockMvc
+@Transactional
+public class NewsApiTest {
+
+    @Autowired
+    private MockMvc mockMvc;
+
+    @Autowired
+    private ObjectMapper mapper;
+
+    @Test
+    public void insertNewsTest() throws Exception {
+        //뉴스 생성
+        News insertNews = new News();
+        insertNews.setId(4);
+        insertNews.setTitle("새로운 4번 뉴스");
+        insertNews.setContents("새로운 뉴스 컨텐츠");
+        insertNews.setDate(new Date());
+        insertNews.setAuthor("Taes-k");
+        insertNews.setType("sports");
+
+        mockMvc.perform(MockMvcRequestBuilders.post("/news/{id}",4)
+        .contentType(MediaType.APPLICATION_JSON)
+        .content(mapper.writeValueAsString(insertNews)))
+        .andExpect(status().isOk())
+        .andExpect(jsonPath("$.id").value(4))
+        .andDo(print());
+
+        //뉴스 불러오기
+        mockMvc.perform(MockMvcRequestBuilders.get("/news/{id}",4))
+        .andExpect(status().isOk())
+        .andExpect(jsonPath("$.title").value("조회된 4번 뉴스"))
+        .andDo(print());
+
+    }
+
+    @Test
+    public void updateNewsTest() throws Exception {
+        //뉴스 불러오기
+        mockMvc.perform(MockMvcRequestBuilders.get("/news/{id}",1))
+        .andExpect(status().isOk())
+        .andExpect(jsonPath("$.title").value("조회된 1번 뉴스"))
+        .andDo(print());
+
+        //뉴스 수정
+        News updateNews = new News();
+        updateNews.setId(1);
+        updateNews.setTitle("수정된 1번 뉴스");
+        updateNews.setContents("수정된 뉴스 컨텐츠");
+        updateNews.setDate(new Date());
+        updateNews.setAuthor("Taes-k");
+        updateNews.setType("sports");
+
+        mockMvc.perform(MockMvcRequestBuilders.put("/news/{id}",1)
+        .contentType(MediaType.APPLICATION_JSON)
+        .content(mapper.writeValueAsString(updateNews)))
+        .andExpect(status().isOk())
+        .andExpect(jsonPath("$.id").value(1))
+        .andDo(print());
+
+        //뉴스 불러오기
+        mockMvc.perform(MockMvcRequestBuilders.get("/news/{id}",1))
+        .andExpect(status().isOk())
+        .andExpect(jsonPath("$.title").value("조회된 1번 뉴스"))
+        .andDo(print());
+
+    }
+}
+```
+
+***컨트롤러 작성***
+```java
+// NewsController.java
+
+@RestController
+public class NewsController {
+
+    @RequestMapping(value="/news/{id}", method=RequestMethod.POST)
+    public News insertNews( @PathVariable ("id") int newsId,
+                            @RequestBody News insertNews
+    ) {
+
+        return insertNews;
+    }
+
+    @RequestMapping(value="/news/{id}", method=RequestMethod.PUT)
+    public News updateNews( @PathVariable ("id") int newsId,
+                            @RequestBody News updateNews) {
+
+        return updateNews;
+    }
+
+    @RequestMapping(value="/news/{id}", method=RequestMethod.GET)
+    public News getNews( @PathVariable ("id") int newsId) {
+        News result = new News();
+        result.setTitle("조회된 "+newsId+"번 뉴스");
+
+        return result;
+    }
+}
+```
+
+테스트 성공 출력화면   
+
+<div style="text-align:center;">
+<img src="https://taes-k.github.io/assets/images/trick_basic/spring_rest_api/test2_success.png" style="height:250px; border:1px solid #d0d0d0;">
+</div>   
+  
+자 이제 실제 News Entity 연결 까지 성공했습니다. 이제 Service와 Repository까지 작성하여 실제 Database와의 연동을 진행해보도록 하겠습니다.   
+    
+***테스트케이스_3 작성***
+```java
+// NewsApiTest.java
+
+@RunWith(SpringRunner.class)
+@SpringBootTest
+@AutoConfigureMockMvc
+@Transactional
+public class NewsApiTest {
+
+    @Autowired
+    private MockMvc mockMvc;
+
+    @Autowired
+    private ObjectMapper mapper;
+
+    @Test
+    public void insertNewsTest() throws Exception {
+        //뉴스 생성
+        News insertNews = new News();
+        insertNews.setTitle("새로운 뉴스");
+        insertNews.setContents("새로운 뉴스 컨텐츠");
+        insertNews.setDate(new Date());
+        insertNews.setAuthor("Taes-k");
+        insertNews.setType("sports");
+
+        MvcResult insertResult = mockMvc.perform(MockMvcRequestBuilders.post("/news")
+        .contentType(MediaType.APPLICATION_JSON)
+        .content(mapper.writeValueAsString(insertNews)))
+        .andExpect(status().isOk())
+        .andDo(print())
+        .andReturn();
+
+        String contents = insertResult.getResponse().getContentAsString();
+        News insertResultNews = mapper.readValue(contents, News.class);
+
+        //뉴스 불러오기
+        mockMvc.perform(MockMvcRequestBuilders.get("/news/{id}",insertResultNews.getId()))
+        .andExpect(status().isOk())
+        .andExpect(jsonPath("$.title").value("새로운 뉴스"))
+        .andDo(print());
+    }
+
+    @Test
+    public void updateNewsTest() throws Exception {
+        //뉴스 불러오기
+        mockMvc.perform(MockMvcRequestBuilders.get("/news/{id}",1))
+        .andExpect(status().isOk())
+        .andDo(print());
+
+        //뉴스 수정
+        News updateNews = new News();
+        updateNews.setTitle("수정된 1번 뉴스");
+        updateNews.setContents("수정된 뉴스 컨텐츠");
+        updateNews.setDate(new Date());
+        updateNews.setAuthor("Taes-k");
+        updateNews.setType("sports");
+
+        mockMvc.perform(MockMvcRequestBuilders.put("/news/{id}",1)
+        .contentType(MediaType.APPLICATION_JSON)
+        .content(mapper.writeValueAsString(updateNews)))
+        .andExpect(status().isOk())
+        .andDo(print());
+
+        //뉴스 불러오기
+        mockMvc.perform(MockMvcRequestBuilders.get("/news/{id}",1))
+        .andExpect(status().isOk())
+        .andExpect(jsonPath("$.title").value("수정된 1번 뉴스"))
+        .andDo(print());
+    }
+}
+
+```
+
+***컨트롤러 작성***
+
+```java
+// NewsController.java
 
 @RestController
 public class NewsController {
@@ -84,118 +368,88 @@ public class NewsController {
     @Autowired
     MainNewsServiceImpl mainNewsService;
 
-    @RequestMapping("/news")
-    public Map<String,Object> index(Model model) {
-        Map<String,Object> result = new HashMap<>();
+    @RequestMapping(value="/news", method=RequestMethod.POST)
+        public News insertNews(@RequestBody News insertNews) {
 
-        result.put("code", 200);
-        result.put("result", mainNewsService.getNews());
-
-        return result;
-    }
-}
-```  
-
-```java
-@RunWith(SpringRunner.class)
-@WebMvcTest(NewsController.class)
-public class NewsMvcTest {
-
-    @Autowired
-    private MockMvc mockMvc;
-
-    @Test
-    public void getNewsTest() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.get("/news"))
-                .andExpect(status().isOk());
-
+        return mainNewsService.insertNews(insertNews);
     }
 
+    @RequestMapping(value="/news/{id}", method=RequestMethod.PUT)
+    public News updateNews( @PathVariable ("id") int newsId,
+                            @RequestBody News updateNews) {
+
+        return mainNewsService.updateNews(newsId,updateNews);
+    }
+
+    @RequestMapping(value="/news/{id}", method=RequestMethod.GET)
+    public Optional<News> getNews( @PathVariable ("id") int newsId) {
+
+        return mainNewsService.getNews(newsId);
+    }
 }
+
 ```
-  
-@WebMvcTest를 통해 MVC 통합테스트 코드를 작성했습니다. 하지만 위와같이 테스트를 진행하게 되면 아마 다음과같은 오류로 테스트가 실패할것입니다. 
-  
-> Field mainNewsService in start.mvc.spring.controller.NewsController required a bean of type 'start.mvc.spring.service.MainNewsServiceImpl' that could not be found.
-  
-@WebMvcTest 어노테이션는 @Controller, @RestController 등의 컴포넌트들만 Bean으로 등록시켜 테스트를 진행하기때문에 `MainNewsServiceImpl` service가 등록되지 않아 생기는 문제입니다. 따라서 @Service, @Repository 등을 연결하기위해서는 별도로 등록을 해주셔야 하는데 이때 @MockBean을 이용해 등록이 가능합니다.  
-  
+
+***Service 작성***
+
 ```java
-@RunWith(SpringRunner.class)
-@WebMvcTest(NewsController.class)
-@Transactional
-public class NewsMvcTest {
+@Service
+public class MainNewsServiceImpl implements NewsService {
 
     @Autowired
-    private MockMvc mockMvc;
+    NewsDao newsDao;
 
-    @MockBean
-    private MainNewsServiceImpl mainNewsServiceImpl;
+    @Override
+    public News insertNews(News news) {
 
-    @Test
-    public void getNewsTest() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.get("/news"))
-            .andExpect(status().isOk());
+        return newsDao.save(news);
+    }
 
+    @Override
+    public News updateNews(int id, News news) {
+
+        news.setId(id);
+
+        return newsDao.save(news);
+    }
+
+    @Override
+    public Optional<News> getNews(int newsId) {
+
+        return newsDao.findById(newsId);
     }
 }
 ```
+
+***테스트 결과 확인***
+
+<div style="text-align:center;">
+<img src="https://taes-k.github.io/assets/images/trick_basic/spring_rest_api/test_success.png" style="height:250px; border:1px solid #d0d0d0;">
+</div>   
   
-다음과 같은 테스트코드로 테스트가 가능합니다.  
+***실제 데이터 결과***
 
-***3. client-side 통합테스트***
+<div style="text-align:center;">
+<img src="https://taes-k.github.io/assets/images/trick_basic/spring_rest_api/test_result.png" style="height:250px; border:1px solid #d0d0d0;">
+</div>   
 
-위에서는 서버측에서 mock object를 통해 Controller를 실행시켰다면, 클라이언트측에서 직접적인 RestCall을 하는것처럼 테스트도 가능합니다.  
-  
-```java
-// NewsIntegrationTest.java
-
-@RunWith(SpringRunner.class)
-@SpringBootTest(webEnvironment=WebEnvironment.RANDOM_PORT)
-public class NewsIntegrationTest {
-
-    @Autowired
-    private TestRestTemplate restTemplate;
-
-    @Test
-    public void getNewsTest() throws Exception {
-        ResponseEntity<News> response = restTemplate.getForEntity("/news", News.class);
-        assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
-        assertThat(response.getBody()).isNotNull();
-    }
-}
-```  
-  
-TestRestTemplate을 통해 컨트롤러를 클라이언트에서 호출하는것처럼 테스트를 하여 전체적인 통합테스트를 진행할 수 있습니다.  다만, testresttemplate을 사용하기위해 다른 포트를 사용하게되어 데이터 조작시 transaction이 설정 되지 않기에 주의해야합니다.  
 
 ---
 
-### TDD
 
-이번챕터에서는 이전에 만들어둔 프로젝트를 테스트를 해보았으나 사실 TDD는 테스트 주도개발로써, 테스트케이스를 먼저 만들고 실제 개발을 진행하여 개발 과정에서 설정해둔 테스트 케이스에 맞는지 확인해가며 개발해나가는 개발 방법론입니다.   
-따라서 이번 예제프로젝트와는 조금 맞지 않으나 테스트환경은 같기때문에 미리 소개를 드렸습니다. 다음 섹션부터는 TDD를 통해 예제 프로젝트를 생성해보도록 하겠습니다. 
-
----
 
 ### <마무리>
 
-스프링에서 단위테스트와 통합테스트 예제를 진행해 보았습니다. 어떻게보면 간단히 처리할수있으나, 어찌보면 여간 귀찮은 일 일지도  모릅니다. 하지만 분명한건 장기적으로 보았을때는 테스팅이 오류를 줄여주고 생산성을 향상시킬수 있다는 것입니다.  
-물론 모든 개발사항들에대해서 유닛테스트부터 통합테스트 과정을 거치기에는 현실적으로 어려움이 있습니다. 하지만 중요한 개발사항들에대해서만 유닛테스트를 거치고 일반적인 개발사항들에 대해서는 통합테스트만 실행시킨다는 등의 개인 혹은 회사만의 테스팅 원칙을 세워 진행하게되면 더욱이 효과적으로 테스팅을 사용 하실수 있게 될것입니다.  
+지난챕터에서 미리 말씀드렸던것 처럼 TDD를 활용하여 Spring Rest API 서비스를 만들어보았습니다. 간단한 api와 간단한 테스트였기 때문에 어려움없이 진행 되었지만, TDD가 익숙하시지 않으신 분이라면 조금 어려우실수도 있겠으나 최대한 간단하게 진행했던 예제 프로젝트이기 때문에 위의 과정을 잘 이해하신다면 TDD를 이해하시고 앞으로의 프로젝트에서 적용하시는데 큰 도움이 되실것입니다.  
   
----
-### 참고자료 
+특히나 RestAPI서비스를 만들면서 Spring에서 지원하고있는 RestController와 JPA를 사용하여 굉장히 효율적으로 만들수 있었는데요 본문상에는 생략한 파일들이 많아 따라하기 어려우신 분들은 하단 샘플 프로젝트를 확인해주시면 감사드리겠습니다.
 
-[Spring 5.1.6 release docs](
-https://docs.spring.io/spring/docs/current/spring-framework-reference/testing.html#testing)  
-[Spring Junit test](https://taes-k.github.io/docs/spring/spring-junit-test/)  
-[1.7 Spring testing](https://taes-k.github.io/docs/trick_basic/1_7_spring_testing/)  
-  
 --- 
 
 ### 샘플 프로젝트 
 {: .no_toc }
 
 위 프로젝트는 다음 링크에서 확인하실수 있습니다.  
-<https://github.com/taes-k/spring-example/tree/master/spring-mvc-start-testing>
+<https://github.com/taes-k/spring-example/tree/master/spring-rest-api>
 
 ---
