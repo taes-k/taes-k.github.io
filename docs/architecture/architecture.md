@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 아키텍처 패턴
-nav_order: 4
+nav_order: 6
 has_children: true
 permalink: /docs/architecture
 ---

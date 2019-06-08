@@ -1,9 +1,20 @@
 <head>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-141723154-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-141723154-1');
+  </script>
+
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=Edge">
   {% if page.description %}
   <meta name="Description" content="{{ page.description }}">
   {% endif %}
+  <meta property="og:image" content="https://taes-k.github.io/assets/images/dev-log.png">
 
   <title>{{ page.title }} - {{ site.title }}</title>
   <link rel="stylesheet" href="{{ "/assets/css/just-the-docs.css" | absolute_url }}">

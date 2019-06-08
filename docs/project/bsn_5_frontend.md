@@ -1,7 +1,7 @@
 ---
 layout: default
 comments: true
-title: [BSN] 5.프론트엔드
+title: (BSN) 5.프론트엔드
 parent: 프로젝트 진행기
 date: 2019.06.08
 ---

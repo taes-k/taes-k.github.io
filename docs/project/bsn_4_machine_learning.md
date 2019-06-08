@@ -1,7 +1,7 @@
 ---
 layout: default
 comments: true
-title: [BSN] 4.어쩌다보니 머신러닝?
+title: (BSN) 4.어쩌다보니 머신러닝?
 parent: 프로젝트 진행기
 date: 2019.06.08
 ---

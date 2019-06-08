@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 요령과 기본
-nav_order: 4
+nav_order: 6
 has_children: true
 permalink: /docs/trick_basic
 ---

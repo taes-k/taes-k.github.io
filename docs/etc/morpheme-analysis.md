@@ -2,7 +2,7 @@
 layout: default
 comments: true
 title: 형태소분석
-parent: etc
+parent: ETC
 date: 2019.03.30
 ---
 

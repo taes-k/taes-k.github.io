@@ -2,7 +2,7 @@
 layout: default
 title: Home
 nav_order: 1
-description: "Luke's Devblog."
+description: "Luke's Dev-log."
 permalink: /
 ---
 

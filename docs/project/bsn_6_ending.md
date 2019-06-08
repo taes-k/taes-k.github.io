@@ -1,7 +1,7 @@
 ---
 layout: default
 comments: true
-title: [BSN] 6.마무리
+title: (BSN) 6.마무리
 parent: 프로젝트 진행기
 date: 2019.06.08
 ---

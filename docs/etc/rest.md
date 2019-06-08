@@ -2,7 +2,7 @@
 layout: default
 comments: true
 title: Rest
-parent: etc
+parent: ETC
 date: 2019.03.26
 ---
 

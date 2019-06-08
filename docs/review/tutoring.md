@@ -1,8 +1,8 @@
 ---
 layout: default
 comments: true
-title: [Start-up] Tutoring
-parent: review
+title: (스타트업) Tutoring
+parent: REVIEW
 date: 2017.02.26
 ---
 

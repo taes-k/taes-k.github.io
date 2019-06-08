@@ -1,7 +1,7 @@
 ---
 layout: default
 comments: true
-title: [BSN] 3.개발시작
+title: (BSN) 3.개발시작
 parent: 프로젝트 진행기
 date: 2019.06.08
 ---
