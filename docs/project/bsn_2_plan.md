@@ -73,10 +73,10 @@ Github : <https://github.com/taes-k/stock_analysis>
 
 위의 요구조건들을 만족시키기위해 다음과 같은 기술스택들로 개발을 하기로 결정했습니다.   
 
-<div style="text-align:center;">
-<img src="https://taes-k.github.io/assets/images/project/bsn_2_plan/python.png" style="height:250px; margin:0 30px;">
-<img src="https://taes-k.github.io/assets/images/project/bsn_2_plan/django.png" style="height:250px; margin:0 30px;">
-<img src="https://taes-k.github.io/assets/images/project/bsn_2_plan/react.png" style="height:250px; margin:0 30px;">
+<div style="text-align:center; margin: 50px 0;">
+<img src="https://taes-k.github.io/assets/images/project/bsn_2_plan/python.png" style="height:60px; margin:0 30px;">
+<img src="https://taes-k.github.io/assets/images/project/bsn_2_plan/django.png" style="height:60px; margin:0 30px;">
+<img src="https://taes-k.github.io/assets/images/project/bsn_2_plan/react.png" style="height:60px; margin:0 30px;">
 </div>  
   
 파이썬을 선택한 이유는 크롤링과 형태소분석을 위한 라이브러리들이 잘 구성되어있기 때문입니다. 또한 Django를 통해 간단하게 API 웹서버를 만들어 React front-end와의 연동이 가능하다고 판단 되었기 때문입니다.    
