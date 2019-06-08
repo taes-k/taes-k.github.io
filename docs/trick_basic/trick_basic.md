@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 요령과 기본
-nav_order: 2
+nav_order: 4
 has_children: true
 permalink: /docs/trick_basic
 ---
@@ -36,10 +36,12 @@ permalink: /docs/trick_basic
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2.8 Spring SSO  
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2.9 Spring MSA  
 >   
-> 3\. 서버는 요청을 어떻게 처리하고 있을까?  
+> 3\. 서버는 Request를 어떻게 처리하고 있을까?  
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.1 Web Server 와 Web Application Server](https://taes-k.github.io/docs/trick_basic/3_1_webserver/)   
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.2 Spring Tomcat](https://taes-k.github.io/docs/trick_basic/3_2_spring_tomcat/)  
-> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.3 Tomcat JDBC](https://taes-k.github.io/docs/trick_basic/3_3_tomcat_JDBC/)  
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.3 Tomcat JDBC  
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.4 Load Test   
+
 
 ---
 
