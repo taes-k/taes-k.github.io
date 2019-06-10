@@ -1,12 +1,12 @@
 ---
 layout: default
-title: 요령과 기본
+title: 요령과 기본(Spring)
 nav_order: 6
 has_children: true
 permalink: /docs/trick_basic
 ---
 
-# [요령과 기본]
+# 요령과 기본(Spring)
 
 ---
 ### 서문

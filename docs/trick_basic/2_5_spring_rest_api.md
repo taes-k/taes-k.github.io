@@ -1,8 +1,8 @@
 ---
 layout: default
 comments: true
-title: (요령과 기본) 2.5 Spring RestAPI 서버
-parent: 요령과 기본
+title: 2.5 Spring RestAPI 서버
+parent: 요령과 기본(Spring)
 date: 2019.06.05
 ---
 

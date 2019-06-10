@@ -1,8 +1,8 @@
 ---
 layout: default
 comments: true
-title: (요령과 기본) 1.3 Spring 의 Aspect
-parent: 요령과 기본
+title: 1.3 Spring 의 Aspect
+parent: 요령과 기본(Spring)
 date: 2019.05.15
 ---
 

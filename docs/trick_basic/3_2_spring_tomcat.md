@@ -1,8 +1,8 @@
 ---
 layout: default
 comments: true
-title: (요령과 기본) 3.2 Spring Tomcat
-parent: 요령과 기본
+title: 3.2 Spring Tomcat
+parent: 요령과 기본(Spring)
 date: 2019.05.26
 ---
 

@@ -1,8 +1,8 @@
 ---
 layout: default
 comments: true
-title: (요령과 기본) 1.4 Spring MVC의 진짜 의미
-parent: 요령과 기본
+title: 1.4 Spring MVC의 진짜 의미
+parent: 요령과 기본(Spring)
 date: 2019.05.15
 ---
 

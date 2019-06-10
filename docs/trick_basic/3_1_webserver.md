@@ -1,8 +1,8 @@
 ---
 layout: default
 comments: true
-title: (요령과 기본) 3.1 Web Server와 Web Application Server
-parent: 요령과 기본
+title: 3.1 Web Server와 Web Application Server
+parent: 요령과 기본(Spring)
 date: 2019.05.24
 ---
 

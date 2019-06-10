@@ -1,8 +1,8 @@
 ---
 layout: default
 comments: true
-title: (요령과 기본) 1.5 Spring5 리액티브
-parent: 요령과 기본
+title: 1.5 Spring5 리액티브
+parent: 요령과 기본(Spring)
 date: 2019.05.21
 ---
 

@@ -1,8 +1,8 @@
 ---
 layout: default
 comments: true
-title: (요령과 기본) 1.2 Spring은 어떻게 동작하는가?
-parent: 요령과 기본
+title: 1.2 Spring은 어떻게 동작하는가?
+parent: 요령과 기본(Spring)
 date: 2019.05.11
 ---
 

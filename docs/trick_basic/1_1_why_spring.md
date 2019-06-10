@@ -1,8 +1,8 @@
 ---
 layout: default
 comments: true
-title: (요령과 기본) 1.1 Spring을 사용하는 이유
-parent: 요령과 기본
+title: 1.1 Spring을 사용하는 이유
+parent: 요령과 기본(Spring)
 date: 2019.05.11
 ---
 
