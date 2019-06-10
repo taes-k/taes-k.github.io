@@ -1,7 +1,7 @@
 ---
 layout: default
 comments: true
-title: 0_서문
+title: 0. 서문
 parent: 요령과 기본(Spring)
 date: 2019.05.10
 ---
