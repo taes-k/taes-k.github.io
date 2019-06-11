@@ -40,8 +40,8 @@ date: 2019.05.28
   
 해당 프로젝트의 플로우차트는 다음과 같습니다.  
 
-<div style="text-align:center;">
-<img src="https://taes-k.github.io/assets/images/trick_basic/spring_start_1_mvc/mvc_start_flowchart.png" style="height:400px; border:1px solid #d0d0d0;">
+<div style="text-align:center;margin:0 50px ;">
+<img src="https://taes-k.github.io/assets/images/trick_basic/spring_start_1_mvc/mvc_start_flowchart.png" style="height:200px; border:1px solid #d0d0d0;">
 </div>   
 
 ---
@@ -59,7 +59,7 @@ Gradle 3.x
 - 디렉토리 구조  
 
 <div style="text-align:center;">
-<img src="https://taes-k.github.io/assets/images/trick_basic/spring_start_1_mvc/mvc_start_directory.png" style="height:250px; border:1px solid #d0d0d0;">
+<img src="https://taes-k.github.io/assets/images/trick_basic/spring_start_1_mvc/mvc_start_directory.png" style="height:400px; border:1px solid #d0d0d0;">
 </div>   
 
 - MVC 기본 골조 세팅  
