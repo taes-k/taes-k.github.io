@@ -1,7 +1,7 @@
 ---
 layout: default
 comments: true
-title: 2.6 Spring Security (2) - 스프링 시큐리티
+title: 2.7 Spring Security (2) - 스프링 시큐리티
 parent: 요령과 기본(Spring)
 date: 2019.06.12
 ---
@@ -10,7 +10,7 @@ date: 2019.06.12
 <div style="text-align:right; font-size:11px; color:#aaa">{{ page.date }} </div>
 ---
 
-## 2.6 Spring Security (2) - 스프링 시큐리티
+## 2.7 Spring Security (2) - 스프링 시큐리티
 {: .no_toc }
 이전 챕터에서는 쿠키와 세션에대해 알아보고  세션으로 로그인처리를 하는 방법에대해서 알아보았습니다. 이제 스프링에서 제공하는  스프링 시큐리티 프레임워크를 사용하여 예제 프로젝트를 진행해보고, 스프링 시큐리티의 동작 원리에대해서 알아보도록 하겠습니다.
 
