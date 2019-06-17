@@ -28,7 +28,7 @@ MSA(Micro Service Architecture)는 약자 그대로 '작은 서비스 구조' �
   
 ***기존 일체형 시스템의 문제점***
 
-<div style="text-align:center;">
+<div style="text-align:center; margin:50px 0;">
 <img src="https://taes-k.github.io/assets/images/trick_basic/spring_msa_1/monolithic_architecture.png" style="height:300px; border:1px solid #d0d0d0;">
 </div>   
 
@@ -42,7 +42,7 @@ MSA(Micro Service Architecture)는 약자 그대로 '작은 서비스 구조' �
 
 ***마이크로 서비스의 특징***
 
-<div style="text-align:center;">
+<div style="text-align:center; margin:50px 0;">
 <img src="https://taes-k.github.io/assets/images/trick_basic/spring_msa_1/micro_service_architecture.png" style="height:300px; border:1px solid #d0d0d0;">
 </div>   
 
