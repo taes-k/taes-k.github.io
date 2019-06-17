@@ -29,7 +29,7 @@ MSA(Micro Service Architecture)는 약자 그대로 '작은 서비스 구조' �
 ***기존 일체형 시스템의 문제점***
 
 <div style="text-align:center;">
-<img src="https://taes-k.github.io/assets/images/trick_basic/spring_msa_10/monolithic_architecture.png" style="height:300px; border:1px solid #d0d0d0;">
+<img src="https://taes-k.github.io/assets/images/trick_basic/spring_msa_1/monolithic_architecture.png" style="height:300px; border:1px solid #d0d0d0;">
 </div>   
 
 모든 일체형 시스템들이 문제가 있는것은 아닙니다. 관리하기 편하고 컴포넌트간 호출로, 높은 성능을 보일수 있지만 서비스 규모가 커지고, 해당 시스템을 관리하는 인원이 많아지게된다면 서비스의 복잡도에 따른 여러 문제점들이 나타나게 됩니다.  
@@ -43,7 +43,7 @@ MSA(Micro Service Architecture)는 약자 그대로 '작은 서비스 구조' �
 ***마이크로 서비스의 특징***
 
 <div style="text-align:center;">
-<img src="https://taes-k.github.io/assets/images/trick_basic/spring_msa_10/micro_service_architecture.png" style="height:300px; border:1px solid #d0d0d0;">
+<img src="https://taes-k.github.io/assets/images/trick_basic/spring_msa_1/micro_service_architecture.png" style="height:300px; border:1px solid #d0d0d0;">
 </div>   
 
 마이크로 서비스는 다음과같은 특징들을 지닙니다.  
@@ -73,7 +73,7 @@ MSA(Micro Service Architecture)는 약자 그대로 '작은 서비스 구조' �
 먼저 위에서 말씀드렸던 마이크로서비스의 장점인 '가볍다'라는 특징으로 인해 '가벼운 서비스'를 돌리기위한 환경들이 각광을 받기 시작했습니다. 일반적으로 애플리케이션을 배포하는 방식으로 물리서버 혹은 클라우드 서버내의 운영체제에서 애플리케이션, 실행 파일, 라이브러리 등을 설치하여 실행시키는 방식이었다면 운영체제수준의 가상화를 제공하는 '컨테이너'기반으로 서비스를 운영하는 생태계가 나타났습니다. 가장 널리 알려져있는 Docker, Kuberntese가 대표적인 컨테이너 서비스로써, OS에 영향을 받지않고 컨테이너단위로 배포가 되기 때문에 이미지 형태로 '불변성'을 띄게되고 어떤 클라우드나 OS에서도 같은 환경으로 서비스를 실행가능하게 하여 이식성이 좋습니다.  
   
   <div style="text-align:center; margin:50px 0;">
-  <img src="https://taes-k.github.io/assets/images/trick_basic/spring_msa_10/container.png" style="height:300px; border:1px solid #d0d0d0;">
+  <img src="https://taes-k.github.io/assets/images/trick_basic/spring_msa_1/container.png" style="height:300px; border:1px solid #d0d0d0;">
   </div>   
   
 또한 '가벼워진 서비스'를 운영하기 위해 더 쉽고 간편하게 서비스를 할수있도록 Faas(Function as a service) 함수형 서비스, Serverless가 나타나 그저 코드 업로드를 통해 서비스를 실행시킬수 있도록 해주고 있습니다. 이는 AWS Lambda, Azure Functions, Google Cloud Functions 의 대표적인 서비스들이 있습니다.  
@@ -83,7 +83,7 @@ MSA(Micro Service Architecture)는 약자 그대로 '작은 서비스 구조' �
 또하나의 문제점으로는 일체형에서는 컴포넌트간 통신으로 빠른 응답을 보였던것과 비교해, 각 서비스마다의 통신으로 인해 오버헤드가 생기면서 성능에대한 이슈가 당연히 나타났습니다. 이로인해 '리액티브'가 더 활성화를 띄게되면서 마이크로서비스의 비동기, 메세지기반 통신의 중요성이 높아지고 특히나 Spring 5.0 업데이트에서 Reactive 기반의 WebFlux가 출시되기도 하였습니다.  
   
 <div style="text-align:center; margin:50px 0;">
-<img src="https://taes-k.github.io/assets/images/trick_basic/spring_msa_10/reactive_micro_service.png" style="height:300px; border:1px solid #d0d0d0;">
+<img src="https://taes-k.github.io/assets/images/trick_basic/spring_msa_1/reactive_micro_service.png" style="height:300px; border:1px solid #d0d0d0;">
 </div>   
   
 ---
