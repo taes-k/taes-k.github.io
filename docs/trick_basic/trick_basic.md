@@ -36,6 +36,7 @@ permalink: /docs/trick_basic
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2.8 Spring OAuth2   
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2.9 Spring SSO  
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.10 Spring MSA (1) - 마이크로서비스](https://taes-k.github.io/docs/trick_basic/2_10_spring_msa_1/)   
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.11 Spring MSA (2) - 스프링 클라우드](https://taes-k.github.io/docs/trick_basic/2_11_spring_msa_2/)   
 >   
 > 3\. 서버는 Request를 어떻게 처리하고 있을까?  
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.1 Web Server 와 Web Application Server](https://taes-k.github.io/docs/trick_basic/3_1_webserver/)   
