@@ -1,6 +1,6 @@
 ---
 layout: default
-title: 프로젝트 진행기
+title: 프로젝트 개발기
 nav_order: 6
 has_children: true
 permalink: /docs/project
