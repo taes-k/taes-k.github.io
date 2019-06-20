@@ -38,8 +38,8 @@ permalink: /docs/trick_basic
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.10 Spring MSA (1) - 마이크로서비스](https://taes-k.github.io/docs/trick_basic/2_10_spring_msa_1/)   
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.11 Spring MSA (2) - 스프링 클라우드](https://taes-k.github.io/docs/trick_basic/2_11_spring_msa_2/)    
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.12 Spring MSA (3) - 기본구성](https://taes-k.github.io/docs/trick_basic/2_12_spring_msa_3/)   
-> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.13 Spring MSA (4) - 인증서비스](https://taes-k.github.io/docs/trick_basic/2_12_spring_msa_4/)   
-> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.13 Spring MSA (5) - MSA의 유기적 서비스구조](https://taes-k.github.io/docs/trick_basic/2_13_spring_msa_5/)   
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.13 Spring MSA (4) - 인증서비스](https://taes-k.github.io/docs/trick_basic/2_13_spring_msa_4/)   
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.13 Spring MSA (5) - MSA의 유기적 서비스구조](https://taes-k.github.io/docs/trick_basic/2_14_spring_msa_5/)   
 >   
 > 3\. 서버는 Request를 어떻게 처리하고 있을까?  
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.1 Web Server 와 Web Application Server](https://taes-k.github.io/docs/trick_basic/3_1_webserver/)   
