@@ -3,7 +3,7 @@ layout: default
 comments: true
 title: 2.12 Spring MSA (3) - 기본구성
 parent: 요령과 기본(Spring)
-date: 2019.06.12
+date: 2019.06.16
 ---
 
 <h1>{{ page.title }}</h1>  
@@ -42,13 +42,7 @@ date: 2019.06.12
 <img src="https://taes-k.github.io/assets/images/trick_basic/spring_msa_3/architecture.png" style="height:300px; ">
 </div>   
 
-***구동환경*** 
-
-- Spring boot 2.1.5
-- Spring cloud eureka
-- Spring cloud zuul
-- Spring cloud security
-- H2
+  
 
 ***프로젝트 구성***
 

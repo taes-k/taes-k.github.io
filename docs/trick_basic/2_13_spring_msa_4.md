@@ -402,7 +402,7 @@ security.oauth2.resource.jwt.key-value=jwt_secret_key
 
 @EnableResourceServer
 @Configuration
-public class ResourceConfig extends ResourceServerConfigurerAdapter{
+public class ResourceServerConfig extends ResourceServerConfigurerAdapter{
 
     @Override
     public void configure(HttpSecurity http) throws Exception {
@@ -440,14 +440,60 @@ Oauth2 ResourceServer가 제대로 설정되었는지 확인해보도록 하겠�
 
 자, 위에서 인증서버와 클라이언트를 즉 처음과 끝의 구현이 완료 되었습니다. 이렇게 끝나면 좋겠지만.. 저희는 API Gateway를 사용하기때문에 사실 직접적으로 api 서버에 접근하지 않기때문에 중간 Gateway에서 토큰을 전달해주어야 한다고 말씀드렸습니다. 마지막으로 게이트웨이의 Relay token을 위한 구현을 진행해보도록 하겠습니다.  
 
+```c
+// build.gradle
 
+implementation 'org.springframework.cloud:spring-cloud-starter-oauth2'
+```
+
+```c
+// application.properties
+
+
+security.oauth2.client.client-id=auth_id
+security.oauth2.client.client-secret=auth_secret
+security.oauth2.resource.jwt.key-value=jwt_secret_key
+
+zuul.sensitiveHeaders= Cookie,Set-Cookie  
+```
+
+zuul.zuul.sensitiveHeaders을 통해 헤더값이 하뒤 서비스들로 전달되어 노출되지 않도록 설정할수 있습니다. 기본값으로 cookie, Set-Cookie, Authorization이 전달이 되지 않도록 설정 되어있기 때문에 Authorization을 하위 서비스들에 넘겨줄수있도록 Cookie, Set-Cookie만 sensitiveHeader로써 설정해 줍니다.  
+
+
+```c
+// ResourceServerConfig.java
+
+@Configuration
+@EnableResourceServer
+class ResourceServerConfig extends ResourceServerConfigurerAdapter {
+
+    @Override
+    public void configure(HttpSecurity http) throws Exception {
+        http.authorizeRequests()
+        .antMatchers("/api/user").authenticated();
+    }
+}
+```
+
+이전단계에서 Api 서버에 ResourceServer 설정을 해주었던것 처럼 url별 인증 설정을 통해 api 서비스별 인증을 진행 할 수 있습니다.  
+
+이제 Api 게이트웨이를 통해서 인증과정이 제대로 이루어지는지 확인해보도록 하겠습니다.  
+
+<div style="text-align:center; margin:50px 0;">
+<img src="https://taes-k.github.io/assets/images/trick_basic/spring_msa_4/gateway_success.png" style="height:300px; ">
+</div>   
+<div style="text-align:center; margin:50px 0;">
+<img src="https://taes-k.github.io/assets/images/trick_basic/spring_msa_4/gateway_fail.png" style="height:300px; ">
+</div>   
+
+Api 서버에 직접 요청했을때와 같은결과가 나오는것을 확인할수 있습니다. 
 
 
 ---
 
 ## <마무리>
 
-우선적으로 아키텍쳐를 구상하고 기본 보일러 플레이트정도만 구성을 완료했습니다. 이제 다음 챕터부터 내용을 붙여나가면서 계속해서 msa 프로젝트를 진행해보도록 하겠습니다.  
+MSA 에서의 기본적인 OAuth인증 과정을 진행해보았습니다. 인증은 모든 요청의 가장 첫과정으로써 이제 서비스별, 유저별로 접근을 제어 해줄수 있게 되었습니다. 이전 과정들에 비해 조금 복잡하다고 생각하실수도 있지만 조금만 이해하면 간단하게 사용 할 수 있으실겁니다. 다음챕터에서는 전체적인 서비스 구현으로 MSA내에서 서비스들이 어떻게 유기적으로 동작하는지 알아보도록 하겠습니다.
 
 ---
 
