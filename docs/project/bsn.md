@@ -1,7 +1,7 @@
 ---
 layout: default
 comments: true
-title: BSN (Breaking Stock News)
+title: BSN (Breaking Stock News) 개발기
 parent: 프로젝트 개발기
 date: 2019.06.08
 ---
@@ -262,8 +262,32 @@ API는 저장된 뉴스를 조회할수 있도록 만들어주면 됩니다. 이
 <img width="48%" src="https://github.com/taes-k/stock_analysis/raw/master/example_2.png">
 </div>
 
+디자인이 나온후부터는 작업이 일사천리로 해결되어 나갔습니다. 리액트를 사용하면서 가장 마음에 들었던, 기능별 뷰를 각각 모듈화 해서 다음과같이 나누어 작업을 진행했습니다.  
+   
+```
+// Index
 
-위 두가지 조건을 디자인을 통해 잘 해결하고나니 리액트가 어느정도 익숙해지고 나서는 프론트작업은 무탈하게 완료될 수 있었습니다.
+- Header
+- NewsBody
+  ㄴ HeadLine
+  ㄴ NewsLine
+- Footer
+```  
+  
+```
+// Search
+
+- Header
+  ㄴ Search
+- NewsBody
+  ㄴ Company
+  ㄴ NewsLine
+- Footer
+```
+
+위와같이 모듈로서 분할하여 프론트작업을 진행하고, Redux를 통해 뉴스와 회사정보들을 통합 store시켜 모든 모듈에서 편하게 데이터를 연동 할 수 있도록 했습니다.   
+  
+위와같은 과정으로 리액트가 어느정도 익숙해지고 나서는 프론트작업은 무탈하게 완료될 수 있었습니다.
 
 ---
 
