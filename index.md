@@ -68,9 +68,10 @@ permalink: /
 ```
 - 서비스상세    
 
-<div>
-<img width="100%" src="https://github.com/taes-k/stock_analysis/raw/master/example_1.png">
-<img width="100%" src="https://github.com/taes-k/stock_analysis/raw/master/example_2.png">
+
+<div style="margin:50px 0;">
+<img width="48%" src="https://github.com/taes-k/stock_analysis/raw/master/example_1.png">
+<img width="48%" src="https://github.com/taes-k/stock_analysis/raw/master/example_2.png">
 </div>
 
 ### 2. 색으로 사진을 기억하는 카메라 iOS 어플리케이션
