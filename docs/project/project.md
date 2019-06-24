@@ -28,5 +28,10 @@ Github : <https://github.com/taes-k/stock_analysis>
 
 <http://www.stocknews.me>
 
+### 개발기
+
+<https://taes-k.github.io/docs/project/bsn/>
+
+
 ---
 
