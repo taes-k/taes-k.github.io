@@ -1,7 +1,7 @@
 ---
 layout: default
 comments: true
-title: 2.12 Spring MSA (4) - 인증서비스
+title: 2.13 Spring MSA (4) - 인증서비스
 parent: 요령과 기본(Spring)
 date: 2019.06.20
 ---
@@ -10,7 +10,7 @@ date: 2019.06.20
 <div style="text-align:right; font-size:11px; color:#aaa">{{ page.date }} </div>
 ---
 
-## 2.12 Spring MSA (4) - 인증서비스
+## 2.13 Spring MSA (4) - 인증서비스
 {: .no_toc }
 MSA를 구성하면서보안을 위해 Oauth2를 일반적으로 사용하게 됩니다. 특히 스프링에서 제공하는 Spring cloud security를 사용하게되면 Token 링레이 방식으로 게이트웨이에서 얻은 인증토큰을 매칭된 서비스까지 넘겨서 최종 인증을 진행하는 과정을 거치게 됩니다. 이번챕터에서는 이전챕터에 이어 Spring cloud security를 이용해 api 서비스들을 인증서비스와 연동하는 과정을 알아보도록 하겠습니다.  
 
