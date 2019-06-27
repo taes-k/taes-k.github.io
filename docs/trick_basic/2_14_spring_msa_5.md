@@ -29,17 +29,43 @@ date: 2019.06.27
 
 리액티브에서 중요한 개념은 '논블록킹'과 '비동기'입니다. 같은 의미가 아닌가? 하시는분도 계실텐데 정확히 어떤 서비스상의 차이가 있는지 알아보면서 정확한 개념을 정의해 보도록 하겠습니다.  
   
+이전 예제프로젝트를 예를 들어서, 뉴스 리뷰를 적으면 해당뉴스의 점수가 높아져 상단에 노출되는 트랜잭션을 만든다고 가정해보도록 하겠습니다.  
+  
+***동기(Synchronous) + 블로킹(Blocking)***  
+  
+<div style="text-align:center; margin:50px 0;">
+<img src="https://taes-k.github.io/assets/images/trick_basic/spring_msa_5/syncronous_blocking.png" style="height:400px;">
+</div>   
 
-***논 블록킹***
-논 블록킹을 알아보기전에 기본적으로 '블록킹' 시스템 구조를 알아보도로 하겠습니다.  
-블록킹 : 
-비동기 :  
 
+***비동기(Asynchronous) + 논블로킹(Non-blocking)***  
+  
+  <div style="text-align:center; margin:50px 0;">
+  <img src="https://taes-k.github.io/assets/images/trick_basic/spring_msa_5/asyncronous_nonblocking.png" style="height400px;">
+  </div>   
+   
+   
+위에서 알아본 내용으로 블록킹과 동기에대해서 다음과 같이 정리 해 보겠습니다.  
 
-***비동기***
+> 동기 : 해당 작업에서 완료 Callback을 기다림  
+> 비동기 : 해당 작업에서 완료 Callback을 기다리지 않음. (별도의 처리)    
+>    
+> 블록킹 : Callback 이후 제어권 반환  
+> 논 블록킹 : 호출후, 제어권 바로 반환  
+  
+따라서 리액티브는, 호출후 제어권을 바로 돌려받고 해당 작업에서 Callback을 기다리지 않고 별도의 작업으로 처리하는 구조라고 이제 쉽게 이해가 가능하실것 같습니다.  
 
-동기 : 완료 Callback을 기다림.
-비동기 : 완료 Callback을 기다리지 않음. (별도의 처리)
+## 비동기 논블로킹 구현
+
+위에서 리액티브에 대해 알아보았는데, 그렇다면 실제로 어떻게 구현이 되는가에대해서 알아보도록 하겠습니다. 이 비동기, 논블로킹을 구현하기위해 일반적으로 '메시지큐'가 이용됩니다. 
+
+<div style="text-align:center; margin:50px 0;">
+<img src="https://taes-k.github.io/assets/images/trick_basic/spring_msa_5/message_queue.png" style="height400px;">
+</div>   
+  
+메시지큐를 이용한 구조는 위의 다이어그램과 같이 메시지큐를 구독하고있는 서버에서는 데이터가 들어오면 해당 데이터를 받아볼수 있는 시스템으로 구현할수 있습니다.  
+  
+특히 이 '메시지큐'를 지원하는 오픈소스 미들웨어들(RabbitMQ, ActiveMQ, Kafka 등)이 제공되고있는데 이번예제에서는 RabbitMQ를 활용하여 진행해보도록 하겠습니다.  
 
 
 ## 스프링 Webflux
