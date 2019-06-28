@@ -69,7 +69,7 @@ date: 2019.06.27
 ## rabbitMQ
 
 <div style="text-align:center; margin:50px 0;">
-<img src="https://taes-k.github.io/assets/images/trick_basic/spring_msa_5/rabbitmq_1.png" style="height:400px;">
+<img src="https://taes-k.github.io/assets/images/trick_basic/spring_msa_5/rabbitmq_1.png" style="width:100%">
 </div>   
 
 rabbitMQ는 AMQP (Advanced Message Queueing Protocol) 표준 MQ 프로토콜을 구현한 오픈소스 미들웨어로써, 위와같이 메시지 전달의 중간과정을 담당해 주면서 메시지 브로커 소프트웨어라고 불립니다.  
@@ -77,7 +77,7 @@ rabbitMQ는 AMQP (Advanced Message Queueing Protocol) 표준 MQ 프로토콜을 
 대부분의 MQ들의 처리과정이 비슷하지만, rabbitMQ의 좀 더 자세한 메시지 처리과정을 살펴보면 다음과 같습니다.  
 
 <div style="text-align:center; margin:50px 0;">
-<img src="https://taes-k.github.io/assets/images/trick_basic/spring_msa_5/rabbitmq_2.png" style="height:400px;">
+<img src="https://taes-k.github.io/assets/images/trick_basic/spring_msa_5/rabbitmq_2.png" style="width:100%">
 </div>   
 
 메시지를 전달하는 프로듀서는, Queue로 메시지를 바로 전달하는것이 아니라 Exchange에 전달하여 일련의 설정에 따라 전달하고자 하는 Queue로 라우팅 시켜주는 역할을 하게되고 해당 Queue에 전달된 메시지는 Consumer에의해 consume되는 과정으로 메시지가 전달되게 됩니다.
@@ -85,7 +85,7 @@ rabbitMQ는 AMQP (Advanced Message Queueing Protocol) 표준 MQ 프로토콜을 
 ## 스프링 클라우드 스트림
 
 <div style="text-align:center; margin:50px 0;">
-<img src="https://taes-k.github.io/assets/images/trick_basic/spring_msa_5/spring_cloud_stream.png" style="height:400px;">
+<img src="https://taes-k.github.io/assets/images/trick_basic/spring_msa_5/spring_cloud_stream.png" style="width:100%">
 </div>   
 
 스프링 클라우드에서는 메시지기반 마이크로 서비스를 구현하기위한 '스프링 클라우드 스트림'을 지원하고있습니다. 물론 해당 프레임워크를 사용안하고 자바 라이브러리를 통해 메시지큐를 연결시킬수 있지만, 선언적으로 편리하고 통합된 환경으로 연결을 지원해 줍니다. 위의 다이어그램을 보시면 발신자의 Source(입구)의 OUTPUT이 RabbitMQ와 연결되어 메세지가 RabbitMQ로 전달되고 Sink(출구)의 Input이 RabbitMQ와 연결되어 RabbitMQ에서 나온 메세지를 받을수 있도록 해줍니다.   
@@ -200,7 +200,7 @@ public class ReviewController {
 (테스트에는 이전단계에 작성했던 인증과, API-GATEWAY 를 모두 이용합니다.)  
 
 <div style="text-align:center; margin:50px 0;">
-<img src="https://taes-k.github.io/assets/images/trick_basic/spring_msa_5/call_api.png" style="height:300px;">
+<img src="https://taes-k.github.io/assets/images/trick_basic/spring_msa_5/call_api.png" style="height:300px;border:1px solid #d0d0d0">
 </div>   
  
  <div style="text-align:center; margin:50px 0;">
@@ -275,7 +275,7 @@ review-api 서버의 review 작성 api를 수행하면 news-api서버의 리스�
 ## 전체구조
 
 <div style="text-align:center; margin:50px 0;">
-<img src="https://taes-k.github.io/assets/images/trick_basic/spring_msa_5/total_diagram.png" style="height:400px;border:1px solid #d0d0d0;">
+<img src="https://taes-k.github.io/assets/images/trick_basic/spring_msa_5/total_diagram.png" style="height:150px;border:1px solid #d0d0d0;">
 </div>  
 
 ---
