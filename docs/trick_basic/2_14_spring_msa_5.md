@@ -265,7 +265,7 @@ public class MessageConsumer {
    
    
 <div style="text-align:center; margin:50px 0;">
-<img src="https://taes-k.github.io/assets/images/trick_basic/spring_msa_5/message_queue_result.png" style="height:400px;border:1px solid #d0d0d0;">
+<img src="https://taes-k.github.io/assets/images/trick_basic/spring_msa_5/message_queue_result.png" style="border:1px solid #d0d0d0;">
 </div>   
    
 review-api 서버의 review 작성 api를 수행하면 news-api서버의 리스너가 동작하여 콘솔에 메시지를 출력하는것을 확인 할 수 있습니다. 이 메시지에 뉴스의 id값을 넘겨 로직내에서 해당 뉴스의 점수를 올린다면 원하는 로직을 구현 할 수 있을 것입니다.   
