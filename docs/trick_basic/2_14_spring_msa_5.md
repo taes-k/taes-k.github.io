@@ -1,7 +1,7 @@
 ---
 layout: default
 comments: true
-title: 2.14 Spring MSA (6) -  리액티브
+title: 2.14 Spring MSA (5) -  리액티브(RabbitMQ)
 parent: 요령과 기본(Spring)
 date: 2019.06.27
 ---
@@ -10,7 +10,7 @@ date: 2019.06.27
 <div style="text-align:right; font-size:11px; color:#aaa">{{ page.date }} </div>
 ---
 
-## 2.14 Spring MSA (6) - MQ
+## 2.14 Spring MSA (5) -  리액티브(RabbitMQ)
 {: .no_toc }
 처음 MSA 포스팅에서 일체형 서비스와 비교해 서비스간의 통신으로 인한 오버헤드가 단점으로 지적된다고 말씀드렸습니다. 이 단점을 해결하기위한 스프링 MSA에서의 리액티브는 어떻게 사용되는지 알아보도록 하겠습니다.
 
