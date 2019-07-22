@@ -98,6 +98,9 @@ review 서버에도 마찬가지로 webflux를 사용하기 위한 설정을 해
 
 implementation 'org.springframework.boot:spring-boot-starter-webflux'
 ```
+  
+넌블럭 클라이언트 통신을 위해 Webclient를 사용하여 news api를 호출해주도록 하겠습니다.  
+
 
 
 ---
