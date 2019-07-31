@@ -98,15 +98,48 @@ review 서버에도 마찬가지로 webflux를 사용하기 위한 설정을 해
 
 implementation 'org.springframework.boot:spring-boot-starter-webflux'
 ```
+   
+이제, review-api 에서는 review를 작성후 news api 서비스에 review count를 증가시키는 호출을 넌블럭 통신을 통해 진행해 주도록 하겠습니다.  
   
-넌블럭 클라이언트 통신을 위해 Webclient를 사용하여 news api를 호출해주도록 하겠습니다.  
+```java
+// ReviewController.java
 
+@RequestMapping(value="/", method = RequestMethod.POST)
+public String setReview(@RequestHeader(value="Authorization") String authorization) {
+
+    /* set new review
+        set review code
+    */
+    
+    WebClient client = WebClient.builder()
+        .baseUrl("http://localhost:8090/api/news")
+        .defaultHeader("Authorization", authorization)
+        .build();
+
+    Mono<String> response = client.get().uri("/review/add?newsId=333").retrieve().bodyToMono(String.class);
+
+    System.out.println("Response : "+response.block());
+    
+    return "write review";
+}
+```  
+  
+위의 코드와 같이 리뷰를 작성후, Webclient를 통해 비동기로 news-api에 접근해 통신을 할 수 있습니다.  실제로 비동기로 작동하는지 알아보기 위해 출력한 reponse가 null이 나오는것을 통해 잘 작동하고 있음을 확인 할 수 있습니다.  
+  
+**review api result**
+<div style="text-align:center; margin:50px 0;">
+<img src="https://taes-k.github.io/assets/images/trick_basic/spring_msa_6/review_api_result.png" style="height:300px; ">
+</div>   
+  
+**news api result**
+<div style="text-align:center; margin:50px 0;">
+<img src="https://taes-k.github.io/assets/images/trick_basic/spring_msa_6/news_api_result.png style="height:300px; ">
+</div>   
 
 
 ---
-
 ## <마무리>
-
+이번 프로젝트에서는 메시지 브로커를 사용하지 않고, spring5 자체 프레임워크인 webflux를 통해 리액티브 프로젝트를 진행해 보았습니다. 아직까지는 주류를 이루고있지는 않지만, 어느정도 자리를 잡게된다면 충분히 편리하게 사용할수 있으리라 생각합니다.
 
 
 ---
