@@ -6,15 +6,16 @@
 # 'jekyll serve'. If you change this file, please restart the server process.
 
 # Site settings
-title:       Type
-email:       ''
-description: ''
+title:       Taes-k Dev-log
+email:       'cobura12@gmail.com'
+description: 'Taes-k Dev-log'
 baseurl:     '' # The subpath of your site, e.g. /blog
-url:         'https://type-jekyll.aspirethemes.com/' # The base hostname & protocol for your site
+url:         'https://taes-k.github.io/' # The base hostname & protocol for your site
 twitter:     ''
-github:      ''
+github:      'https://github.com/taes-k'
 instagram:   ''
 facebook:    ''
+images: /images/
 
 markdown:  kramdown
 permalink: pretty
