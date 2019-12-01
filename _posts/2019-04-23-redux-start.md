@@ -165,8 +165,8 @@ index에서 store를 만들어 사용해준다.
 
 
 
-![1]({{ site.images | relative_url }}/redux_start/1.png)    
-![2]({{ site.images | relative_url }}/redux_start/2.png)    
+![1]({{ site.images | relative_url }}/posts/2019-04-23-redux-start/1.png)    
+![2]({{ site.images | relative_url }}/posts/2019-04-23-redux-start/2.png)    
 
 최종 구조는 다음과 같다.  
-![3]({{ site.images | relative_url }}/redux_start/3.png)    
+![3]({{ site.images | relative_url }}/posts/2019-04-23-redux-start/3.png)    

@@ -20,7 +20,7 @@ tags: [algorithm]
 
 ### Heap 의 형태
 
-> ![1]({{site.images}}/algorithm-heap/heap_1.png)
+ ![1]({{site.images}}/posts/2019-03-15-algorithm-heap/heap_1.png)
 
 다음과 같은 형태를 띄며 (부모노드가 n) 라면, (자식노드는 2n+1)  이 된다.
 

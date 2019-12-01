@@ -126,7 +126,7 @@ ReactDom.render(<App />, document.getElementById("root"));
 </html>
 ```
 
-![1]({{ site.images | relative_url }}/react_webpakc_babel3/1.png)    
+![1]({{ site.images | relative_url }}/posts/2019-04-22-react-webpack-babel3/1.png)    
 
 
 이로써 리액트 + 웹팩 + 바벨 환경의 보일러플레이트 구축이 완료되었다.
