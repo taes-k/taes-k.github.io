@@ -1,3 +1,0 @@
-Allow: /
-Disallow: /about.html
-Sitemap: http://taes-k.github.io/sitemap.xml
