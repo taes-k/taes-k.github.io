@@ -14,9 +14,13 @@ pre {
   margin-bottom: $base-spacing-unit;
   font-size: $font-size-medium;
   line-height: $line-height-medium;
-  white-space: pre-wrap;
-  word-wrap: break-word;
+  white-space: pre;
+  box-sizing: border-box !important;
 }
+
+pre::-webkit-scrollbar {
+  display:none;
+} 
 
 li code,
 p code { padding: quarter($base-spacing-unit) half($base-spacing-unit); }

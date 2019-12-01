@@ -6,9 +6,9 @@
 # 'jekyll serve'. If you change this file, please restart the server process.
 
 # Site settings
-title:       Taes-k Dev-log
+title:       Taes-k DevLog
 email:       'cobura12@gmail.com'
-description: 'Taes-k Dev-log'
+description: 'Taes-k DevLog'
 baseurl:     '' # The subpath of your site, e.g. /blog
 url:         'https://taes-k.github.io/' # The base hostname & protocol for your site
 twitter:     ''
@@ -19,7 +19,7 @@ images: /images/
 
 markdown:  kramdown
 permalink: pretty
-paginate:  10
+paginate:  15
 
 sass:
   style: compressed
