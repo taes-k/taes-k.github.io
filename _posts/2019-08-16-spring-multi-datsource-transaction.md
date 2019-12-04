@@ -31,7 +31,8 @@ commit 중에 예외를 던지는 PlatformTransactionManager는 자동으로 다
 - 이 과정에서 Datasource 커넥션풀을 많이 차지할 수 있게되는데, 커넥션이 일어나는 시점에서 사용하도록 LazyConnectionDataSourceProxy로써 등록 해준다.
 
 ### 구현
-1. Dependency
+1. Dependency  
+
 ```
 // build.gradle
 
@@ -40,7 +41,8 @@ dependencies {
 }
 ```
 
-2. Datasource
+2. Datasource  
+
 ```
 // DatasourceFirst.java
 
@@ -90,7 +92,8 @@ Public class DataSourceSecond {
 }
 ```
 
-3. ChainedTransactionManager
+3. ChainedTransactionManager  
+
 ```
 // DatasourceSecond.java
 
@@ -114,7 +117,8 @@ Java EE Application Server에서는 전역 tranction을 지원하기 위해서, 
 Spring에서는 JNDI에서 Java EE Container가 사용 중인 DataSource를 가져와, JtaTransactionManager에 설정할 수도 있습니다.
 
 ### 구현
-1. Dependency
+1. Dependency  
+
 ```
 // build.gradle
 
@@ -123,7 +127,8 @@ dependencies {
 }
 ```
 
-2. Datasource
+2. Datasource  
+
 ```
 // Datasource.java
 
@@ -141,7 +146,6 @@ public DataSource cmsDataSource()
  
     return dataSource;
 }
-
 ``` 
   
 참고)  https://d2.naver.com/helloworld/5812258   
