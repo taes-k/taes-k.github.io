@@ -36,6 +36,11 @@ exclude:
   - vendor
   - Gemfile
   - Gemfile.lock
+# collections
+collections:
+  tags:
+    output: true
+    permalink: tags/:path/
 
 # Tags
 tag_page_dir:         tag
