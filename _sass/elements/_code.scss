@@ -8,19 +8,20 @@ code {
   background-color: $bg-color-gray;
 }
 
-pre {
-  overflow: auto;
-  padding: double($base-spacing-unit);
+div.highlight{
+  display:grid;
   margin-bottom: $base-spacing-unit;
+}
+
+pre.highlight {
+  overflow-x: auto;
+  padding: double($base-spacing-unit);
   font-size: $font-size-medium;
   line-height: $line-height-medium;
   white-space: pre;
-  box-sizing: border-box !important;
+  width:auto;
+  // box-sizing: border-box !important;
 }
-
-pre::-webkit-scrollbar {
-  display:none;
-} 
 
 li code,
 p code { padding: quarter($base-spacing-unit) half($base-spacing-unit); }
