@@ -25,3 +25,16 @@ dd, ol, ul {
   list-style-position: inside;
   margin-left: $base-spacing-unit;
 }
+
+table,td,th {
+  border : 1px solid #777
+}
+
+td,th{
+  padding-left:5px;
+  padding-left:5px;
+}
+
+th{
+background-color:#efefef
+}
