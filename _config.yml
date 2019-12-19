@@ -10,7 +10,7 @@ title:       Taes-k DevLog
 email:       'cobura12@gmail.com'
 description: 'Taes-k DevLog'
 baseurl:     '' # The subpath of your site, e.g. /blog
-url:         'https://taes-k.github.io/' # The base hostname & protocol for your site
+url:         'https://taes-k.github.io' # The base hostname & protocol for your site
 twitter:     ''
 github:      'https://github.com/taes-k'
 instagram:   ''
