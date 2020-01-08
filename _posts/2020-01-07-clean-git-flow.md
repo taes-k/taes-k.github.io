@@ -1,105 +1,83 @@
 ---
 layout: post
 comments: true
-title: Jira를 통해 스크럼 관리하기
-tags: [sw-engineering, agile, scrum, jira]
+title: clean Git-flow 소개
+tags: [git, gitflow]
 ---
 
 ### 들어가기에 앞서  
-스크럼을 적용하는데 있어서 어디서나, 어떤팀에서나 딱 알맞는 형태의 스크럼은 없습니다.  
-스크럼의 기본인 '점진적 개발'을 목표로 회고를 하며 우리팀의 상황에 맞게끔 스크럼을 점점 변형시켜 나가면서 case by team 으로 맞추어 나가야 합니다.   
-  
-이 포스팅은 앞서 정리한 scrum을 jira로 관리하기 위한 가장 기본적이면서도 구체적으로 진행할수 있는 방안을 제시해보도록 하겠습니다.  
-  
-### Jira default 이슈 종류  
-![1]({{ site.images | relative_url }}/posts/2019-12-06-sw-jira-scrum/1.png)     
-- Epic (큰틀) : 여러 스프린트에 걸쳐서 끝나지 않고, 여러 스토리들의 집합입니다.
-- Story : "{사용자} 로써 {무엇}을 하고싶다" 에 대한 액터의 유즈케이스
-- Chore : 사용자와는 직접적으로 관계되지 않는 개발 (DB 세팅, 분리 등)
-- Task : 구현에는 직접적으로 관련이 없는 업무 (문서작성 등)
-- Issue : 이슈 사항 (서버 다운, 클라우드 계약 등)
-- Bug : 테스트 엔지니어로부터 버그로 리포팅된 타입
-- Sub Task : 스토리 혹은 초어들을 개발하기 위해 진행되는 실제 세부 개발사항들
-  
-### 우리 Jira에 맞춘 이슈 정리
-![2]({{ site.images | relative_url }}/posts/2019-12-06-sw-jira-scrum/2.png)    
-- Epic (큰틀)
-- Task
-> Story : 요구사항 혹은 유저케이스 시나리오  
-> 개발 : 개발 요구사항 (chore)  
-> 버그 : 서비스 버그   
-> 작업 : 개발 구현과는 직접적으로 관련 없는 요구사항  
-> 이슈 : 서비스상의 이슈, 확인, 고려사항  
-- Sub-task
-> 개발 / 버그 / 작업 / 이슈  
 
-### Example
-- Epic : 회원가입/로그인 
-- Task 
-> 1. (Story) 사내 직원이 어드민 회원가입 할 수 있다.   
-> 2. (Task) DB 인프라 신청  
-- Sub-task 
-> 1-1. (작업) Oauth 권한신청  
-> 1-2. (개발) 회원가입 서비스 개발   
-  
-![3]({{ site.images | relative_url }}/posts/2019-12-06-sw-jira-scrum/3.png)    
-![4]({{ site.images | relative_url }}/posts/2019-12-06-sw-jira-scrum/4.png)     
+해당 포스트는 현재 저희팀에서 사용하고있는 Git flow를 소개하고자 합니다.  
+저희팀의 git flow는 GitHub flow, GitLab flow의 장점들을 합친 모델을 사용중입니다.   
 
-### 유의사항
-- 지라는 진행 프로젝트마다 별도의 프로젝트로 생성하여 관리합니다.
-- Release(버전)는 Epic 단위로 정의합니다. (Epic은 필수 기능을 중심으로 프로젝트 진행의 마일스톤으로 사용합니다.) 
-- Sprint는 Task단위로 정의합니다. (Task는 최대 3일 이내의 작업기간으로 산정합니다.)
-- Release > Epic > Sprint > Task
+(참고 1. [GitHub flow, GitLab flow 요약](https://ujuc.github.io/2015/12/16/git-flow-github-flow-gitlab-flow/))
+(참고 2. [Git flow](http://woowabros.github.io/experience/2017/10/30/baemin-mobile-git-branch-strategy.html))
+    
+---
+
+### Git branch network 
+
+![1]({{ site.images | relative_url }}/posts/2020-01-07-clean-git-flow/1.png)    
+![2]({{ site.images | relative_url }}/posts/2020-01-07-clean-git-flow/2.png)    
+
+---
+
+### 주요 Branch
+
+- work : 메인 브랜치/ 모든 작업 브랜치는 work branch 합쳐지고, 분기합니다. 해당 브랜치는 삭제될수 없는 프로젝트의 모든 작업 소스를 담고있는 메인 브랜치 입니다.  
+- develop :	배포 브랜치/ dev 환경 배포를 위한 branch  
+- test : 배포 브랜치/ test 환경 배포를 위한 branch  
+- master : 배포 브랜치/ pre, live 환경 배포를 위한 branch  
+- feature/ : 작업 브랜치 / 신규 개발을 위한 브랜치  
+- bugfix/ :	작업 브랜치 / 오류 수정을 위한 브랜치  
+- hotfix/ :	작업 브랜치 / 긴급 수정을 위한 브랜치  
+- release/ : 배포 브랜치 / Custom 배포를 위한 브랜치로써, Work 브랜치 위에서 배포가 불가능한 상황일때 사용합니다. (Cherry-pick 을 통한 선택적 배포 진행시)   
+  
+- 메인 브랜치 (work)는 PR merge만을 허용하는 정책으로, 작업 브랜치에서 작업한 내용들은 반드시 Pull-Request를 통해 메인 브랜치에 합쳐집니다.  
+- 배포 브랜치 (develop, test, master)는 언제든 삭제가 가능하고, 원하는 배포 커밋 시점에서 새로 생성을 할 수 있습니다.   
+- 작업 브랜치 (feaultre/, bugfix/, hotfix)는 메인 브랜치에 PR된 후에는 제거대상 브랜치가 됩니다.   
+
+---
+
+### Branch 정책
+
+모든 작업 브랜치는 Jira 이슈와 연동이 되어야 합니다.
 
 
-### 스크럼 진행순서
-**1\. 제품 백로그 준비**  
-***(Project Owner)***는 프로젝트 요구사항에 맞추어 Epic(큰틀)들을 생성 합니다.    
-Epic은 필수기능으로써, 프로젝트의 진행 척도를 나타낼수있는 마일스톤이 될 수 있도록 생성합니다. 
+#### 이슈관리 연동 Process
 
-**2\. 릴리즈 계획 수립**   
-***(Project Owner)***는 [1 단계]에서 생성한 Epic들을 가지고 프로젝트 릴리즈 계획을 세웁니다.
+1\. Jira 이슈 생성  
+2\. 분기점 만들기 (Jira 이슈태그 자동생성) : ex) feature/CATALOGADM-1   
+3\. 커밋 메시지에 Jira 이슈번호를 붙여 자동 연동 : ex) feat(CATALOGADM-1): 프로젝트 init  
+4\.작업 완료 후 work브랜치에 pull-request  
+5\. 작업 브랜치 제거   
 
-**3\. 스프린트 계획 수립**  
-3-1. Task 만들기  
-***(Project Owner + Scrum Master)*** 는 [2단계]에서 수립된 릴리즈 계획내에 포함된 Epic들을 세부 작업 Task로 쪼갭니다.   
-***(Scrum Master)***는 만들어진 Task를 적절한 팀원에게 배분합니다  
-배분받은 ***(스크럼팀)***은 Task의 수행시간을 예측합니다. (최대 3일 이내의 작업으로 Task가 분리되어야 합니다.)  
-  
-*(고려해야할 사항)*  
-- 팀원의 가용 시간
-- 각 Task에 대해서 수행 시간 예측
-- Task 설정시 구체적인 종결 행위를 기반으로 Task 설정 하는것이 좋습니다.
-- Task 설정시 분석,설계 / 구현 / 테스트 → 1:1:1 의 리소스 분배가 좋습니다.
-- 주요 Task에 대해서는 어떤 형식으로든지 리뷰를 하는것이 좋습니다.
-- Task 기간 설정시 20%의 버퍼를 두는것이 좋습니다.
-  
-3-2. 스프린트 만들기   
-***(Scrum Master)***는 [3-1단계] 에서 만든 Task를 2주단위의 스프린트로 조합 합니다.   
-스프린트를 만들때에는 Task의 "긴급도, 난이도"에 따라 우선순위를 두고 Task 작업 순서를 정합니다.  
-  
-![5]({{ site.images | relative_url }}/posts/2019-12-06-sw-jira-scrum/5.png)     
-  
-3-3. Task 작업   
-Task를 할당받은 (스크럼팀)은 할당받은 Task를 실제 작업의 세부 단위로 Sub-task를 작성하여 작업을 진행합니다.  
-  
-**4\. 스프린트 관리**    
-스크럼팀은 매일 오전 최대 20분 내의 일일 스크럼을 진행합니다. 일일 스크럼때는 어제 작업내용, 오늘 작업예정 내용 및 Task 종료에 필요한 시간들을 공유하고 
-***(Project Owner)***는 이슈사항 발생시 일정조정 및 요구사항의 수정 내용을 백로그에 수정 반영 합니다.   
-***(Project Owner)***는 스크럼팀의 작업 진행상황을 확인하고 Task의 상태를 설정 해 줍니다. (완료, 작업중 등..)  
-스크럼팀은 본인이 작업하는 실제 세부작업인 Sub-task들의 상태를 직접 관리 합니다.   
-  
-**5\. 스프린트 종료**    
-제 1의 조건으로 스프린트의 정해진 기간 (2주) 단위로 스프린트를 종료하도록 합니다. 만약 Task의 이슈사항으로인해 정해진 기간내에 마무리가 되지 않았다고 하면, 해당 Task를 다음 스프린트로 넘깁니다.  
-***(스크럼팀)***은 본인이 수행한 Task의 구현이 테스트까지 완료되었을때 Task가 종료되어야 합니다.  
-***(스크럼팀)***은 스프린트 종료일 오전에는 일일 스크럼대신 스프린트 리뷰를 진행하며 구체적인 테스트 결과및 데모를 수행합니다.  
-***(Project Owner)***는 완료된 스프린트의 작업사항들을 종합하여 QA를 진행합니다.  
-  
-**6\. 백로그 업데이트**    
-***(Project Owner)***는 스프린트 리뷰 완료후 리뷰과정에서 나온 추가 요건이나 오류사항, 변경상황을 반영하여 백로그를 업데이트 합니다.  
-  
-**7\. 회고**   
-***(스크럼팀)***은 단순 스프린트 작업에대한 리뷰가 아닌, 스크럼 방법론 자체에대한 리뷰를 진행합니다. 이 과정을 통해 우리 팀에 맞는 더 좋은 스크럼 프로세스를 찾고 개선해나갑니다.  
+---
 
-**8\. 스프린트 재시작**    
-스프린트 계획을 수립하는 [3 단계]부터 재시작 합니다.  
+### Rebase 정책
+
+![3]({{ site.images | relative_url }}/posts/2020-01-07-clean-git-flow/1.png)    
+![4]({{ site.images | relative_url }}/posts/2020-01-07-clean-git-flow/2.png)   
+
+작업 브랜치 → 메인 브랜치 PR시 반드시 rebase work를 통해 work 최상위로 base를 변경하고, 하나의 커밋으로 통합하여 PR을 진행합니다.   
+(git rebase -i : 커밋 통합 기능)   
+
+#### Rebase를 필수로 진행해야하는 이유
+
+- Clean branch network  
+- 메인 브랜치에 merge시, 작업자가 직접 conflict를 해결하고 PR을 진행할수 있습니다.   
+- 기능당 1-commit을 통해 1 cherry pick → 1 기능이 보장됩니다.  
+- 아무리 많은 작업자가 함께 작업을 진행해도, 브랜치 모델이 심플하게 유지되고 새로운 작업자 에게도 러닝커브가 높아지지 않습니다.  
+- 그래프가 깔끔하고 단순해져 코드흐름 파악 및 명확한 배포 시점을 정하기 용이합니다.  
+
+---
+
+### Pull Request 정책
+
+- 작업 브랜치 생성  
+- 작업 브랜치에서 개발  
+- 개발완료후 rebase (git rebase -i) → 해당과정을 통해 충돌 해결 및 하나의 커밋으로 통합  
+- 메인 브랜치로 PR  
+- 코드 리뷰 (Default reviewer 1명)  
+- 작업자가 직접 PR 승인  
+- 메인 브랜치에 머지가 완료된 작업브랜치는 제거  
