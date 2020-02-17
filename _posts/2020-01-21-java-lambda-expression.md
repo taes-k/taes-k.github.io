@@ -106,7 +106,7 @@ public static void concat(String m1, string m2, Concat func){
 
 java에서는 람다식을 더 편하게 사용 할 수 있도록 위와같이 별도의 Functional Interface를 선언하지 않고 익명함수를 사용할수 있도록 `java.util.function` 내장 함수형 인터페이스를 제공하고 있습니다.  
 
-![1]({{ site.images | relative_url }}/posts/2020-01-14-functional-interface/1.png)  
+![1]({{ site.images | relative_url }}/posts/2020-01-21-java-lambda-expression/1.png)  
 
 위처럼 굉장히 많은 interface들을 제공하고 있는데, 그중에서 많이 사용되는 interface들 몇 개만 추려서 알아보도록 하겠습니다.  
 
