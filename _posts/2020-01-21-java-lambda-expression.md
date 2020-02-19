@@ -302,6 +302,25 @@ public interface Stream<T> extends BaseStream<T, Stream<T>> {
 위 `java.util.stream`에서 확인해보면 이번에도 역시나 직감 하셨듯이 Stream 메서드들 역시 Functional interface 들을 파라미터로 받는 메서드로 구현되어 있어 람다식을 사용함을 알 수 있습니다.  
 
 ---
+### 람다식 조합
+
+java.util.function 에서 제공하는 함수들을 보면 compose, andThen defualt 메서드가 정의되어있는것을 확인 하실수 있습니다. 해당 메서드는 함수의 연결을 위해 제공되는 메서드로, 이를 통해서 고등학교때 배우셨던 `조합함수`처럼 람다식을 조합하여 사용 하실수 있습니다.  
+
+![2]({{ site.images | relative_url }}/posts/2020-01-21-java-lambda-expression/2.png)  
+
+아래는 람다식 조합을 사용한 예제 코드입니다.
+```java
+// f(g(x))
+    Function<Integer, Integer> f = x -> x+2;
+    Function<Integer, Integer> g = x -> x*2;
+
+    Function<Integer, Integer> fg1 = f.compose(g);
+    Function<Integer, Integer> fg2 = g.andThen(f);
+```
+
+위와같이 정의함 함수식을 명시적으로 조합하여 사용이 가능합니다.
+
+---
 
 ### Method Reference
 
