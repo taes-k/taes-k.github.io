@@ -228,7 +228,7 @@ public class SampleService
 위 datasource를 설정하면서 주의해야 할 내용이 있습니다.  
 RoutingDatasource를 LazyConnectionDataSourceProxy에 등록하게되는데, 이때 Bean을 초기화 하는 과정에서 등록 순서에 문제가 생기면 다음과같은 오류가 발생 할 수 있습니다.  
 
-![1]({{ site.images | relative_url }}/posts/2020-02-16-servlet-container-spring-container/1.png)  
+![1]({{ site.images | relative_url }}/posts/2020-03-11-sprinig-master-slave-dynamic-routing-datasource/1.png)  
 
 >  nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'dataSource' defined in class path resource [com/wmp/wsin/cms/config/datasource/DataSourceConfig.class]: Unsatisfied dependency expressed through method 'dataSource' parameter 0; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'routingDataSource' defined in class path resource [com/wmp/wsin/cms/config/datasource/DataSourceConfig.class]: Initialization of bean failed; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'org.springframework.boot.autoconfigure.jdbc.DataSourceInitializerInvoker': Invocation of init method failed; nested exception is org.springframework.beans.factory.BeanCurrentlyInCreationException: Error creating bean with name 'dataSource': Requested bean is currently in creation: Is there an unresolvable circular reference?
 
