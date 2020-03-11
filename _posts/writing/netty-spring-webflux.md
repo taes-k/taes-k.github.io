@@ -1,14 +1,27 @@
 ---
 layout: post
 comments: true
-title: Tomcat, Spring MVC의 동작 과정
+title: Netty, Spring WebFlux의 동작 과정
 tags: [java, tomcat, spring]
 ---
 
-(부제 : 스프링 웹 프로그래밍을 하는 당신, 클라이언트의 요청을 어떻게 처리하는지 알고 있는가?) 
- 
+
 ---
-### Tomcat 
+
+지난 포스팅에서는 Spring의 기본조합, Tomcat + SpringMVC 에서의 동작 처리과정을 알아보았습니다.  
+
+2017년 Spring5가 공개된후 Spring은 기존 SpringMVC 이외에 Reactive를 위한 Spring WebFlux를 지원하고 있습니다. Spring WebFlux를 사용하게 되면 기존의 Tomcat 서버가 아닌 Netty 임베디드 서버를 지원하여 기존과 Tomcat과는 다른 동작 프로세스를 가지게 되는데 이에대해 알아보도록 하겠습니다.
+
+http://wiki.sys4u.co.kr/pages/viewpage.action?pageId=8552586
+
+--
+
+### Netty  
+
+Netty는 자바기반 논블록킹 네트워크 프레임워크.
+웹서버의 역할을 합니다.
+
+
 
 일반적으로 탐캣(Tomcat)은 'WAS(Web Application Server)'의 대표적인 미들웨어 서비스로 알려져있습니다.  
 
@@ -184,7 +197,9 @@ Controller에서 view를 return 했을경우 해당하는 view를 찾아 client�
 
 > 1. Web server init
 > 2. Root WebApplicationContext 로딩
-> 3. Web server start
+> 3. Web server start 
+
+
 
 *Client 호출 단계*  
 
