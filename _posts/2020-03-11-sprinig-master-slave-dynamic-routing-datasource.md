@@ -223,6 +223,8 @@ public class SampleService
 
 위와같이 Create/Update Transaction이 필요한곳에는 `readOnly = false (default)` 를 사용해주고, 단순 Read만 필요할때는 `readOnly = true`를 명시해주어 Slave Datasource를 사용 할 수 있습니다.
 
+---
+
 #### 주의사항
 
 위 datasource를 설정하면서 주의해야 할 내용이 있습니다.  
@@ -232,4 +234,75 @@ RoutingDatasource를 LazyConnectionDataSourceProxy에 등록하게되는데, 이
 
 >  nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'dataSource' defined in class path resource [com/wmp/wsin/cms/config/datasource/DataSourceConfig.class]: Unsatisfied dependency expressed through method 'dataSource' parameter 0; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'routingDataSource' defined in class path resource [com/wmp/wsin/cms/config/datasource/DataSourceConfig.class]: Initialization of bean failed; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'org.springframework.boot.autoconfigure.jdbc.DataSourceInitializerInvoker': Invocation of init method failed; nested exception is org.springframework.beans.factory.BeanCurrentlyInCreationException: Error creating bean with name 'dataSource': Requested bean is currently in creation: Is there an unresolvable circular reference?
 
-dataSource bean을 등록하는과정에서 위 이미지와 같이 무한 loop를 돌면서 bean 등록에 실패하게되어 생기는 오류입니다. 해당 오류를 방지하기 위해서 Datasource를 설정하는 코드에서 `@DependsOn({"routingDataSource"})`를 선언해주어 의존 관계를 명시 해주는 이유 입니다.
+dataSource bean을 등록하는과정에서 위 이미지와 같이 무한 loop를 돌면서 bean 등록에 실패하게되어 생기는 오류입니다. 해당 오류를 방지하기 위해서 Datasource를 설정하는 코드에서 `@DependsOn({"routingDataSource"})`를 선언해주어 의존 관계를 명시 해주는 이유 입니다.  
+  
+---
+
+#### datasource 분기 테스트  
+
+DynamicRoutingDatasource를 다양한 테스트케이스들을 통해서 직접 테스트한 결과를 공유합니다.  
+  
+
+***Test Case1***  
+
+- @Transactional(readOnly=true) 설정시 insert/update/delete block 되는지 여부? or Exception 발생?  
+
+> → Exception 발생 
+```
+### Error updating database.  Cause: java.sql.SQLException: Connection is read-only. Queries leading to data modification are not allowed\n### The error may exist in file [/Users/we/Documents/git_repo/wsin-cms/wsin-catalog-cms/build/resources/main/mybatis/mapper/sample/SampleMapper.xml]\n### The error may involve defaultParameterMap\n### The error occurred while setting parameters\n### SQL: INSERT INTO tx_test_table(test_cd, test_nm, test_dtl, reg_id)         VALUES (?, ?, ?, ?)\n### Cause: java.sql.SQLException: Connection is read-only. Queries leading to data modification are not allowed\n; Connection is read-only. Queries leading to data modification are not allowed; nested exception is java.sql.SQLException: Connection is read-only. Queries leading to data modification are not allowed
+```
+
+@Transactional(readOnly=true) → JDBC Connection.setReadOnly(true)를 호출합니다.  
+이는 단지 힌트일 뿐이며 실제 DB를 read-only 트랜잭션으로 생성할지 여부는 JDBC 드라이버에 따라 달라지고 행위도 데이터 계층 프레임워크의 구현여부에 따라 달라질 수 있습니다.
+MySQL의 경우 5.6.5 버전 부터 지원합니다.
+
+
+***Test Case2***  
+
+- @Transactional() 메소드에서 @Transactional(readOnly = true) 메소드를 호출.
+- case 2-1 : 서로 다른 클래스에서 호출시 @Transactional(readOnly = true)  메소드가 Slave DB로 연결되는지 여부?  
+
+> → X, master datasource로 모두 실행됨
+
+- case 2-2 : 같은 클래스내에서 호출시 @Transactional(readOnly = true)  메소드가 Slave DB로 연결되는지 여부?  
+
+> → X, master datasource로 모두 실행됨
+
+
+***Test Case3***  
+
+- @Transactional(readOnly = true) 메소드가 @Transactional() 메소드 호출.  
+- case 3-1 : 서로 다른 클래스에서 호출시  @Transactional() 메소드가 Master DB로 연결되는지 여부?  
+> → X, slave datasource로 모두 실행됨 → read-only 에러발생
+
+- case 3-2 : 같은 클래스내에서 호출시  @Transactional() 메소드가 Master DB로 연결되는지 여부?  
+> → X, slave datasource로 모두 실행됨 → read-only 에러발생  
+
+
+***Test Case4***  
+
+- @Transactional() 메소드에서 @Transactional(propagation = REQUIRED_NEW, readOnly = true) 메소드 호출  
+- case 4-1 : 서로 다른 클래스에서 호출시  @Transactional(readOnly = true)  메소드가 Slave DB로 연결되는지 여부?
+> → O, 자식 Transaction에서 에러 발생시 부모 Transaction 까지 에러 전달되어 Rollback됨.
+
+- case 4-2 : 같은 클래스내에서 호출시  @Transactional(readOnly = true)  메소드가 Slave DB로 연결되는지 여부?
+> → X, master datasource로 모두 실행됨
+
+
+***Test Case5***  
+
+- @Transactional(readOnly = true) 메소드에서 @Transactional(propagation = REQUIRED_NEW) 메소드 호출
+- case 5-1 : 서로 다른 클래스에서 호출시 Datasource 분기 일어나는지 여부?  
+> → O, read : slave datasource, Insert : master datasource
+
+- case 5-2 : 같은 클래스내에서 호출시 Datasource 분기 일어나는지 여부?  
+> → X, slave datasource로 모두 실행됨 → read-only 에러발생
+
+
+**테스트 결과**  
+
+원하는대로 Master/Slave를 분기하여 사용하기 위해서는 일반적인 선언형 Transaction인 @Transactional 사용에 주의를 해서 사용 하셔야합니다.  
+
+- readOnly = true 사용시 Read를 제외한 Modify 관련 쿼리는 실행 되지 않음.
+- AOP 방식의 Annotation이기 때문에 동일한 클래스 호출시 Transactional 분기 일어나지 않음.  
+- Propagation 옵션 고려해서 사용 할 것
