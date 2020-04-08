@@ -298,6 +298,11 @@ MySQL의 경우 5.6.5 버전 부터 지원합니다.
 - case 5-2 : 같은 클래스내에서 호출시 Datasource 분기 일어나는지 여부?  
 > → X, slave datasource로 모두 실행됨 → read-only 에러발생
 
+***Test Case6***  
+
+- @Transactional() Service메소드에서 @Transactional(propagation = REQUIRED_NEW, readOnly = true) Mapper 메소드 호출시 readOnly 메서드만 Slave DB로 연결되는지 여부?
+> → O, read : slave datasource
+
 
 **테스트 결과**  
 
