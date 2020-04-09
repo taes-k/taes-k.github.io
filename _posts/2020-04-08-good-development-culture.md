@@ -132,7 +132,7 @@ tags: []
 
 - 도입효과
 
-![3]({{ site.images | relative_url }}/posts2020-04-08-good-development-culture/3.jpg)  
+![3]({{ site.images | relative_url }}/posts/2020-04-08-good-development-culture/3.jpg)  
 
 (위 사진은 저희 팀에서 실제로 작업중인 프로젝트의 테스트 캡쳐 사진입니다.)   
 
