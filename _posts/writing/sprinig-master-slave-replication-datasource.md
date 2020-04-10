@@ -7,15 +7,15 @@ tags: [spring, mysql]
 
 ### DB Replication
 
-서비스를 운영하면서 DB의 부하를 줄이기 위한 방법으로 DB Replication을 통해 쿼리의 대부분을 차지하는 read 작업을 Slave DB를 사용하게끔 하여 부하를 분산 시킬수 있습니다. Read의 부하가 큰 서비스의 경우 Slave를 여러개 만들어 사용하는것도 가능합니다.
+서비스를 운영하면서 DB의 부하를 줄이기 위한 방법으로 DB Replication을 통해 쿼리의 대부분을 차지하는 read 작업을 Slave DB를 사용하게끔 하여 부하를 분산 시킬수 있습니다. Read의 부하가 큰 서비스의 경우 Slave를 여러개 만들어 사용하는것도 가능합니다. 
 
 ---
 
 ### Spring multi-datasource
 
-위와 같은 이유로써 Master/ Slave를 나누어진 DB를 Spring에서 사용하기 위해서는 가장 간단한 생각으로는, 두개를 별개의 Datasource로 등록하여 Create, Update, Delete 작업은 Master Datasource에서, Read작업은 Slave Datasource에서 작업하도록 환경을 구축 할 수 있습니다.  
+위와 같은 이유로써 Master/ Slave를 나누어진 DB를 Spring에서 사용하기 위해서는 가장 간단한 생각으로는, 두개를 별개의 Datasource로 등록하여 Create, Update, Delete 작업은 Master Datasource에서, Read작업은 Slave Datasource에서 작업하도록 환경을 구축 할 수 있습니다.    
   
-아래는 multi-datsource를 설정한 예제입니다.  
+아래는 multi-datsource를 설정한 예제입니다.    
 
 ```java
 // MasterDataSourceConfig.java
