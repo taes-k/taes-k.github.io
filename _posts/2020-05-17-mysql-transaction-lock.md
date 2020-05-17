@@ -64,10 +64,10 @@ Lock을 설명하기 위해 다음과 같은 예시 테이블과 데이터가 �
 
 ```sql
 SELECT * FROM a_table WHERE pk=10 LOCK IN SHARE MODE  
--> pk=10 하나의 레코드에 S-Lock이 걸림  
+## -> pk=10 하나의 레코드에 S-Lock이 걸림  
   
 UPDATE a_table SET id='taes' WHERE name='김수정'  
--> id='taes' 하나의 레코드에 X-Lock이 걸림
+## -> id='taes' 하나의 레코드에 X-Lock이 걸림
 ```
 
 **2\. Gap Lock**  
@@ -80,12 +80,12 @@ UPDATE a_table SET id='taes' WHERE name='김수정'
 
 ```sql
 SELECT * FROM a_table WHERE pk BETWEEN 10 AND 15 FOR UPDATE;  
-위 쿼리로 다음과같은 gap 들에 X-Lock이 설정됩니다.
-- pk < 10 (최초레코드 이전의 gap)
-- 10 < pk < 11
-- 11 < pk < 13
-- 13 < pk < 14
-- 14 < pk < 20 (마지막레코드 이후의 gap)
+## 위 쿼리로 다음과같은 gap 들에 X-Lock이 설정됩니다.
+## - pk < 10 (최초레코드 이전의 gap)
+## - 10 < pk < 11
+## - 11 < pk < 13
+## - 13 < pk < 14
+## - 14 < pk < 20 (마지막레코드 이후의 gap)
 ```
 
 다음과같은 상황에서는 Gap lock은 설정되지 않습니다.
@@ -95,9 +95,9 @@ SELECT * FROM a_table WHERE pk BETWEEN 10 AND 15 FOR UPDATE;
 
 ```sql
 SELECT * FROM a_table WHERE id='taes' FOR UPDATE;
--> gap lock 설정되지 않음
+## -> gap lock 설정되지 않음
 SELECT * FROM a_table WHERE name='김태성' FOR UPDATE;
--> name_number_unq_idx 에서 gap lock 설정 될 수 있음
+## -> name_number_unq_idx 에서 gap lock 설정 될 수 있음
 ```
 
 **3\. Next-key Lock**  
@@ -107,13 +107,13 @@ Next-key Lock은 위에서 알아본 record lock과 gap lock을 함께 사용하
 
 ```sql
 SELECT * FROM a_table WHERE pk BETWEEN 10 AND 15 FOR UPDATE; 
-위 쿼리로 다음과같은 gap 들에 X-Lock이 설정됩니다.
-- pk = 10, 11, 13, 14 [record x-lock]
-- pk < 10 (최초레코드 이전 gap) [gap x-lock]
-- 10 < pk < 11 [gap x-lock]
-- 11 < pk < 13 [gap x-lock]
-- 13 < pk < 14 [gap x-lock]
-- 14 < pk < 20 (마지막레코드 이후 gap) [gap x-lock]
+## 위 쿼리로 다음과같은 gap 들에 X-Lock이 설정됩니다.
+## - pk = 10, 11, 13, 14, 20 [record x-lock]
+## - pk < 10 (최초레코드 이전 gap) [gap x-lock]
+## - 10 < pk < 11 [gap x-lock]
+## - 11 < pk < 13 [gap x-lock]
+## - 13 < pk < 14 [gap x-lock]
+## - 14 < pk < 20 (마지막레코드 이후 gap) [gap x-lock]
 ```
 
 > By default, InnoDB operates in REPEATABLE READ transaction isolation level. In this case, InnoDB uses next-key locks for searches and index scans, which prevents phantom rows (see Section 14.7.4, “Phantom Rows”).
