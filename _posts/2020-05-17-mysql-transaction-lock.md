@@ -1,8 +1,8 @@
 ---
 layout: post
 comments: true
-title: Mysql innoDB Lock과 REAPEATABLE READ에서 발생 할 수 있는 LOCK WAIT, DEADLOCK
-tags: [mysql, lock]
+title: Mysql innoDB Lock, isolation level과 Lock 경쟁
+tags: [mysql, lock, isolation-level]
 ---
 
 ### InnoDB Lock
