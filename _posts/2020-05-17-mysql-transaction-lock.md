@@ -349,3 +349,87 @@ WHERE pk = 13;
 상황1과 비슷하게, `UPDATE JOIN` 구문을 사용할시에도 join target이 되는 테이블에 S-Lock이 걸리게 됩니다.
 
 ![8]({{ site.images | relative_url }}/posts/2020-05-17-mysql-transaction-lock/8.png)    
+
+#### Lock 경쟁 발생 가능 상황 5.
+
+이번 케이스는 꽤나 흔하게 발생 가능한 상황입니다.  
+innoDB의 lock은 index record 및 gap에 걸린다고 위에서 정리를 했는데, 정확한 인덱스를 타지 못하는 쿼리를 작성시 엉뚱한 레코드에 락이 걸리는 상황이 발생 할 수 있습니다.  
+
+이번 케이스를 위한 별도의 예시 테이블을 생성해 보도록 하겠습니다.  
+
+
+> Table Name : b_table
+> 
+> |pk|batch_seq|id|type|type1|cnt| 
+> |:-:|:-:|:-:|:-:|:-:|:-:|
+> |1|1|a|1|2|0|
+> |2|1|b|1|2|0|
+> |3|1|c|1|2|0|
+> |4|1|a|1|1|0|
+> |5|1|b|1|1|0|
+> |6|1|c|1|1|0|
+> |7|1|a|2|1|0|
+> |8|1|b|2|1|0|
+> |9|1|c|2|1|0|
+> |10|1|a|2|2|0|
+> |11|1|b|2|2|0|
+> |12|1|c|2|2|0|
+> |13|2|a|1|2|0|
+> |14|2|b|1|2|0|
+> |15|2|c|1|2|0|
+> |16|2|a|1|1|0|
+> |17|2|b|1|1|0|
+> |18|2|c|1|1|0|
+> |19|2|a|2|1|0|
+> |20|2|b|2|1|0|
+> |21|2|c|2|1|0|
+> |22|2|a|2|2|0|
+> |23|2|b|2|2|0|
+> |24|2|c|2|2|0|
+> - pk_idx(pk)
+> - batch_seq_idx(batch_seq)
+
+위 테이블은 배치성 테이블로, batch_seq, id, type, type1이 조합되어 유니크한 데이터를 만들어내는 예시테이블입니다. 위 테이블이 있다고 가정하고 쿼리를 실행시켜 보도록 하겠습니다.
+
+
+```sql
+#SESSION-1
+UPDATE b_table
+SET cnt = 7
+WHERE batch_seq = 1
+    AND id = 'b' 
+    AND type = 1
+    AND type2 = 2
+
+#SESSION-2
+UPDATE b_table
+SET cnt = 7
+WHERE batch_seq = 1
+    AND id = 'b' 
+    AND type = 2
+    AND type2 = 1
+```
+
+위 쿼리를 보면, `SESSION-1`은 pk=2인 레코드, `SESSION-2`는 pk=8인 레코드를 수정함으로써 레코드 락은 물론이고 gap lock의 경쟁또한 없을듯하나 실제로 쿼리를 실행시켜보면 다음과 같습니다.  
+
+![9]({{ site.images | relative_url }}/posts/2020-05-17-mysql-transaction-lock/9.png)  
+
+위 결과를 보면 우선 Lock이 잡혔습니다. 좀더 자세히 살펴보자면 `PRIMARY` index가 잡혔고, 상상치도 못하게도 pk=1 레코드에서 lock경쟁이 일어났습니다.  
+
+`SESSION-2`의 쿼리를 다음과같이 바꾸어도 똑같은 lock이 발생합니다.  
+
+```sql
+#SESSION-2
+UPDATE b_table
+SET cnt = 7
+WHERE batch_seq = 2
+    AND id = 'c' 
+    AND type = 2
+    AND type2 = 2
+```
+
+실제로는 유니크한 값을 갖는 조건들 이지만, 해당 테이블에는 유니크임을 인지할수있는 인덱스가 없기때문에 lock이 어디에 걸릴지 예측하기는 쉽지 않을겁니다. 
+
+특히나 배치성 테이블의 경우 멀티 쓰레드로 같은 쿼리가 동작하면서 예상치 못한 lock 경쟁으로 인해 데드락이 일어날 수 있기에 더욱이 잘 고려해야 할 것 입니다.  
+
+이러한 lock경쟁을 피하기 위해서는 정확한 유니크 인덱스를 생성해 주던가, pk를 이용해 탈 수 있도록 쿼리를 작성해줘야 합니다.
