@@ -66,7 +66,7 @@ Lock을 설명하기 위해 다음과 같은 예시 테이블과 데이터가 �
 SELECT * FROM a_table WHERE pk=10 LOCK IN SHARE MODE  
 ## -> pk=10 하나의 레코드에 S-Lock이 걸림  
   
-UPDATE a_table SET id='taes' WHERE name='김수정'  
+UPDATE a_table SET name='김수정' WHERE id='taes'
 ## -> id='taes' 하나의 레코드에 X-Lock이 걸림
 ```
 
@@ -80,6 +80,7 @@ UPDATE a_table SET id='taes' WHERE name='김수정'
 
 ```sql
 SELECT * FROM a_table WHERE pk BETWEEN 10 AND 15 FOR UPDATE;  
+
 ## 위 쿼리로 다음과같은 gap 들에 X-Lock이 설정됩니다.
 ## - pk < 10 (최초레코드 이전의 gap)
 ## - 10 < pk < 11
@@ -96,6 +97,7 @@ SELECT * FROM a_table WHERE pk BETWEEN 10 AND 15 FOR UPDATE;
 ```sql
 SELECT * FROM a_table WHERE id='taes' FOR UPDATE;
 ## -> gap lock 설정되지 않음
+
 SELECT * FROM a_table WHERE name='김태성' FOR UPDATE;
 ## -> name_number_unq_idx 에서 gap lock 설정 될 수 있음
 ```
