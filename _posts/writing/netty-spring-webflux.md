@@ -191,7 +191,7 @@ Controller에서 view를 return 했을경우 해당하는 view를 찾아 client�
 
 먼저, Tomcat을 실행하면 로그를 통해 서비스를 위해 어떤 순서로 세팅이 이루어지는지 확인 하실수 있습니다. (Debug log)
 
-![5]({{ site.images | relative_url }}/posts/2020-02-16-servlet-container-spring-container/5.png) 
+![5]({{ site.images | relative_url }}/posts/2020-02-16-servlet-container-spring-container/5.png)  
 
 *Server start 단계*  
 
