@@ -353,16 +353,16 @@ stage('comment bitbucket') {
         credentialsId: 'ci_searchop',
         commentTemplate: 
             """
-            =====================================================
+                =====================================================
 
-            [ \{{violation.reporter\}} ]
-            [ \{{#violation.rule\}}\{{violation.severity\}} - \{{violation.rule\}}\{{/violation.rule\}} ]
+                [ {\{violation.reporter}\} ]
+                [ {\{#violation.rule}\}{\{violation.severity}\} - {\{violation.rule}\}\{\{violation.rule}\} ]
 
-            =====================================================
+                =====================================================
 
-            \{{violation.message\}}
+                {\{violation.message}\}
 
-            =====================================================
+                =====================================================
             """,
         violationConfigs: [
             // Many more formats available, check https://github.com/tomasbjerre/violations-lib
@@ -438,17 +438,17 @@ node {
                 projectKey: '$PROJECT_KEY', // Use environment variable here
                 pullRequestId: '$PULL_REQUEST_ID', // Use environment variable here
                 repoSlug: '$REPO_SLUG', // Use environment variable here
-                credentialsId: 'ci_searchop',
+                credentialsId: 'jenkins-credential',
                 commentTemplate: 
                     """
                     =====================================================
 
-                    [ \{{violation.reporter\}} ]
-                    [ \{{#violation.rule\}}\{{violation.severity\}} - \{{violation.rule\}}\{{/violation.rule\}} ]
+                    [ {\{violation.reporter}\} ]
+                    [ {\{#violation.rule}\}{\{violation.severity}\} - {\{violation.rule}\}\{\{violation.rule}\} ]
 
                     =====================================================
 
-                    \{{violation.message\}}
+                    {\{violation.message}\}
 
                     =====================================================
                     """,
