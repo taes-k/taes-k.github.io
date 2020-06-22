@@ -1,7 +1,7 @@
 ---
 layout: post
 comments: true
-title: Scope 에 따른 Spring bean life-cycle
+title: Scope에 따른 Spring bean life-cycle
 tags: [spring, mysql]
 ---
 

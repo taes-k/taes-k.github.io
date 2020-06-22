@@ -1,7 +1,7 @@
 ---
 layout: post
 comments: true
-title: [Jenkins] 내 PR을 자동으로 코드리뷰 받게하자! 
+title: Jenkins - 내 PR을 자동으로 코드리뷰 받게하자! 
 tags: [jenkins, sonarqube, checkstyle, ci]
 --- 
 
