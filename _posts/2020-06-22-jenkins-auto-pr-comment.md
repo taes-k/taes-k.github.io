@@ -10,16 +10,18 @@ tags: [jenkins, sonarqube, checkstyle, ci]
 들어가기 앞서서, `CI`에대해 짧게나마 설명을 드리고 가도록 하겠습니다.  
 `Continuous Integration`약어인 `CI`는 일반적으로 `지속적 통합`이라는 용어로 번역되는데, 이용어의 유래는 위키백과에 잘 설명되어있어 내용을 발췌합니다. 
 
-> 소프트웨어 개발에서 각 소프트웨어 개발자가 작업한 변경점을 프로젝트의 원래 소스 코드에 자주, 빠르게 통합하는 것이다.
-> 
-> 개발자들이 저장소에 코드를 제출하려면, 먼저 자신이 코드를 받았던 때부터 현재까지 저장소 코드의 변경 내용을 자신의 코드에 반영되도록 자신의 코드를 업데이트한 후 자신의 코드를 제출해야 한다. 저장소에 변경된 내용이 많을수록, 개발자들이 자신의 작업 내용을 제출하기 전에 해야 할 일이 많아진다.
->
-> 언젠가는 저장소가 개발자들의 베이스라인과는 너무 많이 달라지게 되는 "통합의 지옥" 이라 불리는 상황에 빠지게 된다. 이 경우, 작업하는 시간보다 작업 내용을 통합하는데 걸리는 시간이 더 걸리게 되어, 최악의 경우 개발자들이 자신들의 변경 내용들을 취소하고 작업들을 완전히 처음부터 다시하는 것이 나을 수도 있다.
-> 
-> 지속적인 통합은 초기에 그리고 자주 통합해서 "통합의 지옥"의 함정을 피하는 것을 내포하고 있다.  
-> 지속적인 통합은 재작업을 줄여서 비용과 시간을 줄이는데 초점이 맞추어져 있다.
-> 
-> https://ko.wikipedia.org/wiki/%EC%A7%80%EC%86%8D%EC%A0%81_%ED%86%B5%ED%95%A9
+```
+소프트웨어 개발에서 각 소프트웨어 개발자가 작업한 변경점을 프로젝트의 원래 소스 코드에 자주, 빠르게 통합하는 것이다.
+
+개발자들이 저장소에 코드를 제출하려면, 먼저 자신이 코드를 받았던 때부터 현재까지 저장소 코드의 변경 내용을 자신의 코드에 반영되도록 자신의 코드를 업데이트한 후 자신의 코드를 제출해야 한다. 저장소에 변경된 내용이 많을수록, 개발자들이 자신의 작업 내용을 제출하기 전에 해야 할 일이 많아진다.
+
+언젠가는 저장소가 개발자들의 베이스라인과는 너무 많이 달라지게 되는 "통합의 지옥" 이라 불리는 상황에 빠지게 된다. 이 경우, 작업하는 시간보다 작업 내용을 통합하는데 걸리는 시간이 더 걸리게 되어, 최악의 경우 개발자들이 자신들의 변경 내용들을 취소하고 작업들을 완전히 처음부터 다시하는 것이 나을 수도 있다.
+ 
+지속적인 통합은 초기에 그리고 자주 통합해서 "통합의 지옥"의 함정을 피하는 것을 내포하고 있다.  
+지속적인 통합은 재작업을 줄여서 비용과 시간을 줄이는데 초점이 맞추어져 있다.
+
+https://ko.wikipedia.org/wiki/%EC%A7%80%EC%86%8D%EC%A0%81_%ED%86%B5%ED%95%A9
+```
 
 이제는 대부분의 현업 개발자 분들이라면 이미 사내 시스템에 `CI,CD`가 구성이 되어 있으실거라 생각합니다.  
 
@@ -39,15 +41,16 @@ tags: [jenkins, sonarqube, checkstyle, ci]
 
 ### 시나리오 
 
-파이프라인을 구축하기 앞어서, 제가 구성하고자 하는 시나리오를 설명드리겠습니다.  
+CI를 구축하기 앞서서, 제가 구상하고 있는 시나리오는 다음과 같습니다.
 
-1. 우리팀에서 사용중인 Git-flow에 따라 ([참조](https://taes-k.github.io/2020/01/07/clean-git-flow/)),  `feature` 브랜치에서 작업한 커밋들을 `work` 브랜치로 `PR`을 요청할때 
 
-2. 해당 소스의 `build`가 성공하는지 확인하고, 만약 실패한다면 `PR Merge`를 막을 수 있어야 한다.
-
-3. `build`가 성공한다면 팀 코드 컨벤션 체크를 하고 `PR`에 자동으로 `Comment`를 달아주어 동료 리뷰어들이 컨벤션을 리뷰하는일이 없도록 한다.
-
-4. 정적분석툴을 사용하여 나온 `'악취 코드'`들을 `PR`에 자동으로 `Comment`를 달아주어 별도의 사이트로 이동하지 않고 코드리뷰 페이지에서 바로 확인 할수 있게한다.
+> 1\. 우리팀에서 사용중인 Git-flow에 따라 ([참조](https://taes-k.github.io/2020/01/07/clean-git-flow/)),  `feature` 브랜치에서 작업한 커밋들을 `work` 브랜치로 `PR`을 요청할때 
+> 
+> 2\. 해당 소스의 `build`가 성공하는지 확인하고, 만약 실패한다면 `PR Merge`를 막을 수 있어야 한다.
+> 
+> 3\. `build`가 성공한다면 팀 코드 컨벤션 체크를 하고 `PR`에 자동으로 `Comment`를 달아주어 동료 리뷰어들이 컨벤션을 리뷰하는일이 없도록 한다.
+> 
+> 4\. 정적분석툴을 사용하여 나온 `'악취 코드'`들을 `PR`에 자동으로 `Comment`를 달아주어 별도의 사이트로 이동하지 않고 코드리뷰 페이지에서 바로 확인 할수 있게한다.
 
 ---
 
@@ -273,18 +276,18 @@ catch
 ```
 
 ```
-    stage ('checkstyle') {
-        sh '''
-        {
-        ./gradlew clean -x test check \
-        && curl -X POST -u "$USER" {bitbucket-url}/rest/api/1.0/projects/$PROJECT_KEY/repos/$REPO_SLUG/pull-requests/$PULL_REQUEST_ID/comments -d '{"text":"[CHECKSTYLE] SUCCESS"}' -H 'Content-Type: application/json' 
-        }||\
-        {
-        curl -X POST -u "$USER" {bitbucket-url}/rest/api/1.0/projects/$PROJECT_KEY/repos/$REPO_SLUG/pull-requests/$PULL_REQUEST_ID/comments -d '{"text":"[CHECKSTYLE] FAILED"}' -H 'Content-Type: application/json'; 
-        exit 1;
-        }
-        '''
+stage ('checkstyle') {
+    sh '''
+    {
+    ./gradlew clean -x test check \
+    && curl -X POST -u "$USER" {bitbucket-url}/rest/api/1.0/projects/$PROJECT_KEY/repos/$REPO_SLUG/pull-requests/$PULL_REQUEST_ID/comments -d '{"text":"[CHECKSTYLE] SUCCESS"}' -H 'Content-Type: application/json' 
+    }||\
+    {
+    curl -X POST -u "$USER" {bitbucket-url}/rest/api/1.0/projects/$PROJECT_KEY/repos/$REPO_SLUG/pull-requests/$PULL_REQUEST_ID/comments -d '{"text":"[CHECKSTYLE] FAILED"}' -H 'Content-Type: application/json'; 
+    exit 1;
     }
+    '''
+}
 ```
 `checkstyle`에서 수행 결과로 나온 이슈들은 '/build/checkstyle' 폴더 내부에 .xml 파일로 남게됩니다.  
 해당 스테이지에서 나온 xml파일을 파싱하여 `PR`에 comment를 남길 예정입니다.  
@@ -352,12 +355,12 @@ stage('comment bitbucket') {
             """
             =====================================================
 
-            [ {{violation.reporter}} ]
-            [ {{#violation.rule}}{{violation.severity}} - {{violation.rule}}{{/violation.rule}} ]
+            [ \{{violation.reporter\}} ]
+            [ \{{#violation.rule\}}\{{violation.severity\}} - \{{violation.rule\}}\{{/violation.rule\}} ]
 
             =====================================================
 
-            {{violation.message}}
+            \{{violation.message\}}
 
             =====================================================
             """,
@@ -440,12 +443,12 @@ node {
                     """
                     =====================================================
 
-                    [ {{violation.reporter}} ]
-                    [ {{#violation.rule}}{{violation.severity}} - {{violation.rule}}{{/violation.rule}} ]
+                    [ \{{violation.reporter\}} ]
+                    [ \{{#violation.rule\}}\{{violation.severity\}} - \{{violation.rule\}}\{{/violation.rule\}} ]
 
                     =====================================================
 
-                    {{violation.message}}
+                    \{{violation.message\}}
 
                     =====================================================
                     """,
