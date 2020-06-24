@@ -15,7 +15,7 @@ tags: [spring, mysql]
 
 위와 같은 이유로써 Master/ Slave를 나누어진 DB를 Spring에서 사용하기 위해서는 가장 간단한 생각으로는, 두개를 별개의 Datasource로 등록하여 Create, Update, Delete 작업은 Master Datasource에서, Read작업은 Slave Datasource에서 작업하도록 환경을 구축 할 수 있습니다.    
   
-아래는 multi-datsource를 설정한 예제입니다.    
+아래는 multi-datsource를 설정한 예제입니다.     
 
 ```java
 // MasterDataSourceConfig.java
