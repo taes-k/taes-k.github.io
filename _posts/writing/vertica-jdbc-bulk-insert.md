@@ -8,7 +8,7 @@ tags: [vertica, jdbc]
 ### vertica bulk insert
 
 일반적으로 사용되는 OLTP(OnLine Transaction Processing)성 DB와는 다르게, Vertica는 OLAP(OnLine Analytical Processing)성 DB로, 대량데이터 처리에 초점이 맞추어져 있습니다. 따라서 서비스를 설계 할 때에도 이러한 DB의 특성에 맞추어 설계를 해야하는데, 예를 들어 MySQL에서 다량의 데이터를 insert를 한다면 다음과같은 쿼리를 사용하게 될것입니다.  
-
+ 
 ```sql
 INSERT INTO SAMPLE_TABLE(?,?,?)
 VALUES
@@ -43,8 +43,7 @@ COPY customers FROM '/data/customers.txt' DELIMITER '|' NULL '' DIRECT ENFORCELE
 ```
 
 위와같은 구문을 통해서 별다른 처리없이 File 데이터를 bulk-load 할 수 있습니다.  
-
-아래 소개해드릴 여러 방법들도 내부적으로는 COPY구문으로 변환하여 데이터를 일괄처리하게 됩니다.  
+아래 소개해드릴 JDBC를 활용한 방법들도 Vertica 내부적으로는 COPY구문으로 변환하여 데이터를 일괄처리하게 됩니다.  
 
 ---
 ### JDBC PreparedmentState
@@ -86,7 +85,15 @@ COPY customers FROM '/data/customers.txt' DELIMITER '|' NULL '' DIRECT ENFORCELE
     }
 ```
 
-JDBC preparedmentState `executeBatch`를 통해 insert를 하게되면 내부적으로 `COPY` 구문으로 변경해 bulk-loading을 하게 됩니다.
+JDBC preparedmentState `executeBatch`를 통해 insert를 하게되면 내부적으로 `COPY` 구문으로 변경해 bulk-loading을 하게 됩니다.  
+Java에서는 Insert query를 실행했지만 실제로 Vertica에서 실행쿼리 로그를 확인해보면 정확히 확인 할 수 있습니다.   
+
+```sql
+SELECT *
+FROM v_monitor.query_requests
+```
+
+![1]({{ site.images | relative_url }}/posts/222/1.png)  
 
 ---
 
