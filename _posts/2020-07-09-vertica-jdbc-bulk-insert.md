@@ -93,7 +93,7 @@ SELECT *
 FROM v_monitor.query_requests
 ```
 
-![1]({{ site.images | relative_url }}/posts/2020-07-09-vertica-jdbc-bulk-insert/1.png)  
+![1]({{ site.images | relative_url }}/posts/222/1.png)  
 
 ---
 
