@@ -5,11 +5,23 @@ title: Spring boot 2.3.x update
 tags: [spring, springboot]
 ---
 
+### 요약
+
+Spring boot 2.3 주요 패치사항을 요약해보자면, 다음과 같은 기능들이 강화되었습니다.
+- Docker Image
+- Custom Layer
+- k8s monitoring
+- Graceful shutdown
+
+전반적으로 Container 기술을 효율적으로 사용하기 위한 기능들이 이번버전에서 업데이트 되었다고 할 수 있을것 같습니다.  
+
 자세한 내용은 다음 url에서 확인 하실수 있습니다.
 
 https://github.com/spring-projects/spring-boot/wiki/Spring-Boot-2.3-Release-Notes
 
 ---
+### 상세 업데이트 내용
+
 #### Spring Data Major update
 - JPA Bootstrap mode 지원
 - Cassandra v4 update
