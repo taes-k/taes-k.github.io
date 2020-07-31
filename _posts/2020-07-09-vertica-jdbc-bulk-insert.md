@@ -1,7 +1,7 @@
 ---
 layout: post
 comments: true
-title: [Vertica] jdbc bulk insert
+title: Vertica jdbc bulk insert
 tags: [vertica, jdbc]
 ---
 
