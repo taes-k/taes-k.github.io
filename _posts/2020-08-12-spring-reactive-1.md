@@ -80,8 +80,10 @@ public interface Publisher<T>
 {
     void subscribe(Subscriber<? super T? subscriber>);
 }
-```
-- Subscriber (구독자)
+```  
+
+- Subscriber (구독자)  
+
 ```java
 public interface Subscriber<T>
 {
@@ -90,22 +92,26 @@ public interface Subscriber<T>
     void onError(Throwable ex);
     void onComplete();
 }
-```
-- Subscription (구독)
+```  
+
+- Subscription (구독)  
+
 ```java
 public interface Subscription
 {
     void request(long n);
     void cancel();
 }
-```
-- Processor (프로세서)
+```  
+
+- Processor (프로세서)  
+
 ```java
 public interface Processor<T,R> extends Subscriber<T>, Publisher<R>
 {
      
 }
-```
+```  
 
 ![3]({{ site.images | relative_url }}/posts/2020-08-12-spring-reactive-1/3.png)  
 
