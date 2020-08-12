@@ -332,99 +332,108 @@ public void deleteRedisSetKey()
 ### reactive의 성능
 `'그렇다면 과연 reactive를 사용하면 실제로 성능이 빠른가?'`   
 위에 대한 질문에 답하기위해 테스트를 진행해 보았습니다.  
-1~10,000,000 의 숫자의 합계를 구하기 위해 두가지 방식으로 코드를 구현해 보았습니다.  
 
-먼저, 1
+csv file을 일반 `imperative`, `reactive` 두가지 방식으로 읽어 처리하는 코드를  구현해 보았습니다.  
+
 
 ```java
-private static int COUNT = 10_000_000;
+long start;
+long finish;
+long finishFirst;
+long firstFinishProcess;
+long finishProcess;
 
-public void blockTest()
-    {
-        long startTime = System.currentTimeMillis();
-        AtomicLong firstFinishTime = new AtomicLong();
-        log.info("start : " + startTime);
-
-        List<Integer> list = getNumbers();
-        AtomicLong sum = new AtomicLong();
-        list.stream()
-            .forEach(i -> {
-                sum.addAndGet(i);
-                if(firstFinishTime.get() == 0L)
-                    firstFinishTime.set(System.currentTimeMillis());
-            });
-
-        long finishTime = System.currentTimeMillis();
-        log.info("result : " + sum);
-        log.info("first-finish : " + firstFinishTime);
-        log.info("first-process : " + (firstFinishTime.get() - startTime));
-        log.info("finish : " + finishTime);
-        log.info("process : " + (finishTime - startTime));
+@BeforeEach
+void before() {
+    start = System.currentTimeMillis();
 }
 
-public List<Integer> getNumbers()
-{
-    List<Integer> list = new ArrayList<>();
-    for(int i=0; i< COUNT; i++)
-    {
-        list.add(i);
+@AfterEach
+void after() {
+    finish = System.currentTimeMillis();
+    finishProcess = finish - start;
+    firstFinishProcess = finishFirst - start;
+    System.out.println("start : " + start);
+    System.out.println("finishFirst : " + finishFirst);
+    System.out.println("firstFinishProcess : " + firstFinishProcess);
+    System.out.println("finish : " + finish);
+    System.out.println("finishProcess : " + finishProcess);
+}
+
+@Test
+void blockReadTest() throws IOException {
+    List<String> list = new ArrayList<>();
+    try (BufferedReader br = Files.newBufferedReader(Paths.get("src/test/resources/csvFile.txt"))) {
+        String s = null;
+        while ((s = br.readLine()) != null) {
+            list.add(s);
+        }
     }
-    return list;
+
+    list.stream()
+        .forEach(line ->
+            {
+                if (finishFirst == 0) finishFirst = System.currentTimeMillis();
+                String[] tokens = line.split(",");
+                // do something
+            }
+        );
+}
+
+@Test
+void reactiveReadTest() throws IOException {
+    // resource
+    BufferedReader br = Files.newBufferedReader(Paths.get("src/test/resources/csvFile.txt"));
+
+    Flux<String> flux = Flux.create((FluxSink<String> sink) -> {
+        try {
+            String s = null;
+            while ((s = br.readLine()) != null) {
+                sink.next(s);
+            }
+            sink.complete();
+        } catch (IOException e) {
+            sink.error(e);
+        }
+    });
+
+    flux.subscribe(line -> {
+        if (finishFirst == 0) finishFirst = System.currentTimeMillis();
+        String[] tokens = line.split(",");
+        // do something
+    }
+    , null
+    , ()-> {
+        try {
+            br.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    );
 }
 ```
-COUNT = 10_000_000 
+`blockReadTest 결과`  
+
+csv 50,000 건  
 
 ![6]({{ site.images | relative_url }}/posts/2020-08-12-spring-reactive-1/6.png)
 
-COUNT = 50_000_000 
+csv 100,000 건  
 
 ![7]({{ site.images | relative_url }}/posts/2020-08-12-spring-reactive-1/7.png)
 
 
-```java
 
-private static int COUNT = 10_000_000;
+`reactiveReadTest 결과`  
 
-public void reactiveTest()
-    {
-        long startTime = System.currentTimeMillis();
-        log.info("start : " + startTime);
-
-        AtomicLong firstFinishTime = new AtomicLong();
-        AtomicLong finishTime = new AtomicLong();
-
-        AtomicLong sum = new AtomicLong();
-        getFluxNumbers()
-            .subscribe(i -> {
-                        sum.addAndGet(i);
-                        if(firstFinishTime.get() == 0L)
-                            firstFinishTime.set(System.currentTimeMillis());
-                    },
-                    null,
-                    ()-> {
-                        finishTime.set(System.currentTimeMillis());
-                        log.info("result : " + sum);
-                        log.info("first-finish : " + firstFinishTime);
-                        log.info("first-process : " + (firstFinishTime.get() - startTime));
-                        log.info("finish : " + finishTime);
-                        log.info("process : " + (finishTime.get() - startTime));
-                    });
-    }
-
-public Flux<Integer> getFluxNumbers()
-{
-    return Flux.range(0,10_000_000);
-}
-```
-
-COUNT = 10_000_000 
+csv 50,000 건  
 
 ![8]({{ site.images | relative_url }}/posts/2020-08-12-spring-reactive-1/8.png)
 
-COUNT = 50_000_000 
+csv 100,000 건  
 
 ![9]({{ site.images | relative_url }}/posts/2020-08-12-spring-reactive-1/9.png)
-
 
 정확한 비교가 가능할만한 좋은 코드는 아니지만, 위 프로파일링 결과를 확인해보면 성능차이를 확인 할 수 있습니다. 특히나, 중요하게 보셔야 할 것은, `reactive`에서는 처리 건 수가 변동되어도 `첫번째 응답`에 대한 시간이 거의 변동이 없었다는 것 입니다.  
 
@@ -435,17 +444,30 @@ COUNT = 50_000_000
 그렇다면 여기서 리액티브코드가 다음과 같이 변경되면 어떤 결과가 나올까요?
 
 ```java
-public Flux<Integer> getFluxNumbers()
-{
-    return Flux.just(getNumbers().toArray(new Integer[0]));
-}
+    List<String> list = new ArrayList<>();
+    try (BufferedReader br = Files.newBufferedReader(Paths.get("src/test/resources/csvFile.txt"))) {
+        String s = null;
+        while ((s = br.readLine()) != null) {
+            list.add(s);
+        }
+    }
+
+    Flux.just(list.toArray(new String[0]))
+        .subscribe(line -> {
+                if (finishFirst == 0) finishFirst = System.currentTimeMillis();
+                String[] tokens = line.split(",");
+                // do something
+            }
+            , null
+            , null
+        );
 ```
 
-COUNT = 50_000_000 
+COUNT = 100_000 
 
 ![10]({{ site.images | relative_url }}/posts/2020-08-12-spring-reactive-1/10.png)
 
-`reactive stream` 구성중 하나의 blocking 구간이 생긴것인데, 오히려 그냥 수행한 것 보다 더 좋지 않은 결과가 나온 것을 확인 하실 수 있습니다.
+`reactive stream` 구성중 하나의 blocking 구간이 생긴것인데, 사실상 blocking 한구간 때문에 정상적인 `sream`이 구성되지 않아 오히려 그냥 수행한 것 보다 더 좋지 않은 결과가 나온 것을 확인 하실 수 있습니다.
 
 `reactive` 도입을 고려하실때, '전 구간이 reactive하게 동작 할 수 있는가?'를 반드시 고려해 주셔야 할 사항입니다.
 
