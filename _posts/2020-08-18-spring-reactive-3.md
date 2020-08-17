@@ -34,16 +34,16 @@ Pivotal에서는 `Spring WebFlux`를 만든 이유에대해서 다음과 같이 
 
 이미 Spring 개발을 하고 계신분들이라면 다들 아시겠지만, 현재 Spring에서는 `WebMVC`와 `WebFlux`를 완전 별도의 프로젝트로 지원 하고 있습니다. (사실상, 상호 보완적 관계 라기 보다는 다른 목적을 가진 프로젝트로 보셔도 무방합니다.)   
 
-![1]({{ site.images | relative_url }}/posts/222/1.png) 
+![1]({{ site.images | relative_url }}/posts/2020-08-18-spring-reactive-3/1.png) 
 
 `WebFlux`와 `WebMVC`의 가장 큰 차이는 `'요청을 처리하는 쓰레드 모델'`이라고 볼 수 있습니다.  
 
 결론을 먼저 말씀드리자면, `WebMVC`는 요청이 들어올때마다 쓰레드를 생성하는 반면에 (1 Request = 1 Thread) `WebFlux`는 요청이 들어오면 큐(Queue)에 두고 이벤트 루프에의해 Single-Thread 혹은 제한된 Thread (보통 core 수 만큼)로 동작하게됩니다.  
 
  
-![2]({{ site.images | relative_url }}/posts/222/2.png)  
+![2]({{ site.images | relative_url }}/posts/2020-08-18-spring-reactive-3/2.png)  
 
-![3]({{ site.images | relative_url }}/posts/222/3.png)  
+![3]({{ site.images | relative_url }}/posts/2020-08-18-spring-reactive-3/3.png)  
 
 위와 같이 다른 처리 모델로 설계된 이유를 알아보면, 결국 `Blocking`과 `Non-Blocking`의 차이에 있다고 보실 수 있습니다.
 
