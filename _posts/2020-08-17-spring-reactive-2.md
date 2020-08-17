@@ -98,7 +98,7 @@ public class UserService {
 ```
 위와같이 매우 간단하게, DB로 부터 쿼리 결과를 `Reactive stream`의 `Flux` 혹은 `Mono`로 return 받아 올 수 있습니다.  
 
-![1]({{ site.images | relative_url }}/posts/222/1.jpg)   
+![1]({{ site.images | relative_url }}/posts/2020-08-17-spring-reactive-2/1.jpg)   
 (참 쉽죠?)
 
 `JPA`를 사용해 보신 분이라면, 사용법이 거의 비슷해 `R2DBC`도 `ORM`이라고 생각 하실 수도 있겠으나, `R2DBC`에서는 다음과같이 명시하고 있습니다.
@@ -122,7 +122,7 @@ public class UserService {
 
 테스트를 위해, 다음과 같은 구조의 테이블 구조가 있다고 생각해주시면 되겠습니다.
 
-![2]({{ site.images | relative_url }}/posts/222/2.png)   
+![2]({{ site.images | relative_url }}/posts/2020-08-17-spring-reactive-2/2.png)   
 
 R2DBC의 비교군으로, JDBC를 사용한 프로젝트를 사용하도록 하겠습니다.  
 테스트 측정 대상은 다음과 같습니다.
@@ -146,11 +146,11 @@ from
 
 `JDBC` 수행 결과
 
-![3]({{ site.images | relative_url }}/posts/222/3.png)   
+![3]({{ site.images | relative_url }}/posts/2020-08-17-spring-reactive-2/3.png)   
 
 `R2DBC` 수행결과
 
-![4]({{ site.images | relative_url }}/posts/222/4.png)   
+![4]({{ site.images | relative_url }}/posts/2020-08-17-spring-reactive-2/4.png)   
 
 위 수행결과로 알수있는 내용은, 전체 수행 결과로는 `JDBC`가 빠르지만 첫 데이터 처리는 당연하게도 `R2DBC`가 빠르게 처리게 된 것을 확인 할 수 있습니다. 
 
