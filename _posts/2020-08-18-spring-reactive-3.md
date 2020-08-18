@@ -24,7 +24,7 @@ Pivotal에서는 `Spring WebFlux`를 만든 이유에대해서 다음과 같이 
 
 최근 Spring의 업데이트사항으로 보면 이제는 너무나도 당연하게 된 `'MSA'`와 `'Reactive'`에 계속해서 힘을 실어주고 있는 모습으로 확인됩니다.  
 
-앞으로도 적은 자원으로 고효율의 동시성을 낼 수 있는 구조로 설계된 `WebFlux`를 발전시켜 나가기 위해 계속해서 중점적으로 지원할 것으로 보입니다.
+앞으로도 적은 자원으로 고효율의 동시성을 낼 수 있는 구조로 설계된 `WebFlux`를 발전시켜 나가기 위해 계속해서 중점적으로 지원할 것으로 보입니다.  
 
 ---
 
@@ -134,6 +134,40 @@ Spring DOC - WebFlux 원문(https://docs.spring.io/spring/docs/current/spring-fr
 `WebFlux`는 기존 `WebMVC`의 annotation을 그대로 지원하기에 `WebFlux`서비스를 구현하는것 자체는 전혀 어려움이 없으실거라 생각됩니다.
 
 ---
+### WebFlux 통신
+
+`WebFlux`에서는 reactive 통신을 위해 더이상 `RestTemplate`을 사용 할 수 없습니다.  
+`blocking` 기반으로 구현된 `RestTemplate`을 reactive에 사용 할 수 없기때문에 대안으로, `WebFlux`에서는 Reactive 기반으로 구현된 `WebClient`를 제공합니다.  
+
+```java
+    Mono<Page> page = WebClient.create()
+        .get()
+        .uri("http://taes-k.github.io")
+        .retrieve()
+        .bodyToMono(Page.class);
+
+    page.subscribe(p -> (...))
+```
+
+`Controller Test`를 할때, `MockMvc`를 사용했다면 이 또한 `Blocking` 기반으로 구현되어 있기 때문에 대안으로, `WebTestClient`를 사용해야 합니다.
+
+```java
+    WebTestClient testClient = WebTestClient.bindToController(
+        new PageController(pageService))
+        .build();
+    
+    testClient.get().uri("/page")
+        .exchange()
+        .expectStatus().isOk()
+        .expectBody()
+            .jsonPath("$").isArray()
+            . ...
+    
+```
+
+
+---
+
 
 ### 마무리
 
