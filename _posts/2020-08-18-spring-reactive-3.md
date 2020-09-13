@@ -9,22 +9,22 @@ tags: [spring, reactive, webflux]
 
 기존의 `Blocking` 기반의 Spring Web framework인 `Spring WebMVC`와 더불어 Spring 5.0 부터는 `Non-Blocking` 기반의 framework인 `Spring Webflux`를 지원하고 있습니다.  
 
-Pivotal에서는 `Spring WebFlux`를 만든 이유에대해서 다음과 같이 설명하고 있습니다.
+Pivotal에서는 `Spring WebFlux`를 만든 이유에대해서 다음과 같이 설명하고 있습니다. 
 
-> Why was Spring WebFlux created?
+> Why was Spring WebFlux created? 
 > 
 > Part of the answer is the need for a non-blocking web stack to handle concurrency with a small number of threads and scale with fewer hardware resources. Servlet 3.1 did provide an API for non-blocking I/O. However, using it leads away from the rest of the Servlet API, where contracts are synchronous (Filter, Servlet) or blocking (getParameter, getPart). This was the motivation for a new common API to serve as a foundation across any non-blocking runtime. That is important because of servers (such as Netty) that are well-established in the async, non-blocking space.
 > 
 > The other part of the answer is functional programming. Much as the addition of annotations in Java 5 created opportunities (such as annotated REST controllers or unit tests), the addition of lambda expressions in Java 8 created opportunities for functional APIs in Java. This is a boon for non-blocking applications and continuation-style APIs (as popularized by CompletableFuture and ReactiveX) that allow declarative composition of asynchronous logic. At the programming-model level, Java 8 enabled Spring WebFlux to offer functional web endpoints alongside annotated controllers.
 
-내용을 요약해보자면 다음과 같습니다.
+내용을 요약해보자면 다음과 같습니다. 
 
 - 고가용성을 위한 non-blocking Web 스택이 필요하다.
 - Java8에서 람다 함수식을 지원하게되면서, non-blocking의 연속되는 Stream API를 구성 할 수 있는 기회가 생겼다.
 
 최근 Spring의 업데이트사항으로 보면 이제는 너무나도 당연하게 된 `'MSA'`와 `'Reactive'`에 계속해서 힘을 실어주고 있는 모습으로 확인됩니다.  
 
-앞으로도 적은 자원으로 고효율의 동시성을 낼 수 있는 구조로 설계된 `WebFlux`를 발전시켜 나가기 위해 계속해서 중점적으로 지원할 것으로 보입니다.  
+앞으로도 적은 자원으로 고효율의 동시성을 낼 수 있는 구조로 설계된 `WebFlux`를 발전시켜 나가기 위해 계속해서 중점적으로 지원할 것으로 보입니다. 
 
 ---
 
