@@ -11,7 +11,7 @@ tags: [spring, reactive, webflux]
 
 Pivotal에서는 `Spring WebFlux`를 만든 이유에대해서 다음과 같이 설명하고 있습니다. 
 
-> Why was Spring WebFlux created? 
+> Why was Spring WebFlux created?  
 > 
 > Part of the answer is the need for a non-blocking web stack to handle concurrency with a small number of threads and scale with fewer hardware resources. Servlet 3.1 did provide an API for non-blocking I/O. However, using it leads away from the rest of the Servlet API, where contracts are synchronous (Filter, Servlet) or blocking (getParameter, getPart). This was the motivation for a new common API to serve as a foundation across any non-blocking runtime. That is important because of servers (such as Netty) that are well-established in the async, non-blocking space.
 > 
