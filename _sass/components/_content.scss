@@ -12,3 +12,45 @@
     }
   }
 }
+
+.content-body {
+  position:relative;
+}
+
+.only-pc-view {
+  display:block;
+}
+
+$screenWidth:100%;
+
+.content-left{
+  position:absolute;
+  width: calc((#{$screenWidth} - #{800px})/#{2});
+  top:0;
+  left:0;
+}
+
+.content-right{
+  position:absolute;
+  width: calc((#{$screenWidth} - #{800px})/#{2});
+  top:0;
+  right:0;
+}
+
+.content-left-box{
+  position:absolute;
+  right:5px;
+  width:225px;
+}
+
+.content-right-box{
+  position:absolute;
+  left:5px;
+  width:225px;
+}
+
+@media screen and (max-width: 1260px) {
+  .only-pc-view{
+    display: none;
+  }
+}
