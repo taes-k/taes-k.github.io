@@ -9,9 +9,17 @@
 
   <div class='js-off-canvas-container c-off-canvas-container'>
     {% include header.html %}
-
-    {{ content }}
-
+    <div class='content-body'>
+      <div class='only-pc-view content-left'>
+        {% include left.html %}
+      </div>
+      <div class='content-center'>
+        {{ content }}
+      </div>
+      <div class='only-pc-view content-right'>
+        {% include right.html %}
+      </div>
+    </div>
     {% include footer.html %}
   </div>
 
