@@ -49,7 +49,7 @@ Spring boot 2.4.0 update 사항 정리 (2020. 11. 12)
 - config file import 시, 기존에는  not found error 가 발생했지만 `2.4.0`부터는 skip 함
 - `properties` 형식에서 `#---`를 통해 multi-document 기능을 지원
 - `spring.profiles`속성이 deprecate  되어 `spring.config.activate.on-profile` 으로 마이그레이션 필요함
-- `spring.profiles.activ`와 `spring.config.activate.on-profile`를 같은 document 내에서 사용하지 않도록 유의할것
+- `spring.profiles.activ`와 `spring.config.activate.on-profile`를 같이 사용하지 않도록 유의할것
 
 ---
 
