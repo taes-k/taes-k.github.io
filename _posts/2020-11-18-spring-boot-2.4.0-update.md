@@ -9,7 +9,7 @@ tags: [spring, springboot]
 
 Spring boot 2.4.0 update 사항 정리 (2020. 11. 12)
 
-원문 : https://spring.io/blog/2020/11/12/spring-boot-2-4-0-available-now
+원문 : https://spring.io/blog/2020/11/12/spring-boot-2-4-0-available-now 
 
 ---
 ### versioning 형식의 변경
