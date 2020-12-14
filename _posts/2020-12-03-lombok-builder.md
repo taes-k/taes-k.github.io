@@ -16,12 +16,12 @@ obj.setName("하나");
 ```
 
 ```java
-Obj obj = Obj.builder
+Obj obj = Obj.builder 
     .id(1)
     .name("하나")
     .build();
 ```
-
+ 
 특정상황에서 위 선언한 두개의 객체가 다른 값들을 가질수 있다는점을 유의하셔야합니다.
 
 멤버변수에 초기값을 지정했을때 차이가 발생하는데 아래 예시를 통해 알아보겠습니다.
@@ -30,7 +30,7 @@ Obj obj = Obj.builder
 @Getter
 @Setter
 @NoArgsConstructor
-public class Obj
+public class Obj 
 {
     private int id;
     private String name;
