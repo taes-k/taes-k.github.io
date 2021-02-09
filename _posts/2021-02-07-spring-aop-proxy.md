@@ -46,6 +46,7 @@ public class SimplePojo implements Pojo {
     }
 }
 ```
+
 다이어그램으로 나타내면 아래와 같습니다.
 
 ![1]({{ site.images | relative_url }}/posts/2021-02-07-spring-aop-proxy/1.png)
@@ -96,14 +97,184 @@ Spring은 AOP가 필요한 환경에서 Bean 생성시 위와같은 Proxy Bean�
 - Reflection을 통해 동적으로 proxy 객체 생성
 - interface를 기준으로 proxy 생성
 
+JDK dynamic proxy는 아래와 같이 구현됩니다.
+
+```java
+// DemoApplication.java
+
+import java.lang.reflect.Proxy;
+
+public class DemoApplication
+{
+    public static void main(String[] args)
+    {
+        SampleInterface sample = (SampleInterface) Proxy.newProxyInstance(
+            SampleInterface.class.getClassLoader(),
+            new Class[]{SampleInterface.class},
+            new SampleHandler());
+
+
+        sample.runSample();
+    }
+}
+```
+
+```java
+// SampleInterface.java
+
+public interface SampleInterface
+{
+    String runSample();
+}
+```
+
+```java
+// SampleImpl.java
+
+@Slf4j
+public class SampleImpl implements SampleInterface
+{
+    public String runSample()
+    {
+        log.info("Run Sample");
+
+        return "returned sample";
+    }
+
+}
+```
+
+```java
+// SampleHandler.java
+
+import java.lang.reflect.InvocationHandler;
+import java.lang.reflect.Method;
+
+@Slf4j
+public class SampleHandler implements InvocationHandler
+{
+    private final SampleInterface origin = new SampleImpl();
+
+    public void runBefore()
+    {
+        log.info("Run Before");
+    }
+
+    public void runAfter(Object result)
+    {
+        log.info("After RESULT : {}", result);
+        log.info("Run After");
+    }
+
+    @Override
+    public Object invoke(Object proxy, Method method, Object[] args) throws Throwable
+    {
+        runBefore();
+        Object result = method.invoke(origin, args);
+        runAfter(result);
+
+        return null;
+    }
+}
+```
+
+수행결과는 아래와 같습니다
+
+```
+21:07:20.608 [main] INFO com.example.transaction.demo.SampleHandler - Run Before
+21:07:20.610 [main] INFO com.example.transaction.demo.SampleImpl - Run Sample
+21:07:20.612 [main] INFO com.example.transaction.demo.SampleHandler - After RESULT : returned sample
+21:07:20.613 [main] INFO com.example.transaction.demo.SampleHandler - Run After
+```
+
+위 코드를 보시면 아시다시피 JDK Dynamic proxy의 핵심은 `InvocationHandler`입니다.
+`InvocationHandler`은 프록시로 선언한 method-call이 일어날때 지정한 핸들러를 통해 메서드가 수행되도록 조작해줍니다.
+
 #### CGLIB (Code Generator Library) proxy
 
 - 클래스 상속을 통해 proxy 객체 생성
 - interface, class  기준으로 proxy 생성
 - 타겟 클래스의 바이트코드를 조작하여 재정의 하기때문에 final 사용 불가
 
-reflection을 통해 동적으로 수행되는것보다 바이트코드를 조작하는 CGLIB proxy 방식이 일반적으로 성능이 좋게 측정됩니다.
+CGLIB proxy는 아래와같이 구현됩니다.
 
+```java
+// DemoApplication.java
+
+import org.springframework.cglib.proxy.Enhancer;
+
+public class DemoApplication
+{
+    public static void main(String[] args)
+    {
+        SampleImpl sample = (SampleImpl) Enhancer.create(SampleImpl.class, new SampleHandler());
+
+        sample.runSample();
+    }
+}
+```
+
+```java
+// SampleImpl.java
+
+@Slf4j
+public class SampleImpl implements SampleInterface
+{
+    public String runSample()
+    {
+        log.info("Run Sample");
+
+        return "returned sample";
+    }
+
+}
+```
+
+```java
+// SampleHandler.java
+
+import org.springframework.cglib.proxy.MethodInterceptor;
+import org.springframework.cglib.proxy.MethodProxy;
+
+@Slf4j
+public class SampleHandler implements MethodInterceptor
+{
+    public void runBefore()
+    {
+        log.info("Run Before");
+    }
+
+    public void runAfter(Object result)
+    {
+        log.info("After RESULT : {}", result);
+        log.info("Run After");
+    }
+
+    @Override
+    public Object intercept(Object o, Method method, Object[] objects, MethodProxy methodProxy) throws Throwable
+    {
+        runBefore();
+        Object result = methodProxy.invokeSuper(o, objects);
+        runAfter(result);
+        return null;
+    }
+}
+
+```
+
+수행결과는 아래와 같습니다
+
+```
+21:26:18.907 [main] INFO com.example.transaction.demo.SampleHandler - Run Before
+21:26:18.915 [main] INFO com.example.transaction.demo.SampleImpl - Run Sample
+21:26:18.916 [main] INFO com.example.transaction.demo.SampleHandler - After RESULT : returned sample
+21:26:18.916 [main] INFO com.example.transaction.demo.SampleHandler - Run After
+```
+
+JDK dynamic proxy와 다른점은, `Enhancer`를 통해 interface가 아닌 구현체가 등록되어
+`MethodInterceptor`에 의해 method-call이 일어날때 지정된 핸들러를 통해 메서드가 수행된다는 점 입니다.
+
+두 방식의 구현방법 모두를 살펴보았는데요, 많은 실험으로 나온 결과로는 CGLIB proxy 방식이 일반적으로 성능이 좋게 측정됩니다.
 (해당 내용은 구글링을 통해 많은분들의 직접 실험한 결과를 확인하실수 있습니다.)
 
 ---
