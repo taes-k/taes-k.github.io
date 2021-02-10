@@ -5,7 +5,7 @@ title:  Java의 Argument 전달방식
 tags: [java, callbyvalue, callbyreference]
 ---
 
-### Call by Value, Call by Reference
+### Call by Value, Call by Reference 
 
 Java Argument 전달방식에는 대부분 알고계시다시피 `Call by value`, `Call by reference` 두가지 방식이 있습니다.
 
