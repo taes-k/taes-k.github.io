@@ -116,7 +116,7 @@ Kafka에 등록된 토픽을 확인해보면 아래와 같습니다.
 현재 inventory.customer에 등록된 데이터는 아래와 같습니다.
 
 
-![3]({{ site.images | relative_url }}/posts/2021-03-02-dbzium-cdc/3.jpg)
+![3]({{ site.images | relative_url }}/posts/2021-03-02-dbzium-cdc/3.png)
 
 
 토픽에 생성된 메세지들을 보기 위해 kafka에서 console-consumer를 실행시켜보면 다음과같은 같은 메세지를 확인 할 수 있습니다.
