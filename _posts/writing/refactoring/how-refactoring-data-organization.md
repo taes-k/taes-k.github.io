@@ -1,7 +1,7 @@
 ---
 layout: post
 comments: true
-title: 리팩토링이란 무엇인가
+title: 어떻게 리팩토링을 해야할까 
 tags: [refactoring]
 ---
 
