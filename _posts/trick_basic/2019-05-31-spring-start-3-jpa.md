@@ -3,7 +3,6 @@ layout: post
 comments: true
 title: Spring 프로젝트 시작하기 (3) - JPA
 tags: [요령과 기본, Spring]
-date: 2019.05.30
 ---
 
 ### 2.3 Spring 프로젝트 시작하기 (3) - JPA
