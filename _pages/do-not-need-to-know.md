@@ -4,18 +4,12 @@ title: 몰라도 되는 스프링
 ---
 ### 목차  
 
-#### 서문
-> [0. Intro]()
-
----  
-
 #### 1장 - 몰라도 알아서 다 해주는 Spring 
 
-> [Spring AOP]() 
+> [Spring AOP](https://taes-k.github.io/2021/02/07/spring-aop-proxy/) 
 
 ---
 
 ### 2장 - 몰라도 알아서 다 해주는 Spring Batch
 
-> [Spring Batch 메타 테이블]()  
-
+> [Spring Batch 메타 테이블](https://taes-k.github.io/2021/03/01/spring-boot-table/)   
