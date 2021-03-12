@@ -1,7 +1,7 @@
 ---
 layout: post
 comments: true
-title:  몰라도 되지만 알면 좋은 Spring - AOP Proxy
+title:  몰라도 되는 Spring - AOP Proxy
 tags: [spring, aop, proxy]
 ---
 
