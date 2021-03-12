@@ -1,7 +1,7 @@
 ---
 layout: post
 comments: true
-title: Spring batch 메타 데이터 스키마
+title: 몰라도 되는 스프링 - Spring batch 메타 데이터 스키마
 tags: [몰라도 되는 스프링, spring, spring batch]
 ---
 
