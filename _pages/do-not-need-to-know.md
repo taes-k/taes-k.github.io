@@ -7,6 +7,7 @@ title: 몰라도 되는 스프링
 #### 1장 - 몰라도 알아서 다 해주는 Spring 
 
 > [Spring AOP](https://taes-k.github.io/2021/02/07/spring-aop-proxy/) 
+> [Spring AOP Order](https://taes-k.github.io/2021/03/12/spring-aop-order/) 
 
 ---
 
