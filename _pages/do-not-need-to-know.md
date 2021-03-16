@@ -11,6 +11,6 @@ title: 몰라도 되는 스프링
 
 ---
 
-### 2장 - 몰라도 알아서 다 해주는 Spring Batch
+### 2장 - 몰라도 알아서 다 해주는 Spring Batch 
 
 > [Spring Batch 메타 테이블](https://taes-k.github.io/2021/03/01/spring-boot-table/)   
