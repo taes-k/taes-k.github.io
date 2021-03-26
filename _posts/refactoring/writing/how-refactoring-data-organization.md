@@ -1,11 +1,20 @@
 ---
 layout: post
 comments: true
-title: 어떻게 리팩토링을 해야할까 
+title: 어떻게 리팩토링을 해야할까 - 데이터 조직화
 tags: [refactoring]
 ---
 
-### 
+### How do you refactorig? - 데이터 조직화
+
+**9.1 변수 쪼개기**
+![1]({{ site.images | relative_url }}/posts/111/1.jpeg) 
+
+```js
+```
+
+```js
+```
 
 ---
 
