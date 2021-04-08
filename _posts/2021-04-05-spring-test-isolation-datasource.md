@@ -100,7 +100,7 @@ spring:
       enabled: true
   jpa:
     database: h2
-    generate-ddl: true
+    generate-ddl: off
   datasource:
     driver-class-name: org.h2.Driver
     url: jdbc:h2:mem:testdb;MODE=MySQL;
@@ -165,12 +165,12 @@ public abstract class IntegrationTest
 실제 통합테스트를 구현할때는 아래와 같이 간단하게 수행 가능하게 될 것 입니다.
 
 ```java
-// CtlgIntegrationTest.java
+// UserIT.java
  
-public class CtlgIntegrationTest extends IntegrationTest
+public class UserIT extends IntegrationTest
 {
     @Test
-    void createCtlg_success()
+    void getUsers_success()
     {
         //given
  
@@ -184,7 +184,86 @@ public class CtlgIntegrationTest extends IntegrationTest
 ```
 
 ---
+### 실제 수행 결과
 
+```sql
+// schema-h2.sql
+create table user
+(
+    id       varchar(40)  not null
+        primary key,
+    password varchar(400) not null,
+    name     varchar(20)  not null
+);
+
+```
+
+```sql
+// data-h2.sql
+
+insert into user(id, password, name)
+values ('test-admin', '123', 'admin');
+
+insert into user(id, password, name)
+values ('test-user', '123', 'user');
+```
+
+```java
+
+@DisplayName("User 통합 테스트")
+public class UserIT extends IntegrationTest
+{
+    @DisplayName("User1 등록")
+    @BeforeEach
+    void beforeEach_setUser1() throws Exception
+    {
+        // given
+        String givenUserId = RandomStringUtils.random(10, true, false);
+        UserDto.Req givenUser = new UserDto.Req();
+        givenUser.setId(givenUserId);
+        givenUser.setPassword("sample_password");
+        givenUser.setName("sample_user_1");
+
+        // when - then
+        MockHttpServletRequestBuilder rq = MockMvcRequestBuilders.post("/users")
+            .content(new ObjectMapper().writeValueAsString(givenUser))
+            .contentType(MediaType.APPLICATION_JSON);
+
+        mockMvc.perform(rq)
+            .andDo(log())
+            .andExpect(status().isOk());
+    }
+
+
+    @DisplayName("전체 User 조회 -> 성공")
+    @Test
+    void getAllUsers_success() throws Exception
+    {
+        // given
+        MockHttpServletRequestBuilder rq = MockMvcRequestBuilders
+            .get("/users")
+            .contentType(MediaType.APPLICATION_JSON);
+
+        // when - then
+        mockMvc.perform(rq)
+            .andDo(print())
+            .andExpect(status().isOk())
+            .andExpect(jsonPath("$", hasSize(greaterThan(1))));
+    }
+}
+```
+
+![1]({{ site.images | relative_url }}/posts/2021-04-05-spring-test-isolation-datasource/1.png)
+
+위 테스트 결과를 보면, H2에서 설정한 스키마와 초기 설정한 데이터를 사용해 의도했던대로 테스트가 성공했습니다.  
+
+또한 H2의 특성상 테스트가 완료되고나면 별도의 롤백 작업 없이도 데이터가 초기화 되기때문에 몇번을 수행해도 동일한 결과를 얻을 수 있음을 보장 받을수 있습니다.
+
+프로젝트 전체 코드는 아래 git 저장소에서 확인하실수 있습니다.  
+(https://github.com/taes-k/spring-h2-isolation-db-test)
+
+
+---
 ### 효용성
 
 위 구성을 통해 독립적인 H2 DB 테스트환경이 갖추어졌다고 했을때 장단점을 살펴보도록 하겠습니다.
