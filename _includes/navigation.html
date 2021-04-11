@@ -1,5 +1,9 @@
 {% for page in site.pages %}
-  {% unless page.name == '404.md' or page.name == 'ep-db-migration.md' or page.name == 'ep-db-refactoring.md' %}
+  {% unless page.name == '404.md' 
+    or page.name == 'ep-db-migration.md' 
+    or page.name == 'ep-db-refactoring.md' 
+    or page.navdisplay == false
+  %}
     {% if page.title %}
       <li class='c-nav__item' role='presentation'>
         <a class='c-nav__link' href='{{ page.url | prepend: site.baseurl }}'>{{ page.title }}</a>

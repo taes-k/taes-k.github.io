@@ -2,6 +2,7 @@
 layout: post
 comments: true
 title: 리팩토링이란 무엇인가 (What, Who, Why)
+navdisplay: false
 tags: [refactoring]
 ---
 
@@ -21,7 +22,7 @@ tags: [refactoring]
 ---
 ### Who is Refactoring?
 
-![1]({{ site.images | relative_url }}/posts/2021-03-05-what-why-refactoring/1.png) 
+![1]({{ site.images | relative_url }}/pages/refactoring/1-what-why-refactoring/1.png) 
 
 `테스트 주도 개발` 책의 저서이자 수많은 개발서적에서 참조되는 `켄트 백`은 개발할때 목적을 명확하게 구분해야 한다는 것을 `두개의 모자(two hats)`에 비유했습니다.  
 

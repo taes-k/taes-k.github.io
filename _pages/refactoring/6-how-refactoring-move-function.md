@@ -2,14 +2,15 @@
 layout: post
 comments: true
 title: 어떻게 리팩토링을 해야할까 - 기능이동
+navdisplay: false
 tags: [refactoring]
 ---
 
-### How do you refactorig? - 기능이동
+### How do I refactorig? - 기능이동
 
 
 **8.1 함수 옮기기**
-![1]({{ site.images | relative_url }}/posts/2021-03-17-how-refactoring-move-function/1.jpeg) 
+![1]({{ site.images | relative_url }}/pages/refactoring/6-how-refactoring-move-function/1.jpeg) 
 
 ```js
 class Account
@@ -29,7 +30,7 @@ class AccountType
 - 함수를 옮길때는 현재 컨텍스트와 후보 컨텍스트를 둘러보고 적당한지 확인해야합니다.
 
 **8.2 필드 옮기기**
-![2]({{ site.images | relative_url }}/posts/2021-03-17-how-refactoring-move-function/2.jpeg) 
+![2]({{ site.images | relative_url }}/pages/refactoring/6-how-refactoring-move-function/2.jpeg) 
 
 ```js
 class Customer
@@ -51,7 +52,7 @@ class Customer
 - 현재 데이터구조가 적절하지 않음이 확인되면 바로 바꾸는것이 좋습니다..
 
 **8.3 문장을 함수로 옮기기**
-![3]({{ site.images | relative_url }}/posts/2021-03-17-how-refactoring-move-function/3.jpeg) 
+![3]({{ site.images | relative_url }}/pages/refactoring/6-how-refactoring-move-function/3.jpeg) 
 
 ```js
 result.push('<p>제목: ${person.photo.title}></p>');
@@ -82,7 +83,7 @@ function photoData(aPhoto)
 - 반복되는 코드를 제거하는 것은 코드를 건강하게 관리하는 가장 효과적인 방법입니다. 자주 함께 사용되는 문장은 같이 함수화 시켜주는것이 좋습니다.
 
 **8.4 문장을 호출한 곳으로 옮기기**
-![4]({{ site.images | relative_url }}/posts/2021-03-17-how-refactoring-move-function/4.jpeg) 
+![4]({{ site.images | relative_url }}/pages/refactoring/6-how-refactoring-move-function/4.jpeg) 
 
 ```js
 emitPhotoData(outStream, person.photo);
@@ -108,7 +109,7 @@ function emitPhotoData(outStream, photo)
 - 작은변경이라면 괜찮지만, 더 적합한 경계를 찾아보는것이 더 좋을 수 있습니다.
 
 **8.5 인라인 코드를 함수 호출로 바꾸기**
-![5]({{ site.images | relative_url }}/posts/2021-03-17-how-refactoring-move-function/5.jpeg) 
+![5]({{ site.images | relative_url }}/pages/refactoring/6-how-refactoring-move-function/5.jpeg) 
 
 ```js
 let appliesToMass = false;
@@ -126,7 +127,7 @@ appliesToMass = states.includes("MA");
 - 특히 라이브러리가 제공하는 함수로 대체할 수 있으면 좋습니다.
 
 **8.6 문장 슬라이드하기**
-![6]({{ site.images | relative_url }}/posts/2021-03-17-how-refactoring-move-function/6.jpeg) 
+![6]({{ site.images | relative_url }}/pages/refactoring/6-how-refactoring-move-function/6.jpeg) 
 
 ```js
 const pricingPlan = retrievePricingPlan();
@@ -146,7 +147,7 @@ let charge;
 - 변수는 처음 사용할때 선언하는것이 좋습니다.
 
 **8.7 반복문 쪼개기**
-![7]({{ site.images | relative_url }}/posts/2021-03-17-how-refactoring-move-function/7.jpeg) 
+![7]({{ site.images | relative_url }}/pages/refactoring/6-how-refactoring-move-function/7.jpeg) 
 
 ```js
 let averageAge = 0;
@@ -178,7 +179,7 @@ averageAge = averageAge / people.length;
 - 반복문을 두번 실행해야되기 때문에 불편하다고 생각할수도있지만, `리팩터링`과 `성능최적화`의 목적이 다름을 기억해야합니다. 
 
 **8.8 반복문을 파이프라인으로 바꾸기**
-![8]({{ site.images | relative_url }}/posts/2021-03-17-how-refactoring-move-function/8.jpeg) 
+![8]({{ site.images | relative_url }}/pages/refactoring/6-how-refactoring-move-function/8.jpeg) 
 
 ```js
 const names = [];
@@ -208,7 +209,7 @@ const names = input
 
 
 **8.9 죽은코드 제거하기**
-![9]({{ site.images | relative_url }}/posts/2021-03-17-how-refactoring-move-function/9.jpeg) 
+![9]({{ site.images | relative_url }}/pages/refactoring/6-how-refactoring-move-function/9.jpeg) 
 
 ```js
 if(false)

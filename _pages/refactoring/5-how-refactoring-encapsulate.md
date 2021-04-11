@@ -2,10 +2,11 @@
 layout: post
 comments: true
 title: 어떻게 리팩토링을 해야할까 - 캡슐화
+navdisplay: false
 tags: [refactoring, encapsulation, oop]
 ---
 
-### How do you refactorig? - 캡슐화
+### How do I refactorig? - 캡슐화
 
 많이들 사용 하고 계시겠지만, `캡슐화`를 한다고하면 다음과같은 작업을 수행하게 됩니다.
 
@@ -23,7 +24,7 @@ tags: [refactoring, encapsulation, oop]
 
 
 **7.1 레코드 캡슐화하기**
-![1]({{ site.images | relative_url }}/posts/2021-03-14-how-refactoring-encapsulate/1.jpeg) 
+![1]({{ site.images | relative_url }}/pages/refactoring/5-how-refactoring-encapsulate/1.jpeg) 
 
 ```js
 organization = {name: "애크미 구스베리", country: "GB"}
@@ -48,7 +49,7 @@ class Organization
 
 
 **7.2 컬렉션 캡슐화하기**
-![2]({{ site.images | relative_url }}/posts/2021-03-14-how-refactoring-encapsulate/2.jpeg) 
+![2]({{ site.images | relative_url }}/pages/refactoring/5-how-refactoring-encapsulate/2.jpeg) 
 
 ```js
 class Person 
@@ -72,7 +73,7 @@ class Person
 
 
 **7.3 기본형을 객체로 바꾸기**
-![3]({{ site.images | relative_url }}/posts/2021-03-14-how-refactoring-encapsulate/3.jpeg) 
+![3]({{ site.images | relative_url }}/pages/refactoring/5-how-refactoring-encapsulate/3.jpeg) 
 
 ```js
 orders.filter(o => "high"=== o.priority | "rush" === o.priority)
@@ -86,7 +87,7 @@ orders.filter(o => o.priority.higherThan(new Priority("normal")))
 - 특별한 기능이 추가될때마다 클래스화 된 데이터는 빛을 발하게 될 것입니다.
 
 **7.4 임시 변수를 질의함수로 바꾸기**
-![4]({{ site.images | relative_url }}/posts/2021-03-14-how-refactoring-encapsulate/4.jpeg) 
+![4]({{ site.images | relative_url }}/pages/refactoring/5-how-refactoring-encapsulate/4.jpeg) 
 
 ```js
 const basePrice = this._quantity * this._itemPrice;
@@ -110,7 +111,7 @@ else
 
 
 **7.5 클래스 추출하기**
-![5]({{ site.images | relative_url }}/posts/2021-03-14-how-refactoring-encapsulate/5.jpeg) 
+![5]({{ site.images | relative_url }}/pages/refactoring/5-how-refactoring-encapsulate/5.jpeg) 
 
 ```js
 class Person 
@@ -138,7 +139,7 @@ class TelephoneNumber
 - 
 
 **7.6 클래스 인라인하기**
-![6]({{ site.images | relative_url }}/posts/2021-03-14-how-refactoring-encapsulate/6.jpeg) 
+![6]({{ site.images | relative_url }}/pages/refactoring/5-how-refactoring-encapsulate/6.jpeg) 
 
 ```js
 class Person 
@@ -163,7 +164,7 @@ class Person
 - `7.5 클래스 추출`을 통해 클래스를 분리시켰지만, 분리하고 나니 남은 역할이 거의 없는경우 다시 인라인 시켜 많이 사용하는 클래스로 흡수시키는편이 좋습니다.
 
 **7.7 위임 숨기기**
-![7]({{ site.images | relative_url }}/posts/2021-03-14-how-refactoring-encapsulate/7.jpeg) 
+![7]({{ site.images | relative_url }}/pages/refactoring/5-how-refactoring-encapsulate/7.jpeg) 
 
 ```js
 manager = aPerson.department.manager;
@@ -181,7 +182,7 @@ class Person
 - 위임객체의 인터페이스가 변경되는 결합된 모든 코드들을 변경해야 되는 상황이 발생 할 수 있습니다. 잘 캡슐화된 모듈은 이를 방지 할 수 있습니다.
 
 **7.8 중재자 제거하기**
-![8]({{ site.images | relative_url }}/posts/2021-03-14-how-refactoring-encapsulate/8.jpeg) 
+![8]({{ site.images | relative_url }}/pages/refactoring/5-how-refactoring-encapsulate/8.jpeg) 
 
 ```js
 manager = aPerson.manager;
@@ -201,7 +202,7 @@ depCode = aPerson.department.code;
 - `7.7 위임 숨기기`를 통해 클라이언트가 모듈의 내부 데이터 정보들을 몰라도 되게 숨겼지만, 해당 위임객체들의 다른 부분들을 사용 할 필요가 있는경우에는 차라리 위임객체를 직접 호출하는게 나을수 있습니다.
 
 **7.9 알고리즘 교체하기**
-![9]({{ site.images | relative_url }}/posts/2021-03-14-how-refactoring-encapsulate/9.jpeg) 
+![9]({{ site.images | relative_url }}/pages/refactoring/5-how-refactoring-encapsulate/9.jpeg) 
 
 ```js
 function foundPerson(people)

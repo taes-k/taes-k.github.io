@@ -2,6 +2,7 @@
 layout: post
 comments: true
 title: 어떻게 리팩토링을 해야할까 
+navdisplay: false
 tags: [refactoring]
 ---
 

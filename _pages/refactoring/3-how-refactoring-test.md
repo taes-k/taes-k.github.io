@@ -2,10 +2,11 @@
 layout: post
 comments: true
 title: 어떻게 리팩터링을 해야할까 - 테스트
+navdisplay: false
 tags: [refactoring]
 ---
 
-### How do you refactorig? - 테스트
+### How do I refactorig? - 테스트
 
 이전 포스팅에서 리팩터링을 '`소프트웨어의 겉보기 동작은 그대로 유지한 채` 코드를 이해하고 수정하기 쉽도록 내부 구조를 변경하는 기법' 라고 정의 했습니다.  
 
@@ -19,7 +20,7 @@ tags: [refactoring]
 
 아래 어플리케이션을 예제로 테스트 코드를 작성 해 보도록 하겠습니다.
 
-![1]({{ site.images | relative_url }}/posts/2021-03-06-how-refactoring-test/1.jpeg) 
+![1]({{ site.images | relative_url }}/pages/refactoring/3-how-refactoring-test/1.jpeg) 
 
 테스트는 모든 메서드에 대해서 진행하는것 보다는 위험 요인을 중심으로 작성하는것이 좋습니다.  
 테스트이 목적은 `테스트 작성`으로 끝나는것이 아니고 어디까지나 현재 혹은 향후에 발생하는 버그를 찾기 위함이기 때문에 위험요인을 중심으로 작성해야 합니다. 

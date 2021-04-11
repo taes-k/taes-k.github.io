@@ -2,17 +2,18 @@
 layout: post
 comments: true
 title: 어떻게 리팩터링을 해야할까 - 기본방법
+navdisplay: false
 tags: [refactoring]
 ---
 
-### How do you refactorig? - 기본방법
+### How do I refactorig? - 기본방법
 
 이번 포스팅부터는 실제 코드에서 어떻게 리팩터링을 진행하는지 여러가지 방법을 소개하려합니다.  
 책에서는 디테일한 다양한 상황들을 예제로 리팩터링을 하는 기법들을 추가로 이야기 하고 있으니 기회가 되신다면 책을 직접 읽어보시는 것을 추천드립니다.
 
 **6.1 함수 추출하기** 
 
-![1]({{ site.images | relative_url }}/posts/2021-03-09-how-refactoring-standard/1.jpeg) 
+![1]({{ site.images | relative_url }}/pages/refactoring/4-how-refactoring-standard/1.jpeg) 
 
 예제)
 ```js
@@ -53,7 +54,7 @@ function printOwing(invoice)
 
 **6.2 함수 인라인하기**
 
-![2]({{ site.images | relative_url }}/posts/2021-03-09-how-refactoring-standard/2.jpeg) 
+![2]({{ site.images | relative_url }}/pages/refactoring/4-how-refactoring-standard/2.jpeg) 
 
 ```js
 function getRating(driver) 
@@ -80,7 +81,7 @@ function getRating(driver)
 
 **6.3 변수 추출하기**
 
-![3]({{ site.images | relative_url }}/posts/2021-03-09-how-refactoring-standard/3.jpeg) 
+![3]({{ site.images | relative_url }}/pages/refactoring/4-how-refactoring-standard/3.jpeg) 
 
 ```js
 return order.quantity * order.itemPrice 
@@ -105,7 +106,7 @@ get shipping {return Math.min(basePrice * 0.1, 100);}
 
 **6.4 변수 인라인하기**
 
-![4]({{ site.images | relative_url }}/posts/2021-03-09-how-refactoring-standard/4.jpeg) 
+![4]({{ site.images | relative_url }}/pages/refactoring/4-how-refactoring-standard/4.jpeg) 
 
 ```js
 let basePrice = anOrder.basePrice;
@@ -119,7 +120,7 @@ return anOrder.basePrice > 1000;
 
 **6.5 함수 선언 바꾸기**
 
-![5]({{ site.images | relative_url }}/posts/2021-03-09-how-refactoring-standard/5.jpeg) 
+![5]({{ site.images | relative_url }}/pages/refactoring/4-how-refactoring-standard/5.jpeg) 
 
 ```js
 function circum(radius)
@@ -139,7 +140,7 @@ function circumference(radius)
 
 **6.6 변수 캡슐화하기**
 
-![6]({{ site.images | relative_url }}/posts/2021-03-09-how-refactoring-standard/6.jpeg) 
+![6]({{ site.images | relative_url }}/pages/refactoring/4-how-refactoring-standard/6.jpeg) 
 
 ```js
 let defaultOwner = {firstName: "마틴", lastName: "파울러"};
@@ -157,7 +158,7 @@ export function setDefaultOwner(arg) {defaultOwnerData = arg;}
 
 **6.7 변수 이름 바꾸기**
 
-![7]({{ site.images | relative_url }}/posts/2021-03-09-how-refactoring-standard/7.jpeg) 
+![7]({{ site.images | relative_url }}/pages/refactoring/4-how-refactoring-standard/7.jpeg) 
 
 ```js
 let a = hegith * width;
@@ -172,7 +173,7 @@ let area = height * width;
 
 **6.8 매개변수 객체 만들기**
 
-![8]({{ site.images | relative_url }}/posts/2021-03-09-how-refactoring-standard/8.jpeg) 
+![8]({{ site.images | relative_url }}/pages/refactoring/4-how-refactoring-standard/8.jpeg) 
 
 ```js
 function amountInvoiced(startDate, endDate) {...}
@@ -203,7 +204,7 @@ function amountOverdue(aDateRange) {...}
 
 **6.9 여러 함수를 클래스로 묶기**
 
-![9]({{ site.images | relative_url }}/posts/2021-03-09-how-refactoring-standard/9.jpeg) 
+![9]({{ site.images | relative_url }}/pages/refactoring/4-how-refactoring-standard/9.jpeg) 
 
 ```js
 function base(aReading){...}
@@ -223,7 +224,7 @@ class Reading
 
 **6.10 함수 추출하기**
 
-![10]({{ site.images | relative_url }}/posts/2021-03-09-how-refactoring-standard/10.jpeg) 
+![10]({{ site.images | relative_url }}/pages/refactoring/4-how-refactoring-standard/10.jpeg) 
 
 ```js
 function base(aReading){...}
@@ -246,7 +247,7 @@ function enrichReading(argReading)
 
 **6.11 단계 쪼개기**
 
-![11]({{ site.images | relative_url }}/posts/2021-03-09-how-refactoring-standard/11.jpeg) 
+![11]({{ site.images | relative_url }}/pages/refactoring/4-how-refactoring-standard/11.jpeg) 
 
 ```js
 const orderData = orderString.split(/\s+/);
