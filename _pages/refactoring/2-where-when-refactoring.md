@@ -2,6 +2,7 @@
 layout: post
 comments: true
 title: 언제, 어디에 리팩토링을 해야할까 (When, Where)
+navdisplay: false
 tags: [refactoring]
 ---
 

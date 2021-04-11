@@ -2,13 +2,14 @@
 layout: post
 comments: true
 title: 어떻게 리팩토링을 해야할까 - 데이터 조직화
+navdisplay: false
 tags: [refactoring]
 ---
 
-### How do you refactorig? - 데이터 조직화
+### How do I refactorig? - 데이터 조직화
 
 **9.1 변수 쪼개기**
-![1]({{ site.images | relative_url }}/posts/2021-04-09-how-refactoring-data-organization/1.jpeg) 
+![1]({{ site.images | relative_url }}/pages/refactoring/7-how-refactoring-data-organization/1.jpeg) 
 
 ```js
 let temp = 2 * (height + width);
@@ -29,7 +30,7 @@ console.log(area);
 
 
 **9.2 필드 이름 바꾸기**
-![2]({{ site.images | relative_url }}/posts/2021-04-09-how-refactoring-data-organization/2.jpeg) 
+![2]({{ site.images | relative_url }}/pages/refactoring/7-how-refactoring-data-organization/2.jpeg) 
 
 ```js
 class Organization{
@@ -46,7 +47,7 @@ class Organization{
 - 프로그램을 더 쉽게 이해 하기 위해 데이터 필드를 명확하게 지어주는것은 중요합니다.
 
 **9.3 파생된 변수를 함수로 바꾸기**
-![3]({{ site.images | relative_url }}/posts/2021-04-09-how-refactoring-data-organization/3.jpeg) 
+![3]({{ site.images | relative_url }}/pages/refactoring/7-how-refactoring-data-organization/3.jpeg) 
 
 ```js
 get discountedTotal() {return this._discountedTotal;}
@@ -66,7 +67,7 @@ get discount(aNumber) {this._discount = aNumber;}
 - 값을 쉽게 계산해 낼 수 있는 변수들은 그 자체를 함수화시켜 변수를 사용하지 않을 수 있습니다.
 
 **9.4 참조를 값으로 바꾸기**
-![4]({{ site.images | relative_url }}/posts/2021-04-09-how-refactoring-data-organization/4.jpeg) 
+![4]({{ site.images | relative_url }}/pages/refactoring/7-how-refactoring-data-organization/4.jpeg) 
 
 ```js
 class Product {
@@ -84,7 +85,7 @@ class Product{
 - 필드를 값으로 다룬다면, 내부에 영향을 줄까 고려하지 않아도 됩니다.
 
 **9.5 값을 참조로 바꾸기**
-![5]({{ site.images | relative_url }}/posts/2021-04-09-how-refactoring-data-organization/5.jpeg) 
+![5]({{ site.images | relative_url }}/pages/refactoring/7-how-refactoring-data-organization/5.jpeg) 
 
 ```js
 let customer = new Customer(customerData);
@@ -99,7 +100,7 @@ let customer = customerRepository.get(customerData.id);
 
 
 **9.6 매직 리터럴 바꾸기**
-![6]({{ site.images | relative_url }}/posts/2021-04-09-how-refactoring-data-organization/6.jpeg) 
+![6]({{ site.images | relative_url }}/pages/refactoring/7-how-refactoring-data-organization/6.jpeg) 
 
 ```js
 function potentailEnergy(mass, height) {
