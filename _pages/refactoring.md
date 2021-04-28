@@ -20,9 +20,9 @@ title: Refactoring (2판)
 - [리팩터링은 어떻게 해야하는가? - API(How)](https://taes-k.github.io/9-how-refactoring-data-api)
 - [리팩터링은 어떻게 해야하는가? - 상속(How)](https://taes-k.github.io/10-how-refactoring-inheritance)
 
+- [실전 리팩터링 예제](https://taes-k.github.io/2021/04/28/refactoring-exampl/)
 
 ---
-
 ### Reference
 
 - `리팩터링 2판 ` 
