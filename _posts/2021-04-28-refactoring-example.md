@@ -238,7 +238,7 @@ public class Main
     }
 ```
 
-- `play` : 변하지 않는 공연정보(지역변수)들을 질의 함수로 바꾸기 [\[7.4 임시변수를 질의함수로 바꾸기\]](https://taes-k.github.io/4-how-refactoring-standard)
+- `play` : 변하지 않는 공연정보(지역변수)들을 질의 함수로 바꾸기 [\[7.4 임시변수를 질의함수로 바꾸기\]](https://taes-k.github.io/5-how-refactoring-encapsulate)
 
 ```java
 // Statement.java
