@@ -8,6 +8,7 @@ title: 몰라도 되는 스프링
 
 > [Spring AOP](https://taes-k.github.io/2021/02/07/spring-aop-proxy/)   
 > [Spring AOP Order](https://taes-k.github.io/2021/03/12/spring-aop-order/)  
+> [리플렉션으로 만드는 Dynamic proxy](https://taes-k.github.io/2021/05/15/dynamic-proxy-reflection/)  
 
 ---
 

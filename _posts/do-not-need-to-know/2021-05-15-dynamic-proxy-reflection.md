@@ -44,6 +44,8 @@ tags: [spring, aop, proxy, reflection]
 > - 성능이 떨어진다.
 > - 리플렉션은 아주 제한된 형태로만 사용해야 그 단점을 피하고 이점만 취할 수 있다.
 > - 리플렉션은 인스턴스 생성에만 쓰고, 이렇게 만든 인스턴스는 인터페이스나 상위 클래스로 참조해 사용하자.
+>  
+> (발췌 : `Effective java 3 판`)
 
 특수한 시스템을 만들때 사용할 수 있는 강력한 기능이지만, 아무래도 컴파일 타임에서 명확한 `객체`를 사용하지 못하다보니 잘못쓰면 독이되기 쉬운 API 입니다.  
 
@@ -134,7 +136,9 @@ public class SampleProxy implements InvocationHandler {
 
 `Dynamic proxy`는 `InvocationHandler`를 구현하여 사용 할 수 있습니다. Reflection api를 사용하는 `invoke` 메서드를 구현 함으로서 proxy 호출 역할을 하는것을 확인 하실 수 있습니다.
 
-실제 프록시객체를 어떻게 수행시킬 수 있는지 보도록 하겠습니다.
+위코드를 보면 '리플렉션의 `Method` 객체를 사용하는것 보니 리플렉션을 사용하는것 같기는 한데, 리플렉션이 정확히 어떻게 사용되는거지?' 하는 의문이 생기실 수 있습니다.
+
+실제 프록시객체가 어떻게 수행되는지 보도록 하겠습니다.
 
 ```java
 public class Main {
@@ -161,15 +165,97 @@ result : SOMETHING
 result : SOMETHING2
 
 ```
-결과를 보시면 원하던대로 Proxy를 통해 잘 수행된것을 보실수 있습니다.
 
-`Dynamic proxy`로 만들어진 객체는 (Proxy.newProxyInstance)는 최종적으로 `Sample` 인터페이스를 구현한 객체를 반환하게 됩니다.  
+결과를 보시면 원하던대로 Proxy를 통해 잘 수행된것을 확인하실수 있는데, 아직 리플렉션이 어떻게 활용됬는지는 모르겠습니다.
 
-클라이언트는 Proxy가 없을때와 동일하게, `Sample` 인터페이스를 참조해 객체를 사용 할 수 있습니다. 이 점은 위 리플렉션에대해 알아보면서 주의사항을 잘 따르고 있음을 확인 하실 수 있습니다.
+Proxy 객체가 어떻게 만들어지는지 알아보기 위해 `Proxy.newProxyInstance` 생성자 함수를 디버깅 해보도록 하겠습니다.
+
+먼저 넘겨준 메서드 description을 확인해보면 지정된 `InvocationHandler`를 dispatch 하는 지정된 `interface`의 `proxy 객체`를 반환한다고 되어있습니다.
+
+![1]({{ site.images | relative_url }}/posts/2021-05-15-dynamic-proxy-reflection/1.png)
+
+코드내용을 살펴보면 `Sample` interface와 `InvocationHandler`를 구현한 `SampleProxy`를  이용해 `Proxy` 객체를 만들고 있습니다.
+
+![2]({{ site.images | relative_url }}/posts/2021-05-15-dynamic-proxy-reflection/2.png)
+
+![3]({{ site.images | relative_url }}/posts/2021-05-15-dynamic-proxy-reflection/3.png)
+
+조금 더 들어가서보면, `ProxyClass`를 생성시 `ProxyClassFactory`를 통해 `Proxy` 객체를 생성하는것을 확인 할 수 있습니다. 
+
+리플렉션의 `Constructor`를 이용해 객체를 생성하고 있음을 확인 할 수 있습니다.
+
+![4]({{ site.images | relative_url }}/posts/2021-05-15-dynamic-proxy-reflection/4.png)
+
+![5]({{ site.images | relative_url }}/posts/2021-05-15-dynamic-proxy-reflection/5.png)
+
+![6]({{ site.images | relative_url }}/posts/2021-05-15-dynamic-proxy-reflection/6.png)
+
+계속 따라가다 보면, `ProxyGenerator`에 의해 객체가 생성되고 있습니다.
+
+![7]({{ site.images | relative_url }}/posts/2021-05-15-dynamic-proxy-reflection/7.png)
+
+![8]({{ site.images | relative_url }}/posts/2021-05-15-dynamic-proxy-reflection/8.png)
+
+드디어 우리가 찾던 리플렉션이 사용되는 핵심로직이 나왔습니다. `ProxyGenerator`에서는 아래와 같은 메서드를 포함하는 인스턴스를 동적으로 생성하고 있습니다.
+
+- `hashCode()`
+- `equals()`
+- `toString()`
+- `넘겨준 instance의 methods`
+
+즉, `Object` 기본 메서드와 함께 리플렉션을 통해 `Sample`의 메서드들을 구현해 주고 있습니다.
+
+여기서 메서드들이 어떻게 구현되는지 자세히 확인해보면 `InvocationHandler`의 `invoke(...)` 메서드를 호출하도록 설정되어있는것을 확인 하실 수 있습니다.  
+
+![9]({{ site.images | relative_url }}/posts/2021-05-15-dynamic-proxy-reflection/9.png)
+
+![10]({{ site.images | relative_url }}/posts/2021-05-15-dynamic-proxy-reflection/10.png)
+
+최종적으로, `리플렉션 Constructor`를 통해 런타임에 아래와 같이 객체가 생성 됩니다.
+
+(런타임에 생성되는 객체라 해당 코드가 정확하게 일치하지않을 수 있습니다. 객체 로직으로만 참고해주세요.)
+
+```java
+// $Proxy0 (런타임 - 메모리에서 생성되는 객체)
+
+public class ProxyInstance implements Sample {
+
+    SampleProxy sampleProxy = new SampleProxy(new SampleImpl());
+
+    public void doSomething(){
+        sampleProxy.invoke(sampleProxy.getSample(), Method - doSomething, null);
+    }
+
+    public void saySomething(){
+        sampleProxy.invoke(sampleProxy.getSample(), Method - saySomething, null);
+    }
+
+    public void saySomething2(){
+        sampleProxy.invoke(sampleProxy.getSample(), Method - saySomething2, null);
+    }
+}
+```
+
+여기서 우리가 알 수 있는것은 최종적으로 프록시를 만드는 과정에서 `Reflection Constructor`를 사용해 `Sample` 인터페이스를 구현한 객체를 반환한다는 것 입니다.  
+
+넘겨준 인터페이스를 구현하기 때문에, 클라이언트는 Proxy가 없을때와 동일하게 `Sample` 인터페이스를 참조해 사용 할 수 있습니다.   
+
+이 점은 앞서서 리플렉션에 대해 알아보면서 확인했던 주의사항을 잘 따르고 있음을 볼 수 있습니다.
 
 > - 리플렉션은 인스턴스 생성에만 쓰고, 이렇게 만든 인스턴스는 인터페이스나 상위 클래스로 참조해 사용하자.
 
 ---
+
+### 마무리
+
+이번 포스팅의 목표였던, `Dynamic Proxy`에서 리플렉션이 어떻게 사용되는지 알아보았습니다. 
+
+> `'Dynamic proxy'는 리플렉션을 통해 인터페이스를 구현 함으로서 Proxy 객체를 동적으로 생성한다. `
+
+말 그대로 `Interface`를 동적으로 구현하기 때문에 `왜 'Dynamic proxy'를 사용할때에는 반드시 Interface가 필요하지?` 에 대한 질문도 함께 답이 되었으리라 생각합니다.
+
+---
+
 ### 참고문서
 
 - 토비의 스프링 3.1
