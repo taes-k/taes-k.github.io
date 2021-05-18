@@ -174,7 +174,7 @@ Proxy 객체가 어떻게 만들어지는지 알아보기 위해 `Proxy.newProxy
 
 ![1]({{ site.images | relative_url }}/posts/2021-05-15-dynamic-proxy-reflection/1.png)
 
-코드내용을 살펴보면 `Sample` interface와 `InvocationHandler`를 구현한 `SampleProxy`를  이용해 `Proxy` 객체를 만들고 있습니다.
+코드를 살펴보면 `Sample` interface와 `InvocationHandler`를 구현한 `SampleProxy`를  이용해 `Proxy` 객체를 만들고 있습니다.
 
 ![2]({{ site.images | relative_url }}/posts/2021-05-15-dynamic-proxy-reflection/2.png)
 
@@ -182,7 +182,7 @@ Proxy 객체가 어떻게 만들어지는지 알아보기 위해 `Proxy.newProxy
 
 조금 더 들어가서보면, `ProxyClass`를 생성시 `ProxyClassFactory`를 통해 `Proxy` 객체를 생성하는것을 확인 할 수 있습니다. 
 
-리플렉션의 `Constructor`를 이용해 객체를 생성하고 있음을 확인 할 수 있습니다.
+바이트코드를 직접 만들어 객체를 생성합니다.
 
 ![4]({{ site.images | relative_url }}/posts/2021-05-15-dynamic-proxy-reflection/4.png)
 
@@ -196,14 +196,15 @@ Proxy 객체가 어떻게 만들어지는지 알아보기 위해 `Proxy.newProxy
 
 ![8]({{ site.images | relative_url }}/posts/2021-05-15-dynamic-proxy-reflection/8.png)
 
-드디어 우리가 찾던 리플렉션이 사용되는 핵심로직이 나왔습니다. `ProxyGenerator`에서는 아래와 같은 메서드를 포함하는 인스턴스를 동적으로 생성하고 있습니다.
+드디어 우리가 찾던 리플렉션이 사용되는 핵심로직이 나왔습니다.   
+`ProxyGenerator`에서는 아래와 같은 메서드를 포함하는 인스턴스를 동적으로 생성하고 있습니다.
 
 - `hashCode()`
 - `equals()`
 - `toString()`
 - `넘겨준 instance의 methods`
 
-즉, `Object` 기본 메서드와 함께 리플렉션을 통해 `Sample`의 메서드들을 구현해 주고 있습니다.
+즉, 리플렉션을 통해 `Sample` 인터페이스 정보를 가져와 클래스 바이트 파일을 만들어주고 있는 것 입니다.
 
 여기서 메서드들이 어떻게 구현되는지 자세히 확인해보면 `InvocationHandler`의 `invoke(...)` 메서드를 호출하도록 설정되어있는것을 확인 하실 수 있습니다.  
 
@@ -211,8 +212,7 @@ Proxy 객체가 어떻게 만들어지는지 알아보기 위해 `Proxy.newProxy
 
 ![10]({{ site.images | relative_url }}/posts/2021-05-15-dynamic-proxy-reflection/10.png)
 
-최종적으로, `리플렉션 Constructor`를 통해 런타임에 아래와 같이 객체가 생성 됩니다.
-
+최종적으로, `리플렉션 Constructor`를 통해 런타임에 아래와 같은 객체가 생성 된다고 볼 수 있습니다.  
 (런타임에 생성되는 객체라 해당 코드가 정확하게 일치하지않을 수 있습니다. 객체 로직으로만 참고해주세요.)
 
 ```java
