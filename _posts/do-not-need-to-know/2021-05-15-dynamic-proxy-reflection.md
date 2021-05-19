@@ -2,7 +2,7 @@
 layout: post
 comments: true
 title:  몰라도 되는 Spring - 리플렉션으로 만드는 Dynamic proxy
-tags: [spring, aop, proxy, reflection]
+tags: [몰라도 되는 Spring, spring, aop, proxy, reflection]
 ---
 
 ### Dynamic proxy

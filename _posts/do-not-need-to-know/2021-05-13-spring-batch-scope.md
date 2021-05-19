@@ -1,8 +1,8 @@
 ---
 layout: post
 comments: true
-title: 몰라도 되는 스프링 - Spring batch scope
-tags: [spring, batch, scope]
+title: 몰라도 되는 Spring - Spring batch scope
+tags: [몰라도 되는 Spring, spring, batch, scope]
 ---
 
 ### Spring scope
