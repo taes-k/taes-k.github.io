@@ -2,7 +2,7 @@
 layout: post
 comments: true
 title:  몰라도 되는 Spring - AOP Order
-tags: [spring, aop, proxy]
+tags: [몰라도 되는 Spring, spring, aop, proxy]
 ---
 
 ### 중첩 AOP
