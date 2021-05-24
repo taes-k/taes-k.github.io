@@ -1,16 +1,35 @@
 ---
 layout: post
 comments: true
-title: 몰라도 되는 Spring - Reflection을 이용하는 Spring DI
+title: 몰라도 되는 Spring - 리플렉션을 이용하는 Spring container
 tags: [spring, aop, proxy, reflection]
 ---
 
-### DI(Dependency Injection)
+### Spring container
 
-이번 포스팅에서는 Spring의 가장 큰 특징중 하나인 `DI`가 어떻게 수행되는지 알아보려고 합니다.  
+이번 포스팅에서는 `Spring container`의 주요 기능인 `Bean 등록`과 `DI`가 내부적으로 어떻게 수행되는지 알아보려고 합니다.  
 
-우선 Spring에서 설명하는 `DI` 에대해 알아보겠습니다.
+우선 Spring에서 설명하는 `Bean`과 `DI (Dependency Injection)`에 대해 알아보겠습니다.
 
+> **`Bean Initializing`**  
+> 
+> A Spring IoC container manages one or more beans. These beans are created with the configuration metadata that you supply to the container (for example, in the form of XML <bean/> definitions).
+> 
+> Within the container itself, these bean definitions are represented as BeanDefinition objects, which contain (among other information) the following metadata:  
+> ...
+> 
+> Typically, to specify the bean class to be constructed in the case where the container itself directly creates the bean by calling its constructor reflectively, somewhat equivalent to Java code with the new operator.
+> 
+> To specify the actual class containing the static factory method that is invoked to create the object, in the less common case where the container invokes a static factory method on a class to create the bean. The object type returned from the invocation of the static factory method may be the same class or another class entirely.
+> 
+> [링크](https://docs.spring.io/spring-framework/docs/current/reference/html/core.html#beans-factory-class)
+
+`Spring container`에서 bean은 `BeanDefinition` 객체들로 정의해두고 객체를 생성합니다.  
+`Bean`생성시 `BeanDefinition` 정의에 따라 객체 생성에 대한 정보를 참조하며, 일반적으로 `리플렉션`을 통해 객체를 생성합니다.  
+
+
+> **`Dependency injection`**
+> 
 > IoC is also known as dependency injection (DI).   
 > 
 > It is a process whereby objects define their dependencies (that is, the other objects they work with) only through constructor arguments, arguments to a factory method, or properties that are set on the object instance after it is constructed or returned from a factory method.  
@@ -28,7 +47,7 @@ tags: [spring, aop, proxy, reflection]
 
 ---
 
-### Spring DI 더 살펴보기
+### Spring bean initializing 더 살펴보기
 
 아시다시피, Spring framework를 시작 하게되면 `Spring container`가 초기화되고 `ComponentScan`을 통해 정의해준 `base-package`에서 `Component`들을 찾아 `Bean`으로 등록하는 과정이 수행됩니다. 실제 어떤 코드를 통해 `Bean`이 생성되고 `DI`가 일어나는지 직접 디버깅을 해보도록 하겠습니다.  
 
@@ -45,6 +64,10 @@ tags: [spring, aop, proxy, reflection]
 ![3]({{ site.images | relative_url }}/posts/2021-05-23-spring-di-reflection/3.png)
 
 코드를 보면, `Reflection`을 활용해 생성자 (`Constructor`)를 넘겨서 Bean을 생성해주고 있는것을 확인 할 수 있습니다. Spring 코드가 꽤나 복잡하게 짜여있어 리플렉션이 정확히 어떻게 활용되는지 이해하기 힘들수 있습니다. 
+
+---
+
+### 리플렉션을 활용한 예제 Sample Container
 
 `SampleContainer` 예제코드를 통해 좀더 자세히 알아보도로 하겠습니다.
 
