@@ -1,11 +1,12 @@
 ---
 layout: post
 comments: true
-title: Spiring boot 2.4.0 update
-tags: [opensource]
+title: Spiring boot 2.5.0 update
+tags: [spring, springboot]
 ---
 
-### Spiring boot 2.4.0 update
+### Spiring boot 2.5.0 update  
+
 Spring boot 2.5.0 update 사항 정리 (2021. 05. 20)
 
 원문 : https://spring.io/blog/2021/05/20/spring-boot-2-5-is-now-ga
