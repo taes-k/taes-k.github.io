@@ -1,7 +1,7 @@
 ---
 layout: post
 comments: true
-title: 몰라도 되는 Spring - 리플렉션을 이용하는 Spring container
+title: 몰라도 되는 Spring - 리플렉션을 이용하는 Spring container 
 tags: [spring, aop, proxy, reflection]
 ---
 
