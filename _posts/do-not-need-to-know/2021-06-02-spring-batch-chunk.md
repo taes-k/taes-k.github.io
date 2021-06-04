@@ -7,7 +7,7 @@ tags: [spring, batch, chunk]
 
 ### Chunk-oriented processing 
 
-`Spring batch`가 제공하는 가장 큰 특징중 하나는 `청크지향 프로세싱`이라고 할 수 있습니다. `청크지향 프로세싱`이란, 배치 처리 과정에서 트랜잭션 단위인 `Chunk`단위로 동작을 수행하는것을 말합니다.
+`Spring batch`가 제공하는 가장 큰 특징중 하나는 `청크지향 프로세싱`이라고 할 수 있습니다. `청크지향 프로세싱`이란, 일반적으로 대용량 데이터를 처리하는 배치 프로세스의 특성상 대상 데이터들을 하나의 트랜잭션으로 처리하기에는 어려움이 있기때문에 대상 데이터를 임의의 `Chunk` 단위로 트랜잭션 동작을 수행하는것을 말합니다.
 
 ![1]({{ site.images | relative_url }}/posts/2021-06-02-spring-batch-chunk/1.png) 
 
