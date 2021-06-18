@@ -5,7 +5,7 @@ title: CPU Bound vs I/O Bound
 tags: [cpubouond, iobound, process]
 ---
 
-### CPU bound, IO bound
+### CPU bound, IO bound 
 
 개발을 함에 있어서 수행하는 로직이 `CPU bound 작업` 혹은 `I/O bound 작업` 이라는 말을 많이 들어보셨을 겁니다.  
 일반적으로 연산이 많이 필요한 로직은 `CPU bound`, 로컬 파일 시스템 혹은 네트워크 통신이 많은 로직은 `I/O bound`라고 이야기를 하셨을텐데요 이번 포스팅에서 이 둘에 대해서 조금 더 자세하게 다루어 보도록 하겠습니다.  
