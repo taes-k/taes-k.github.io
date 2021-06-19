@@ -5,8 +5,8 @@ title: 6년이 지나서 정리해보는 국제 대학생 IT 대회 수상기
 tags: [atos, atos it challenge]
 ---
 
-### 서론 - Atos IT Challenge
-
+### 서론 - Atos IT Challenge 
+  
 [Atos IT Challenge](https://www.atositchallenge.net/)는 2012년부터 시작해 전세계 대학생들을 대상으로 매년 달라지는 주제를 가지고 Idea 도출부터 서비스 개발까지 약 8개월동안 경쟁을하게되는 국제 IT 대회입니다.
 
 수상특전으로는 상위 3개팀을 본사로 초대하여 시상식에 참석 할 수 있으며, `Atos`사 에서 인턴십기회가 부여됩니다. 또한 2021년 대회 기준으로 `1등 - 10,000유로`, `2등 - 5,000 유로`, `3등 - 3,000유로`의 상금과 함께 부상이 수여됩니다.
