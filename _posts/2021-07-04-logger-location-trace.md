@@ -5,7 +5,7 @@ title: Logger의 줄번호 출력 성능 이슈
 tags: [log4j, slf4j, logback, logger, stacktrace]
 ---
 
-### Logger에서 줄번호를 찾는 방법
+### Logger에서 줄번호를 찾는 방법   
 
 `log4j`, `logback`, `log4j2`등 `logger`를 사용하실때 일반적으로 아래와 같은 패턴을 사용하여 로깅 패턴이 설정되어있는 경우가 많이 있을것 입니다.
 
