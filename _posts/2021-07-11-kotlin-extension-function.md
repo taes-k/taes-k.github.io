@@ -5,7 +5,7 @@ title: Kotlin Extensionfunction 주의할점
 tags: [kotlin, extensionfunction, 확장함수]
 ---
 
-### Kotlin function 상속  
+### Kotlin function 상속   
 
 Kotlin은 함수형 프로그래밍 언어인 만큼, 일급객체로 다루어지는 `function` 역시 상속하여 사용이 가능합니다.  
 
