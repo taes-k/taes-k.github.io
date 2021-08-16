@@ -5,7 +5,7 @@ title: Java stream에서 객체상태 변경
 tags: [java, stream]
 ---
 
-### Stream 객체상태 변경하기
+### Stream 객체상태 변경하기 
 
 이른바 모던자바라 불리는 `Java8`이상 쓰시는 분들이라면 잘 사용하고 계실텐데요,  `Stream`에서 요소를 다른 객체로 변환하기 위해서 `map` 중간연산자를 잘 사용하고 계실것이라 생각합니다.
 
@@ -129,4 +129,16 @@ list.foreach(user -> user.setAdultWithRule(koreanAdultRule))
 List<User> adultUsers = list.stream()
     .filter(User::isAdult)
     .collect(Collectors.toList());
+```
+
+다음은 `Sonar`에서 `Major CodeSmell`으로 안내하는 내용입니다.
+
+```
+"Stream.peek" should be used with caution
+
+According to its JavaDocs, the intermediate Stream operation java.util.Stream.peek() “exists mainly to support debugging” purposes.
+A key difference with other intermediate Stream operations is that the Stream implementation is free to skip calls to peek() for optimization purpose. This can lead to peek() being unexpectedly called only for some or none of the elements in the Stream.
+
+As a consequence, relying on peek() without careful consideration can lead to error-prone code.
+This rule raises an issue for each use of peek() to be sure that it is challenged and validated by the team to be meant for production debugging/logging purposes.
 ```
