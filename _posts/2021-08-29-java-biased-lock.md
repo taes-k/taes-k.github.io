@@ -5,7 +5,7 @@ title: Java biased lock
 tags: [java, labdbiased lock]
 ---
 
-### java lock
+### java lock     
 
 이번 포스팅의 주제인 `biased-lock`에 대해 이야기하기 앞서, `java`에서 `lock`이 어떻게 구현되어지고 사용되는지 먼저 알아보도록 하겠습니다.
 
