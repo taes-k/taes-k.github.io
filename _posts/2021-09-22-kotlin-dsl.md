@@ -423,3 +423,10 @@ class Table{
 위와같이 `멤버확장`을 통해 유연한 `DSL` 사용하면서도, `scope`혹은 `수신객체`에대한 정의를 함으로서 `DSL`을 의도한대로 사용 할 수 있도록 제한을 줄 수 있습니다.
 
 
+---
+
+### Reference
+
+- 코틀린인액션 (https://search.shopping.naver.com/search/all?query=kotlin%20in%20action&frm=NVSHATC&prevQuery=%EC%BD%94%ED%8B%80%EB%A6%B0%20%EC%9D%B8%20%EC%95%A1%EC%85%98)
+
+
