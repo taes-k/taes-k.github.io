@@ -113,24 +113,19 @@ public void doSomething_whenCaseB(){
 이러한 고민을 저희가 처음한것이 아니기에, 테스트객체를 쉽게 만들어주기 위해 이미 몇가지 라이브러리가 존재합니다. 그중, 최근에 네이버에서 공개한 [Fixture-monkey](ttps://naver.github.io/fixture-monkey/) 오픈소스 라이브러리를 적용해 위 테스트코드를 수정해 보도록 하겠습니다.
 
 ```java
-var fixtureMonkye = FixtureMonkey.create();
+var fixtureMonkey = FixtureMonkey.create();
 
-@RepeatedTest(100) // 매번 임의의 테스트객체를 생성해 테스트가능
+@Test
 public void doSomething_whenCaseA(){
-    var something2Params = fixtureMonkey.giveMeBuilder(Something1Params.java)
-        .set("somethingField1", 1)
-        .set("somethingField2", "A")
-        .sample();
+    var something2Params = fixtureMonkey.giveMeOne(Something1Params.java);;
     var something2Params = fixtureMonkey.giveMeOne(Something2Params.java);
 
-    var doActionResponse = fixtureMonkey.giveMeOne(SomethingResponse.java, 
-        it -> {
-            it.toBuilder()
-                .somethingField1(something1Params.getSomethingField1())
-                .somethingField2(something1Params.getSomethingField2())
-                .somethingField3(something2Params.getSomethingField3())
-    })
-
+    var doActionResponse = fixtureMonkey.giveMeBuilder(SomethingResponse.java)
+        .set("somethingField1", something1Params.getSomethingField1())
+        .set("somethingField2", something1Params.getSomethingField2())
+        .set("somethingField3", something1Params.getSomethingField3())
+        .sample();
+    
     given(SomethingService.doAction(any(), any())).willGiven(doActionResponse)
 
     // when
@@ -143,11 +138,46 @@ public void doSomething_whenCaseA(){
 }
 ```
 
-객체에 정의된 type과 constraints(`@NotNull`, `@Size`, `@Max` ...) 를 활용해 value들을 임의의 값들로 정의해 테스트객체를 손쉽게 만들고, 매 테스트마다 임의의값을 설정해줌으로서 엣지 케이스를 포함한 다양한 케이스를 제대로 검증 할 수 있도록 테스트객체를 설정 해 줄 수 있습니다. 물론 `builder`및 `customizer`등의 유연한 설정을 통해 테스트에서 고정이 필요한 값 혹은 다른 객체로부터 사용되야 할 값들은 직접 지정해 줄 수도 있습니다.
+객체에 정의된 type과 constraints(`@NotNull`, `@Size`, `@Max` ...) 를 활용해 value들을 임의의 값들로 정의해 테스트객체를 손쉽게 만들고, 매 테스트마다 임의의값을 설정해줌으로서 엣지 케이스를 포함한 다양한 케이스를 제대로 검증 할 수 있도록 테스트객체를 설정 해 줄 수 있습니다. 
 
 테스트코드를 쉽게 작성 할 수 있도록 도와주는것은 물론 이 `날뛰는 원숭이`는 여러분이 작성한 코드의 예상치못한 오류들을 검출하고 수정할 수 있도록 해 줄 것 입니다.
 
-이 라이브러리에 대한 자세한 설명은 [Deview2021](https://tv.naver.com/v/23650158) 영상에서 확인하실수 있습니다.
+---
+
+### Fixture-monkey 사용팁
+
+```java
+var fixtureMonkey = FixtureMonkey.create();
+
+@RepeatedTest(100) // 매번 임의의 테스트객체를 생성해 테스트가능
+public void doSomething(){
+    var something2Params = fixtureMonkey.giveMeOne(Something1Params.java);;
+    var something2Params = fixtureMonkey.giveMeOne(Something2Params.java);
+
+    var doActionResponse = fixtureMonkey.giveMeOne(SomethingResponse.java){
+        fixture -> fixture.toBuilder()
+            .somethingField1(something1Params.getSomethingField1())
+            .somethingField3(something1Params.getSomethingField2())
+            .somethingField1(something1Params.getSomethingField3())
+            .build()
+    }
+    
+    given(SomethingService.doAction(any(), any())).willGiven(doActionResponse)
+
+    // when
+    var result = sut.doSomething(something1Params, something2Params);
+
+    // then
+    then(result.getSomethingField1())).equalsTo(doActionResponse.getSomethingField1());
+    then(result.getSomethingField2())).equalsTo(doActionResponse.getSomethingField2());
+    then(result.getSomethingField3())).equalsTo(doActionResponse.getSomethingField3());
+}
+```
+`FixtureMonkey`로 생성하는 테스트 객체는 테스트 수행마다 임의의 값을 세팅해주기 때문에 테스트케이스를 여러개 작성하지 않아도 랜덤한 객체값을 기반으로 다양한 케이스를 검증 할 수 있습니다. 이 과정에서 반복 테스트를 할 수 있는 `@RepeatedTest`와 조합해서 사용한다면 테스트를 한층 더 신뢰성 있게 만들어 줄 수 있습니다.
+
+또한 `customizer`등의 설정을 통해 고정혹은 바운더리가 필요한 값에 대해서는 유연하게 설정 할수도 있기때문에 원하는 조건하에서 임의의 객체를 만들어 테스트를 수행 할 수도 있습니다.
+
+이 라이브러리에 대한 더 자세한 설명과 사용법은 [Deview2021](https://tv.naver.com/v/23650158) 영상에서 확인하실수 있습니다.
 
 ---
 
