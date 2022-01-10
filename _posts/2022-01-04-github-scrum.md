@@ -21,15 +21,15 @@ tags: [github, issue, scrum]
 
 ![1]({{ site.images | relative_url }}/posts/2022-01-04-github-scrum/1.png)   
 
-그렇지만 github에서는 `issues`하나로만 모든 이슈들을 관리하기때문에 스프린트 보드 기능을 제공하지 않습니다. 대신, github에서 그 대안으로 사용할수있는것이 `milestone` 입니다.
+그렇지만 github에서는 `issues`하나로만 모든 이슈들을 관리하기때문에 스프린트 보드 기능을 제공하지 않습니다. 대신, github에서 그 대안으로 사용할수있는것이 `project` 입니다.
 
 ![2]({{ site.images | relative_url }}/posts/2022-01-04-github-scrum/2.png)  
 
-jira에서 사용했던것 처럼 마일스톤에 스프린트 보드 이름을 milestone으로 등록해 이슈들을 해당 스프린트보드에 종속시켜 관리 할 수 있습니다.
+jira에서 사용했던것 처럼 마일스톤에 스프린트 보드를 project으로 등록해 이슈들을 해당 스프린트보드에 종속시켜 관리 할 수 있습니다.
 
 ![3]({{ site.images | relative_url }}/posts/2022-01-04-github-scrum/3.png)  
 
-해야하지만 급하지 않은 이슈들은 마일스톤이 지정되지 않은 상태로 등록해두면, 해당 이슈는 `global backlog`상태로 취급하면 됩니다.
+해야하지만 급하지 않은 이슈들은 프로젝트가 지정되지 않은 상태로 등록해두면, 해당 이슈는 `global backlog`상태로 취급하면 됩니다.
  
 ---
 
@@ -55,11 +55,9 @@ jira 에서 태스크를 관리할때에는 일반적으로 `TODO` -> `InProgres
 
 ![7]({{ site.images | relative_url }}/posts/2022-01-04-github-scrum/7.png) 
 
-github 에서는 이슈상태가 `OPEN`, `CLOSE` 으로만 존재하기 때문에 `진행중`, `리뷰중` 등의 상태를 설정하기가 힘들수 있습니다. 따라서 github 에서는 `label`을 custom 하게 작업 진행 척도를 등록하여 사용할 수 있습니다.
+github 에서는 이슈상태가 `OPEN`, `CLOSE` 으로만 존재하기 때문에 `진행중`, `리뷰중` 등의 상태를 설정하기가 힘들수 있습니다. 위 Sprint를 사용하면서 설정한 project에서 필요한 작업 상태들을 지정해 custom 하게 작업 진행 척도를 등록하여 사용할 수 있습니다.
 
 ![8]({{ site.images | relative_url }}/posts/2022-01-04-github-scrum/8.png) 
-
-특히 프로젝트 설정에서 이슈등록시 `TODO` label을 default로 설정해두면 모든 이슈가 생성될때에는 손쉽게 `TODO` 라벨이 붙어서 이슈가 생성 될 수 있을것 입니다. 
 
 
 ---
@@ -70,11 +68,11 @@ github 에서는 이슈상태가 `OPEN`, `CLOSE` 으로만 존재하기 때문�
 
 ![9]({{ site.images | relative_url }}/posts/2022-01-04-github-scrum/9.png) 
 
-안타깝게도 github 에서는 이 기능을 제공하지않아 이슈 마다 직접 명시를 해주고 마일스톤마다 작업량을 직접 계산을 해서 사용해야합니다.
+
+github 에서 기본적으로 제공해주는 기능은 없지만 storypoint를 사용할수있는 [크롬 확장프로그램](https://github.com/banyan/github-story-points) 이 존재합니다.  
+이슈에 설정된 `[5pt]`예약어를 이용해 이슈마다 storypoint를 지정해줄수 있습니다. 이렇게 지정된 스토리포인트는 task-flow마다 합산하여 확인이 가능합니다.
 
 ![10]({{ site.images | relative_url }}/posts/2022-01-04-github-scrum/10.png) 
-
-`label` 을 이용하는 방법도 있지만 개인적으로는 이슈제목에 팀에서 정한 format에 따라 작성해주는편이 좀더 가독성이 좋을수 있을거라 생각합니다.
 
 ---
 
@@ -84,5 +82,6 @@ jira에서는 task들이 바로 `Kanbanboard`로 연동되어 손쉽게 사용 �
 
 ![11]({{ site.images | relative_url }}/posts/2022-01-04-github-scrum/11.png) 
 
-github 에서는 `projects` 기능을 통해 칸반을 관리 할 수는 있지만 위에서 언급한 task flow를 관리하는 방법인 label을 사용한 방법과 연동이 되지 않는다는 점, milestone 별로 관리가 안된다는 점, 매 이슈마다 프로젝트를 직접 등록해줘야한다는 단점이 있습니다.  
-따라서 개인적인 의견으로는 현재의 github issue 으로는 jira에서 사용하던 Kanban의 기능들을 대체하기는 어렵기에 백로그만으로 관리하는것이 좀더 좋지 않을까 생각해봅니다.
+위에서 sprint를 project 기능을 활용하면서 자연스럽게 칸반보드로 관리 할 수 있게되었습니다. 만약 필요한 태스크 플로우가 있다면 간편하게 칼럼을 추가하여 사용 할 수 있습니다.
+
+![12]({{ site.images | relative_url }}/posts/2022-01-04-github-scrum/112.png) 
