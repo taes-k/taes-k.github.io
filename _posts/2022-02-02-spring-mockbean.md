@@ -1,7 +1,7 @@
 ---
 layout: post
 comments: true
-title: SpringBootTest @MockBean의 실행과정
+title: SpringBootTest @MockBean의 실행과정과 context reload
 tags: [springtest, mockbean, spybean]
 ---
 
@@ -48,22 +48,7 @@ public class ExampleTests {
 
 ### SpringBootTest MockBean 등록과정
 
-위에서 알아본것과 같이 `@MockBean`은 Spring에서 테스트코드 작성을 손쉽게 해주는 매우 유용한 기능이지만, 한가지 어쩔수 없는 단점이 존재합니다.  
-
-아마 대규모 시스템에서 `@MockBean`을 수행해보셨다면 경험해보셨을거라 생각하는데, `@MockBean`, `@SpyBean`가 포함된 테스트클래스를 수행 할 때 마다 `Spring Context reload`가 수행됩니다.
-
-시스템 규모, 테스트실행환경, Spring프로젝트 환경등에 따라 다르겠지만 `Spring context`를 reload하는 과정은 짧게는 1초 길게는 1분까지도 걸리는 경우도 있습니다. 100개의 테스트 클래스를 수행하면서 10번의 reload가 일어난다고 가정한다면 테스트코드 수행이 10분이나 delay 되는 현상이 발생 될 수 있습니다.
-
-실제 개발진에서는 다음과같이 comment를 남기기도 했습니다. [링크](https://github.com/spring-projects/spring-boot/issues/10015#issuecomment-322634989)
-
-```
-The Spring test framework will cache an ApplicationContext whenever possible between test runs. In order to be cached, the context must have an exactly equivalent configuration. Whenever you use @MockBean, you are by definition changing the context configuration.
-```
-
-위 comment에서 확인하실수 있다시피 이는 의도된 방향이며, 그도 그럴것이 `BeanFactory`에서 해당 `Bean`만 `Mocking`객체로 교체하면 되는것이 아니라 해당 Bean을 의존하고 있는 모든 Bean들을 모두 교체해서 주입해주어야 하기 때문에 이미 등록된 `Context`상에서 처리하기에는 쉽지 않은 작업입니다. 
-
-그렇다면 `MockBean`등록이 어떤 과정을 통해 수행되는지 좀 더 자세히 알아보도록 하겠습니다.
-
+위에서 알아본것과 같이 `@MockBean`은 Spring에서 테스트코드 작성을 손쉽게 해주는 매우 유용한 기능인데 어떤로직을 통해 MockBean을 등록 할 수 있는지 코드로 알아보도록 하겠습니다.  
 우선 테스트코드가 수행될때는 `TestExecutionListener`에 의해 이벤트를 감지하고 처리할수 있도록 되어있습니다.
 
 ```java
@@ -94,7 +79,8 @@ public interface TestExecutionListener {
 }
 ```
 
-`@MockBean`을 처리할때에도 위 `TestExecutionListener`를 구현한 `MockitoTestExecutionListener`를 통해 처리해주고 있음을 확인하실수 있습니다.
+`@MockBean`을 처리할때는 위 `TestExecutionListener`를 구현한 `MockitoTestExecutionListener`를 통해 처리되고 있습니다.
+
 ```java
 // org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener.java
 
@@ -169,9 +155,101 @@ public class MockitoTestExecutionListener extends AbstractTestExecutionListener 
 }
 ```
 
-위 코드에서 주목해야할 부분은 `prepareTestInstance` 시점에 `injectFields`메서드를 통해 `@MockBean` 필드를 찾아 `Mocking Bean`등록을 위한 구성을 수행하게됩니다.
+`prepareTestInstance` 테스트 준비단계에서 `injectFields`메서드를 통해 `@MockBean` 필드를 찾아 `Mocking Bean`등록을 위한 구성을 수행하는것을 내부로직을 통해 확인 하실 수 있습니다.
 
-위 과정 중 `MockitoPostProcessor postProcessor = testContext.getApplicationContext()` 를 수행하게 되는데 applicationContext를 가지고오는 과정에서 내부적으로 `Contexet reload` 필요여부를 확인한 후에 reload를 수행하게 되며 reload를 진행중에 새로 등록한 `Mocking Bean`을 등록시키게 됩니다. 
+---
+
+### context reload
+
+아마 대규모 시스템에서 `@MockBean`을 수행해보셨다면 경험해보셨을거라 생각하는데, `@MockBean`, `@SpyBean`가 포함된 테스트클래스를 수행 할 때 마다 `Spring Context reload`가 수행됩니다.
+
+시스템 규모, 테스트실행환경, Spring프로젝트 환경등에 따라 다르겠지만 `Spring context`를 reload하는 과정은 짧게는 1초 길게는 1분까지도 걸리는 경우도 있습니다. 100개의 테스트 클래스를 수행하면서 10번의 reload가 일어난다고 가정한다면 테스트코드 수행이 10분이나 delay 되는 현상이 발생 될 수 있습니다.
+
+실제 개발진에서는 다음과같이 comment를 남기기도 했습니다. [링크](https://github.com/spring-projects/spring-boot/issues/10015#issuecomment-322634989)
+
+```
+The Spring test framework will cache an ApplicationContext whenever possible between test runs. In order to be cached, the context must have an exactly equivalent configuration. Whenever you use @MockBean, you are by definition changing the context configuration.
+```
+
+위 comment에서 확인하실수 있다시피 이는 의도된 방향이며, 그도 그럴것이 `BeanFactory`에서 해당 `Bean`만 `Mocking`객체로 교체하면 되는것이 아니라 해당 Bean을 의존하고 있는 모든 Bean들을 모두 교체해서 주입해주어야 하기 때문에 이미 등록된 `Context`상에서 처리하기에는 쉽지 않은 작업입니다. 
+
+내부로직을 조금더 들어가서 살펴보면 `Mocking Bean` 등록과정 중 `applicationContext`를 새롭게 동작시키면서 refresh 하는 로직이 포함되어있는것을 확인 할 수 있습니다.
+
+```java
+// org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener.java
+
+public class MockitoTestExecutionListener extends AbstractTestExecutionListener {
+
+	private void postProcessFields(TestContext testContext, BiConsumer<MockitoField, MockitoPostProcessor> consumer) {
+		...
+		if (!parser.getDefinitions().isEmpty()) {
+			MockitoPostProcessor postProcessor = testContext.getApplicationContext()
+					.getBean(MockitoPostProcessor.class);
+			...
+		}
+	}
+	...
+}
+```
+
+```java
+// org.springframework.test.context.support.DefaultTestContext
+
+	@Override
+	public ApplicationContext getApplicationContext() {
+		ApplicationContext context = this.cacheAwareContextLoaderDelegate.loadContext(this.mergedContextConfiguration);
+		...
+		return context;
+	}
+
+```
+
+```java
+// org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate
+
+protected ApplicationContext loadContextInternal(MergedContextConfiguration mergedContextConfiguration)
+			throws Exception {
+		...
+
+		if (contextLoader instanceof SmartContextLoader) {
+			SmartContextLoader smartContextLoader = (SmartContextLoader) contextLoader;
+			applicationContext = smartContextLoader.loadContext(mergedContextConfiguration);
+		}
+		else {
+			...
+		}
+
+		return applicationContext;
+	}
+
+```
+
+```java
+// org.springframework.boot.test.context.SpringBootContextLoader
+
+	@Override
+	public ApplicationContext loadContext(MergedContextConfiguration config) throws Exception {
+		...
+		return application.run(args);
+	}
+```
+
+```java
+//  org.springframework.boot.SpringApplication
+
+	public ConfigurableApplicationContext run(String... args) {
+		...
+		try {
+			...
+			context.setApplicationStartup(this.applicationStartup);
+			prepareContext(bootstrapContext, context, environment, listeners, applicationArguments, printedBanner);
+			refreshContext(context);
+			...
+		}
+		...
+		return context;
+	}
+```
 
 ```java
 // org.springframework.context.support.AbstractApplicationContext
