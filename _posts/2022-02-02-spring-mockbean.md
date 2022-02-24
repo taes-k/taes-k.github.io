@@ -270,18 +270,19 @@ protected ApplicationContext loadContextInternal(MergedContextConfiguration merg
 
 ### Lazy-MockBean
 
-위에서 언급한것과 같이 잦은 `MockBean` 사용은 테스트 성능에 영향을 끼칠수 있고 이는 대규모시스템일수록 영향이 커질수 밖에 없습니다. 이러한 점을 해결하기 위해 [Lazy-mock-bean](https://github.com/taes-k/lazy-mock-bean)을 시도해봤습니다. 
+잦은 `MockBean` 사용은 테스트 성능에 영향을 끼칠수 있고 이는 대규모시스템일수록 영향이 커질수 밖에 없습니다. 이러한 점을 해결하기 위해 [Lazy-mock-bean](https://github.com/taes-k/lazy-mock-bean)을 시도해봤습니다. 
 
-이 시도의 가장 큰 포인트는 위에서 Bean을 의존하는 모든 객체들을 찾아 교체하는작업이 쉽지 않아 reload를 수행한다고 언급했는데, 사실 특정 테스트에서 사용되는 Bean은 꼭 모든 의존 객체들에 영향을 끼쳐야 하는것이 아니라 테스트에 사용되는 Bean에만 제한적으로 교체되면 된다는 점 입니다.
+이 시도의 주요 포인트는 위에서 Bean을 의존하는 모든 객체들을 찾아 교체하는작업이 쉽지 않아 reload를 수행한다고 언급했지만 사실 특정 테스트에서 사용되는 Bean은 한정적이기 때문에 꼭 모든 의존 객체들에 영향을 끼쳐야 하는것이 아니라 테스트에 사용되는 Bean에만 제한적으로 Mocking Bean을 사용하도록 교체되면 된다는 점 입니다.
 
 ```java
 @SpringBootTest
 public class ExampleTests {
   
 	// UserOfService에서 의존되어 사용되는 ExampleService만 Mocking 객체로 대체
-	@LazyMockBean([UserOfService.class])
+	@LazyMockBean
 	private ExampleService service;
 
+	@LazyInjectMockBeans
 	@Autowired
 	private UserOfService userOfService;
 
@@ -293,3 +294,7 @@ public class ExampleTests {
 	}
 }
 ```
+
+위 라이브러리는 아래 링크에서 확인 가능합니다
+
+- https://github.com/taes-k/lazy-mock-bean
