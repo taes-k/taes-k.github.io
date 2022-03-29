@@ -42,23 +42,14 @@ tags: [java, spring, integrationtest]
 > An ApplicationContext can be uniquely identified by the combination of configuration parameters that is used to load it. Consequently, the unique combination of configuration parameters is used to generate a key under which the context is cached. The TestContext framework uses the following configuration parameters to build the context cache key:
 > 
 > - locations (from @ContextConfiguration)
-> 
-> classes (from @ContextConfiguration)
-> 
+> - classes (from @ContextConfiguration)
 > - contextInitializerClasses (from @ContextConfiguration)
-> 
 > - contextCustomizers (from ContextCustomizerFactory) – this includes @DynamicPropertySource methods as well as various features from Spring Boot’s testing support such as @MockBean and @SpyBean.
-> 
 > - contextLoader (from @ContextConfiguration)
-> 
 > - parent (from @ContextHierarchy)
-> 
 > - activeProfiles (from @ActiveProfiles)
-> 
 > - propertySourceLocations (from @TestPropertySource)
-> 
 > - propertySourceProperties (from @TestPropertySource)
-> 
 > - resourceBasePath (from @WebAppConfiguration)
 
 doc : https://docs.spring.io/spring-framework/docs/current/reference/html/testing.html#testcontext-ctx-management-caching
