@@ -1,7 +1,7 @@
 ---
 layout: post
 comments: true
-title: Spiring boot 3.1.0 update
+title: Spiring boot 3.2.0 update
 tags: [spring, springboot]
 ---
 
