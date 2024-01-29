@@ -58,7 +58,7 @@ tags: [data]
 
 #### 고민했던 방향1 - Kafka 이벤트를 활용한 지연발행
 
-![1]({{ site.images | relative_url }}/posts/2022-09-23-net-cancel/1.png)  
+![1]({{ site.images | relative_url }}/posts/2022-09-23-net-cancel/1.jpg)  
 
 - 망취소를 담당하는 모듈을 별도로 분리하여 일반 프로세스와는 물리적으로 독립적으로 수행할수 있도록 구분했습니다.
 - 타임아웃 상황에서 바로 취소요청을 보낼시 외부 결제모듈에서는 아직 결제정보가 생성되지 않았기때문에 망취소가 실패할 가능성이 있어 1분정도의 망취소 지연요청을 보내도록 합니다.
@@ -66,7 +66,7 @@ tags: [data]
 
 #### 고민했던 방향2 - EventSourcing 테이블 + 배치를 이용한 망취소처리
 
-![2]({{ site.images | relative_url }}/posts/2022-09-23-net-cancel/2.png)  
+![2]({{ site.images | relative_url }}/posts/2022-09-23-net-cancel/2.jpg)  
 
 - 망취소를 담당하는 모듈을 별도로 분리하여 일반 프로세스와는 물리적으로 독립적으로 수행할수 있도록 구분했습니다.
 - 결제관련 상태를 기록하는 이벤트 소스를 테이블에 기록합니다.

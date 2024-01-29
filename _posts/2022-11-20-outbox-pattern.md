@@ -69,7 +69,7 @@ public class OrderService {
 
 다만, Kafka 에서 제공하는 트랜잭션은 DB 에서 사용하는 트랜잭션의 개념과는 조금 다른점이 있습니다. `commit-rollback`의 개념과는 다르게 Kafka 메세지는 발행자체가 되지 않도록 보장되는것이 아닌 추가 metaData message를 추가로 발행하여 해당메세지의 commit 여부를 알려주는것으로 Consumer가 commit상태의 메세지가 맞는지 판단 할 수 있도록 해주는 방식입니다.
 
-![1]({{ site.images | relative_url }}/posts/2022-11-20-outbox-pattern/1.png)  
+![1]({{ site.images | relative_url }}/posts/2022-11-20-outbox-pattern/1.jpg)  
 
 따라서 트랜잭션을 제대로 적용하기 위해서는 consumer 에서도 별도 처리가 필요합니다. Kafka consumer의 `isolation.level`을 `read_committed`를 설정하여 commit된 메세지만 읽어들이도록 처리가 되어야하며 `read_uncommitted`를 사용하면 아직 commit 되지 않은 상태의 메세지도 읽을수 있기때문에 트랜잭션 처리가 정상적으로 되지 않을 수 있습니다.
 
@@ -81,7 +81,7 @@ public class OrderService {
 
 위의 Kafka 트랜잭션 기능을 활용하지 않고도 확실하게 트랜잭션을 보장할수있는 다른 방법도 있습니다. `outbox pattern` 아키텍쳐 패턴을 이용한 방법인데 아래 그림을 보시면 바로 이해하실수 있으실것이라 생각됩니다.
 
-![2]({{ site.images | relative_url }}/posts/2022-11-20-outbox-pattern/2.png)  
+![2]({{ site.images | relative_url }}/posts/2022-11-20-outbox-pattern/2.jpg)  
 
 DB에 event 발행을 위한 별도의 테이블을 두고, 트랜잭션 처리에서 같이 Insert를 해주는 방식으로 메세지 발행 필요한 데이터를 동일 DB 상에서 트랜잭션 보장되게 묶어서 처리해 보장해줄수 있습니다. 해당 테이블에 추가된 데이터는 별도 Producer를 통해 Polling 혹은 CDC 등을 통해 메세지 발행으로 연계 시킬 수 있습니다.
 

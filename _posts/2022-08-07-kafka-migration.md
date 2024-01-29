@@ -19,16 +19,16 @@ tags: [kafka, migration, broker]
 운영환경에서 메세지 발행과 소비가 활발하게 수행되고 있는 환경에서도 안정적인 전환을 위해서는 `한번에 전환` 같은 매직은 어렵습니다. 따라서 아래와 같은 계획을 가지고 Step 을 나누어 부분적으로 전환을 시도했습니다.
 
 1. 신규 클러스터 구축 & 메세지 미러링환경 구축
-  - ![2]({{ site.images | relative_url }}/posts/2022-08-07-kafka-migration/2.png)  
+  - ![2]({{ site.images | relative_url }}/posts/2022-08-07-kafka-migration/2.jpg)  
   - 미러링 환경을 구축하는것은 MirrorMaker 등의 툴을 이용한다면 메세지 미러링 환경을 구축하는것을 그다지 어렵지 않습니다. 다만 주의할것은 단순히 메세지만 복제하면 되는것이 아니라, Consumer들을 전환할때 중복 메세지 소비 혹은 메세지 누락이 일어나지 않도록 Consumer Group Offset까지도 같이 복제를 해줘야합니다. consumer gorup offset이 복제되지 않는다면 consumer가 새 broker에 붙을때 consumer offset 정책에 따라 `latest`, `earliest` 를 수행하면서 메세지 누락 혹은 중복이 발생 할 수 있습니다.
 
 2. Consumer 전환
-  - ![3]({{ site.images | relative_url }}/posts/2022-08-07-kafka-migration/3.png)
+  - ![3]({{ site.images | relative_url }}/posts/2022-08-07-kafka-migration/3.jpg)
   - Consumer 전환시 일반적인 배포정책인 blue-green 배포 정책으로 신규 broker으로 전환하게 될시 동일 컨슈머그룹이 `기존 Kafka - Blue Consumer`, `신규 Kafka - Green Consumer` 연결이 일어 날 수 있습니다. 이경우 Consumer Group Offset 동기화가 비정상적으로 처리될 수 있으므로 기존 Consumer를 완전히 종료후 신규 Consumer를 띄우는 방식으로 전환을 시도해야합니다.
   - 추가로 Consumer Group Offset 복제는 실시간으로 동기화되지 않을수있습니다. MirrorMaker2 의 경우 설정에따라 다르나 동기화에 최소 1초의 시간이 소요될 수 있으므로 consumer 전환시 적절한 텀을 가지고 전환이 필요 할 수 도 있습니다.
 
 3. Producer 전환
-  - ![4]({{ site.images | relative_url }}/posts/2022-08-07-kafka-migration/4.png)  
+  - ![4]({{ site.images | relative_url }}/posts/2022-08-07-kafka-migration/4.jpg)  
   - 일반적으로 Producer들 또한 scale-out 구성으로 서비스되고 있는 경우가 많을텐데, Producer 전환시에 모든 서버에서 동시에 전환되도록 해주어야합니다. 그렇지 않는다면 일부는 기존 Kafka로 발행, 일부는 신규 Kafka로 발행되면서 메세지 순서가 꼬이게 될 수 있습니다. 기존 Kafka으로 발행되더라도 미러링 구성을 통해 복제되서 신규 Kafka으로 메세지가 들어오겠지만 만약 동일 ID의 메세지가 발행되는 경우에 순서보장이 되지 않을수 있으니 주의해야합니다.
   
 
@@ -36,7 +36,7 @@ tags: [kafka, migration, broker]
 
 위에서 공유드린 방법을 통해 신규시스템으로 안정적인 전환을 하더라도, 신규시스템에서 발행된 메세지에 대한 신뢰도를 가졌는지 여부는 또 다른 이야기가 될 수 있습니다.
 
-![5]({{ site.images | relative_url }}/posts/2022-08-07-kafka-migration/5.png)  
+![5]({{ site.images | relative_url }}/posts/2022-08-07-kafka-migration/5.jpg)  
 
 일반적으로 Producer 리빌딩 하면서 발생 할 수 있는 문제들은 아래와 같습니다.
 
@@ -50,13 +50,13 @@ tags: [kafka, migration, broker]
 신규시스템으로 완전 전환하기 전에 먼저 검증기를 수행시킴으로서 위 문제들을 사전에 검증시켜 신규 시스템에 대한 신뢰도를 높여줄 수 있습니다.  
 먼저 정합성검증기르 통해 메세지 스펙에 대해 검증해줄수 있습니다.
 
-![6]({{ site.images | relative_url }}/posts/2022-08-07-kafka-migration/6.png)  
+![6]({{ site.images | relative_url }}/posts/2022-08-07-kafka-migration/6.jpg)  
 
 신규 Producer 에서 구)메세지를 consume 하고 해당 메세지 바탕으로 신)메세지를 새로 만들어 비교하는 방식으로 신규 메세지에 대한 정합성을 체크 할 수 있습니다.
 
 #### 발행 검증기 운영
 
-![7]({{ site.images | relative_url }}/posts/2022-08-07-kafka-migration/7.png)  
+![7]({{ site.images | relative_url }}/posts/2022-08-07-kafka-migration/7.jpg)  
 
 old/new 발행검증기를 통해서 단순 메세지 스펙 비교로만으로는 확인 할수 없는 케이스들을 추가로 검증 할 수 있습니다.  
 
