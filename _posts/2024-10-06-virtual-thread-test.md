@@ -170,7 +170,7 @@ CPU 바운드 작업의 경우 소수판별 로직을 넣어 적용했고, IO �
 
 #### CPU 바운드
 
-![1]({{ site.images | relative_url }}/posts/2024-10-06-virtual-thread-test/1.jpg)  
+![1]({{ site.images | relative_url }}/posts/2024-10-06-virtual-thread-test/1.png)  
 - platform thread
     - 1회차 : 15,420 ms
     - 2회차 : 17,280 ms
@@ -178,7 +178,7 @@ CPU 바운드 작업의 경우 소수판별 로직을 넣어 적용했고, IO �
     - 평균 : 16,217 ms
 
 
-![2]({{ site.images | relative_url }}/posts/2024-10-06-virtual-thread-test/2.jpg)  
+![2]({{ site.images | relative_url }}/posts/2024-10-06-virtual-thread-test/2.png)  
 - virtual thread
     - 1회차 : 15,126 ms
     - 2회차 : 15,784 ms
@@ -187,14 +187,14 @@ CPU 바운드 작업의 경우 소수판별 로직을 넣어 적용했고, IO �
 
 #### IO 바운드 (platform thread)
 
-![3]({{ site.images | relative_url }}/posts/2024-10-06-virtual-thread-test/3.jpg)  
+![3]({{ site.images | relative_url }}/posts/2024-10-06-virtual-thread-test/3.png)  
 - platform thread
     - 1회차 : 1,103 ms
     - 2회차 : 1,557 ms
     - 3회차 : 1,008 ms
     - 평균 : 1,222 ms
 
-![4]({{ site.images | relative_url }}/posts/2024-10-06-virtual-thread-test/4.jpg)  
+![4]({{ site.images | relative_url }}/posts/2024-10-06-virtual-thread-test/4.png)  
 - virtual thread
     - 1회차 : 468 ms
     - 2회차 : 510 ms
